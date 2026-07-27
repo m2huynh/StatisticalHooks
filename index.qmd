@@ -4,10 +4,10 @@ title: "About"
 
 ## Welcome to Statistical Hooks
 
-This site is a collection of statistical **hooks** - quick, memorable ways to open a topic, grab attention, and make an abstract concept feel concrete before you dive into the technical details. The idea is simple: 
+This site is a collection of statistical **hooks** - quick, memorable ways to open a topic, grab attention, and make an abstract concept feel concrete before you dive into the technical details. The idea is simple:
 
-- if you can hook students' curiosity early, you can hold their attention longer once the harder explanations start.
-- They also work well as a reset: a way to re-energise the room after wrapping up a dense topic, before moving on to the next.
+-   if you can hook students' curiosity early, you can hold their attention longer once the harder explanations start.
+-   They also work well as a reset: a way to re-energise the room after wrapping up a dense topic, before moving on to the next.
 
 The resource is currently split into two main sections, with a third on the way.
 
@@ -142,11 +142,3 @@ gt(tbl) |>
   cols_label(Topics = "Topics") |>
   cols_width(Topics ~ px(400))
 ```
-
-
-
-
-
-
-
-

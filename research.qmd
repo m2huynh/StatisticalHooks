@@ -5,9 +5,9 @@ format: html
 
 Beyond the hooks and activities on this site, I'm also genuinely interested in the broader question of what makes statistics education actually work, e.g.
 
-- why some explanations land and others don't?
-- why a well-timed demonstration can shift how a whole cohort engages with a topic?
-- how we might measure that more rigorously than just "the class seemed to enjoy it." 
+-   why some explanations land and others don't?
+-   why a well-timed demonstration can shift how a whole cohort engages with a topic?
+-   how we might measure that more rigorously than just "the class seemed to enjoy it."
 
 If any of that sparks your curiosity, there's a good chance there's a research project in it.
 
@@ -15,4 +15,4 @@ Statistics education is a surprisingly under-explored space, especially compared
 
 I'd particularly love to hear from students looking for an honours, minor thesis, or postgraduate research project, but honestly, I'm happy to chat with anyone who has a genuine interest in this space, regardless of where you're at. You don't need a fully-formed proposal to reach out. A rough idea, or even just "I liked this website and want to do something related to it," is more than enough of a starting point. Some of the best projects start as loose ideas that get shaped properly once we sit down and talk them through.
 
-If this all sounds interesting, drop me an email at [minh.huynh1@monash.edu](mailto:minh.huynh1@monash.edu) and we can set up a time to discuss. I'm happy to talk through possible directions, how a project might be scoped, and what it would actually look like day to day. 
+If this all sounds interesting, drop me an email at [minh.huynh1\@monash.edu](mailto:minh.huynh1@monash.edu) and we can set up a time to discuss. I'm happy to talk through possible directions, how a project might be scoped, and what it would actually look like day to day.

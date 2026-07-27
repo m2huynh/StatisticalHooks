@@ -1,9 +1,14 @@
 project:
   type: website
   output-dir: docs
-
 website:
   title: "Statistical Hooks"
+  plausible-analytics: |
+    <script async src="https://plausible.io/js/pa-spxKwaQlaBkg-RJ-yjkFB.js"></script>
+    <script>
+      window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+      plausible.init()
+    </script>
   sidebar:
     style: "docked"
     search: true
@@ -12,7 +17,7 @@ website:
       - collab.qmd
       - research.qmd
       - school.qmd
-      
+
       - section: "Demonstration Hooks"
         contents:
           - Demonstration/Lollies.qmd
@@ -29,9 +34,8 @@ website:
           - Demonstration/Skittles.qmd
           - Demonstration/Movies.qmd
           - Demonstration/Cluster.qmd
-
       - section: "Interactive Hooks"
-        contents: 
+        contents:
           - Interactive/Witness.qmd
           - Interactive/MontyHall.qmd
           - Interactive/RPS.qmd
@@ -44,7 +48,6 @@ website:
           - Interactive/Coffee.qmd
           - Interactive/SA.qmd
           - Interactive/Movies.qmd
-
 format:
   html:
     theme:
@@ -52,13 +55,4 @@ format:
       - brand
     css: styles.css
     toc: true
-    include-in-header:
-      - text: |
-          <!-- Privacy-friendly analytics by Plausible -->
-          <script async src="https://plausible.io/js/pa-spxKwaQlaBkg-RJ-yjkFB.js"></script>
-          <script>
-            window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
-            plausible.init()
-          </script>
-
 editor: visual

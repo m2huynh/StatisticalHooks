@@ -3,11 +3,8 @@ title: "MontyHall"
 format: html
 ---
 
-::: {.tag-list}
-[Probability]{.tag}
-[Conditional Probability]{.tag}
-[Simulation]{.tag}
-[Bayesian Reasoning]{.tag}
+::: tag-list
+[Probability]{.tag} [Conditional Probability]{.tag} [Simulation]{.tag} [Bayesian Reasoning]{.tag}
 :::
 
 ## About
@@ -44,4 +41,12 @@ download_file(
 
 </center>
 
+## General questions
 
+- Before playing, what was your gut instinct — does switching actually change your odds, or is it 50/50 once one door is removed? Did playing change your mind?
+- After several rounds, look at your stay-vs-switch crosstab. Does the pattern match the theoretical 1/3 vs 2/3 split, or is it still noisy? How many rounds do you think you'd need to play before it clearly settled?
+- Why does the host opening a door give you *new* information, even though you already knew at least one of the other two doors had a goat behind it?
+- If the host opened doors completely at random (and sometimes revealed the car by accident), would switching still be the better strategy? What does that tell you about why the host's behaviour matters here?
+- Try explaining, in your own words, why switching wins 2 times out of 3 — without using any formulas. Would your explanation convince a skeptical friend?
+- This problem famously stumped many mathematicians and statisticians when it was first published, with some refusing to accept the correct answer even after seeing simulations. Why do you think this particular puzzle is so resistant to intuition?
+- Can you think of a real-world situation where new information changes the odds of something, similar to how the host's reveal changes the odds in this game?

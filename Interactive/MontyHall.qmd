@@ -1,0 +1,47 @@
+---
+title: "MontyHall"
+format: html
+---
+
+::: {.tag-list}
+[Probability]{.tag}
+[Conditional Probability]{.tag}
+[Simulation]{.tag}
+[Bayesian Reasoning]{.tag}
+:::
+
+## About
+
+The Monty Hall problem is one of the most famous (and most argued-about) puzzles in probability. Students are almost always confident that staying or switching makes no difference — after all, with two doors left, isn't it 50/50? This interactive app lets students test that intuition directly: they play the game themselves, repeatedly, and watch a live crosstab build up showing how often "stay" wins versus how often "switch" wins. The gap between intuition and the empirical result is what makes this activity land — no lecture is as convincing as students' own accumulating data.
+
+## App
+
+Below is an example of what the app looks like when embeded into a Quarto document.
+
+```{=html}
+<iframe
+  src="Apps/monty_hall.html"
+  width="100%"
+  height="640"
+  style="border: none;"
+></iframe>
+```
+
+## Download
+
+You can download the app directly using the link below. This should open as a standalone app that can open on any device. You can also wrap this around a `=html` code chunk in your Quarto document to achieve a similar effect to what is seen above.
+
+<center>
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(downloadthis)
+download_file(
+  path = "Apps/monty_hall.html",
+  button_label = "Monty Hall",
+  button_type = 'success'
+)
+```
+
+</center>
+
+

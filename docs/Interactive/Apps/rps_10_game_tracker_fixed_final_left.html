@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rock Paper Scissors Tracker</title>
+<style>
+  :root {
+    --border: #111827;
+    --light-border: #d1d5db;
+    --text: #111827;
+    --muted: #6b7280;
+    --green: #dcfce7;
+    --green-dark: #15803d;
+    --red: #fee2e2;
+    --red-dark: #b91c1c;
+    --blue: #dbeafe;
+    --blue-dark: #1d4ed8;
+    --panel: #ffffff;
+    --bg: #f8fafc;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 8px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+  }
+
+  .app {
+    max-width: 760px;
+    height: 300px;
+    margin: 0 auto;
+    background: var(--panel);
+    border: 1.5px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr 1.08fr;
+    gap: 12px;
+    padding: 10px 12px;
+    overflow: hidden;
+  }
+
+  .left {
+    grid-column: 1;
+    grid-row: 1;
+    border-right: 1.5px solid var(--border);
+    padding-right: 12px;
+    display: grid;
+    grid-template-rows: auto auto auto auto 1fr auto;
+    gap: 7px;
+    min-width: 0;
+  }
+
+  .right {
+    grid-column: 2;
+    grid-row: 1;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .bar-label {
+    height: 27px;
+    border: 1.3px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    background: #fff;
+  }
+
+  .choice-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+  }
+
+  .choice {
+    height: 33px;
+    border: 1px solid var(--light-border);
+    border-radius: 7px;
+    background: #fff;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    font-size: 9px;
+    font-weight: 700;
+    transition: 0.15s ease;
+    user-select: none;
+  }
+
+  .choice span {
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .choice:hover,
+  .choice.selected {
+    border-color: var(--blue-dark);
+    background: #eff6ff;
+    outline: 1.5px solid #93c5fd;
+  }
+
+  .choice.disabled {
+    cursor: default;
+    opacity: 0.55;
+  }
+
+  .submit {
+    height: 27px;
+    border: 1.3px solid var(--border);
+    background: #e5f4df;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .submit:disabled {
+    background: #f3f4f6;
+    color: #9ca3af;
+    cursor: default;
+  }
+
+  .opponent-row .choice {
+    cursor: default;
+  }
+
+  .opponent-row .choice.win {
+    background: var(--red);
+    border-color: var(--red-dark);
+    outline: 1.5px solid #fca5a5;
+  }
+
+  .opponent-row .choice.loss {
+    background: var(--green);
+    border-color: var(--green-dark);
+    outline: 1.5px solid #86efac;
+  }
+
+  .opponent-row .choice.draw {
+    background: #f9fafb;
+    border-color: #9ca3af;
+    outline: 1.5px solid #d1d5db;
+  }
+
+  .next-reset-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 7px;
+    align-items: center;
+  }
+
+  .next {
+    height: 30px;
+    border: 1.3px solid var(--border);
+    background: var(--blue);
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .next:disabled {
+    background: #f3f4f6;
+    color: #9ca3af;
+    cursor: default;
+  }
+
+  .reset-inline,
+  .reset-final {
+    height: 30px;
+    border: 0;
+    border-radius: 8px;
+    padding: 0 14px;
+    background: #fee2e2;
+    color: var(--red-dark);
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .score-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .score-card {
+    height: 54px;
+    border: 1.3px solid var(--border);
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+  }
+
+  .score-card .label {
+    font-size: 12px;
+  }
+
+  .score-card .value {
+    font-size: 24px;
+    line-height: 1;
+    font-weight: 800;
+  }
+
+  .chart-wrap {
+    border: 1.3px solid var(--border);
+    padding: 6px 8px 4px 8px;
+    min-height: 0;
+  }
+
+  svg {
+    width: 100%;
+    height: 190px;
+    display: block;
+  }
+
+  .axis {
+    stroke: #111827;
+    stroke-width: 1.5;
+  }
+
+  .grid {
+    stroke: #e5e7eb;
+    stroke-width: 1;
+  }
+
+  .line {
+    fill: none;
+    stroke: #2563eb;
+    stroke-width: 2.5;
+  }
+
+  .dot {
+    fill: #2563eb;
+  }
+
+  .zero-line {
+    stroke: #9ca3af;
+    stroke-dasharray: 4 4;
+    stroke-width: 1.2;
+  }
+
+  .axis-label,
+  .tick-label {
+    font-size: 10px;
+    fill: #374151;
+  }
+
+  .message {
+    min-height: 20px;
+    font-size: 13px;
+    font-weight: 800;
+    text-align: right;
+    align-self: end;
+  }
+
+  .message.win {
+    color: var(--green-dark);
+  }
+
+  .message.loss {
+    color: var(--red-dark);
+  }
+
+  .message.draw {
+    color: #374151;
+  }
+
+  .final-screen {
+    grid-column: 1;
+    grid-row: 1;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 14px;
+    border-right: 1.5px solid var(--border);
+    padding-right: 12px;
+    min-width: 0;
+  }
+
+  .final-screen.show {
+    display: flex;
+  }
+
+  .final-text {
+    font-size: 28px;
+    font-weight: 900;
+    text-align: center;
+  }
+
+  .final-text.win {
+    color: var(--green-dark);
+  }
+
+  .final-text.loss {
+    color: var(--red-dark);
+  }
+
+  .game-area.hidden,
+  .right.hidden {
+    display: none;
+  }
+
+  @media (max-width: 640px) {
+    .app {
+      height: 340px;
+      grid-template-columns: 1fr;
+      overflow: hidden;
+    }
+
+    .left {
+      border-right: 0;
+      padding-right: 0;
+    }
+
+    .final-screen {
+      border-right: 0;
+      padding-right: 0;
+    }
+
+    .right {
+      display: none;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="app" id="app">
+    <div class="left game-area" id="leftPanel">
+      <div class="bar-label">Choose:</div>
+      <div class="choice-row" id="playerChoices"></div>
+      <button class="submit" id="submitBtn" disabled>Submit</button>
+
+      <div class="message" id="message">Choose an option.</div>
+
+      <div class="bar-label">Opponent chooses:</div>
+      <div class="choice-row opponent-row" id="opponentChoices"></div>
+      <div class="next-reset-row">
+        <button class="next" id="nextBtn" disabled>Next game</button>
+        <button class="reset-inline" id="resetInlineBtn">Reset</button>
+      </div>
+    </div>
+
+    <div class="right" id="rightPanel">
+      <div class="score-cards">
+        <div class="score-card">
+          <div class="label">Game</div>
+          <div class="value" id="gameCount">0</div>
+        </div>
+        <div class="score-card">
+          <div class="label">Your wins</div>
+          <div class="value" id="yourWins">0</div>
+        </div>
+        <div class="score-card">
+          <div class="label">Computer wins</div>
+          <div class="value" id="computerWins">0</div>
+        </div>
+      </div>
+
+      <div class="chart-wrap">
+        <svg id="chart" viewBox="0 0 350 190" preserveAspectRatio="none" aria-label="Points over games"></svg>
+      </div>
+    </div>
+
+    <div class="final-screen" id="finalScreen">
+      <div class="final-text" id="finalText"></div>
+      <button class="reset-final" id="resetFinalBtn">Reset</button>
+    </div>
+  </div>
+
+<script>
+  const choices = [
+    { name: "Rock", emoji: "✊" },
+    { name: "Paper", emoji: "✋" },
+    { name: "Scissors", emoji: "✌️" }
+  ];
+
+  const beats = {
+    Rock: "Scissors",
+    Paper: "Rock",
+    Scissors: "Paper"
+  };
+
+  const shift = {
+    Rock: "Paper",
+    Paper: "Scissors",
+    Scissors: "Rock"
+  };
+
+  let selected = null;
+  let computerChoice = null;
+  let previousComputerChoice = null;
+  let previousResultForComputer = null;
+  let currentGameResolved = false;
+
+  let gamesPlayed = 0;
+  let yourWins = 0;
+  let computerWins = 0;
+  let points = [0];
+
+  const playerChoicesEl = document.getElementById("playerChoices");
+  const opponentChoicesEl = document.getElementById("opponentChoices");
+  const submitBtn = document.getElementById("submitBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const resetInlineBtn = document.getElementById("resetInlineBtn");
+  const resetFinalBtn = document.getElementById("resetFinalBtn");
+  const messageEl = document.getElementById("message");
+  const gameCountEl = document.getElementById("gameCount");
+  const yourWinsEl = document.getElementById("yourWins");
+  const computerWinsEl = document.getElementById("computerWins");
+  const chartEl = document.getElementById("chart");
+  const leftPanel = document.getElementById("leftPanel");
+  const rightPanel = document.getElementById("rightPanel");
+  const finalScreen = document.getElementById("finalScreen");
+  const finalText = document.getElementById("finalText");
+
+  function randomChoice() {
+    return choices[Math.floor(Math.random() * choices.length)].name;
+  }
+
+  function makeChoiceButton(choice, mode) {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.dataset.choice = choice.name;
+    btn.innerHTML = `<span>${choice.emoji}</span>${choice.name}`;
+
+    if (mode === "player") {
+      btn.addEventListener("click", () => {
+        if (currentGameResolved || gamesPlayed >= 10) return;
+        selected = choice.name;
+        [...playerChoicesEl.children].forEach(x => x.classList.remove("selected"));
+        btn.classList.add("selected");
+        submitBtn.disabled = false;
+        messageEl.textContent = "Ready to submit.";
+        messageEl.className = "message";
+      });
+    } else {
+      btn.classList.add("disabled");
+    }
+
+    return btn;
+  }
+
+  function renderChoiceButtons() {
+    playerChoicesEl.innerHTML = "";
+    opponentChoicesEl.innerHTML = "";
+    choices.forEach(choice => {
+      playerChoicesEl.appendChild(makeChoiceButton(choice, "player"));
+      opponentChoicesEl.appendChild(makeChoiceButton(choice, "opponent"));
+    });
+  }
+
+  function computerStrategy() {
+    if (!previousComputerChoice || !previousResultForComputer) {
+      return randomChoice();
+    }
+
+    if (previousResultForComputer === "computer") {
+      return previousComputerChoice;
+    }
+
+    if (previousResultForComputer === "player") {
+      return shift[previousComputerChoice];
+    }
+
+    return randomChoice();
+  }
+
+  function decideRound(player, computer) {
+    if (player === computer) return "draw";
+    if (beats[player] === computer) return "player";
+    return "computer";
+  }
+
+  function highlightOpponent(choice, result) {
+    [...opponentChoicesEl.children].forEach(btn => {
+      btn.classList.remove("win", "loss", "draw");
+      if (btn.dataset.choice === choice) {
+        if (result === "computer") btn.classList.add("win");
+        if (result === "player") btn.classList.add("loss");
+        if (result === "draw") btn.classList.add("draw");
+      }
+    });
+  }
+
+  function submitRound() {
+    if (!selected || currentGameResolved || gamesPlayed >= 10) return;
+
+    computerChoice = computerStrategy();
+    const result = decideRound(selected, computerChoice);
+
+    currentGameResolved = true;
+    gamesPlayed += 1;
+
+    if (result === "player") {
+      yourWins += 1;
+      points.push(points[points.length - 1] + 1);
+      messageEl.textContent = "You win";
+      messageEl.className = "message win";
+      previousResultForComputer = "player";
+    } else if (result === "computer") {
+      computerWins += 1;
+      points.push(points[points.length - 1] - 1);
+      messageEl.textContent = "Opponent wins";
+      messageEl.className = "message loss";
+      previousResultForComputer = "computer";
+    } else {
+      points.push(points[points.length - 1]);
+      messageEl.textContent = "Draw";
+      messageEl.className = "message draw";
+      previousResultForComputer = "draw";
+    }
+
+    previousComputerChoice = computerChoice;
+    highlightOpponent(computerChoice, result);
+    updateScore();
+    drawChart();
+
+    submitBtn.disabled = true;
+    nextBtn.disabled = gamesPlayed >= 10;
+
+    if (gamesPlayed >= 10) {
+      setTimeout(showFinalIfNeeded, 350);
+    }
+  }
+
+  function nextGame() {
+    if (!currentGameResolved || gamesPlayed >= 10) return;
+    selected = null;
+    computerChoice = null;
+    currentGameResolved = false;
+    submitBtn.disabled = true;
+    nextBtn.disabled = true;
+    messageEl.textContent = "Choose an option.";
+    messageEl.className = "message";
+    [...playerChoicesEl.children].forEach(x => x.classList.remove("selected"));
+    [...opponentChoicesEl.children].forEach(x => x.classList.remove("win", "loss", "draw"));
+  }
+
+  function updateScore() {
+    gameCountEl.textContent = gamesPlayed;
+    yourWinsEl.textContent = yourWins;
+    computerWinsEl.textContent = computerWins;
+  }
+
+  function drawChart() {
+    const width = 350;
+    const height = 190;
+    const margin = { top: 14, right: 14, bottom: 28, left: 34 };
+    const innerW = width - margin.left - margin.right;
+    const innerH = height - margin.top - margin.bottom;
+
+    const minY = -10;
+    const maxY = 10;
+    const maxX = 10;
+
+    function xScale(x) {
+      return margin.left + (x / maxX) * innerW;
+    }
+
+    function yScale(y) {
+      return margin.top + ((maxY - y) / (maxY - minY)) * innerH;
+    }
+
+    let html = "";
+
+    // horizontal grid and labels
+    [-10, -5, 0, 5, 10].forEach(y => {
+      html += `<line class="${y === 0 ? 'zero-line' : 'grid'}" x1="${margin.left}" y1="${yScale(y)}" x2="${width - margin.right}" y2="${yScale(y)}"></line>`;
+      html += `<text class="tick-label" x="${margin.left - 8}" y="${yScale(y) + 3}" text-anchor="end">${y}</text>`;
+    });
+
+    // vertical ticks
+    [0, 1, 2, 5, 10].forEach(x => {
+      html += `<line class="grid" x1="${xScale(x)}" y1="${margin.top}" x2="${xScale(x)}" y2="${height - margin.bottom}"></line>`;
+      html += `<text class="tick-label" x="${xScale(x)}" y="${height - 9}" text-anchor="middle">${x}</text>`;
+    });
+
+    html += `<line class="axis" x1="${margin.left}" y1="${height - margin.bottom}" x2="${width - margin.right}" y2="${height - margin.bottom}"></line>`;
+    html += `<line class="axis" x1="${margin.left}" y1="${margin.top}" x2="${margin.left}" y2="${height - margin.bottom}"></line>`;
+    html += `<text class="axis-label" x="${width - margin.right}" y="${height - 2}" text-anchor="end">game</text>`;
+    html += `<text class="axis-label" x="4" y="12">pts</text>`;
+
+    const coords = points.map((p, i) => [xScale(i), yScale(p)]);
+    const path = coords.map((d, i) => `${i === 0 ? 'M' : 'L'} ${d[0]} ${d[1]}`).join(" ");
+    html += `<path class="line" d="${path}"></path>`;
+    coords.forEach(d => {
+      html += `<circle class="dot" cx="${d[0]}" cy="${d[1]}" r="3"></circle>`;
+    });
+
+    chartEl.innerHTML = html;
+  }
+
+  function showFinalIfNeeded() {
+    leftPanel.classList.add("hidden");
+    finalScreen.classList.add("show");
+
+    if (points[points.length - 1] > 0) {
+      finalText.textContent = "You win";
+      finalText.className = "final-text win";
+    } else if (points[points.length - 1] < 0) {
+      finalText.textContent = "You lose";
+      finalText.className = "final-text loss";
+    } else {
+      finalText.textContent = "It was a draw";
+      finalText.className = "final-text";
+    }
+  }
+
+  function resetAll() {
+    selected = null;
+    computerChoice = null;
+    previousComputerChoice = null;
+    previousResultForComputer = null;
+    currentGameResolved = false;
+    gamesPlayed = 0;
+    yourWins = 0;
+    computerWins = 0;
+    points = [0];
+
+    leftPanel.classList.remove("hidden");
+    rightPanel.classList.remove("hidden");
+    finalScreen.classList.remove("show");
+
+    submitBtn.disabled = true;
+    nextBtn.disabled = true;
+    messageEl.textContent = "Choose an option.";
+    messageEl.className = "message";
+
+    renderChoiceButtons();
+    updateScore();
+    drawChart();
+  }
+
+  submitBtn.addEventListener("click", submitRound);
+  nextBtn.addEventListener("click", nextGame);
+  resetInlineBtn.addEventListener("click", resetAll);
+  resetFinalBtn.addEventListener("click", resetAll);
+
+  resetAll();
+</script>
+</body>
+</html>

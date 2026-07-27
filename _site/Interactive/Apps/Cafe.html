@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Should We Launch It?</title>
+<style>
+  :root {
+    --bg: #fff7ed;
+    --panel: #ffffff;
+    --ink: #1f2937;
+    --muted: #6b7280;
+    --line: #e5e7eb;
+    --accent: #ea580c;
+    --accent-dark: #c2410c;
+    --support: #16a34a;
+    --neutral: #f59e0b;
+    --soft: #ffedd5;
+    --blue: #2563eb;
+    --purple: #7c3aed;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    overflow: hidden;
+  }
+
+  .app {
+    width: 100%;
+    min-height: 100vh;
+    padding: 4px;
+  }
+
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  .intro {
+    max-width: 900px;
+    margin: 0 auto;
+    min-height: calc(100vh - 24px);
+    display: grid;
+    place-items: center;
+  }
+
+  .intro-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 22px;
+    box-shadow: 0 18px 40px rgba(124, 45, 18, 0.12);
+  }
+
+  h1 {
+    margin: 0 0 8px;
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  h2, h3 { margin: 0; }
+  #roundTitle { font-size: 1.35rem; }
+  p { line-height: 1.45; }
+  .lead { font-size: 1.05rem; color: var(--muted); max-width: 780px; }
+
+  .rule-box {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 18px 0;
+  }
+  .rule {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 12px;
+    background: #fffaf5;
+  }
+  .rule strong { display: block; margin-bottom: 4px; }
+  .rule span { color: var(--muted); font-size: .92rem; }
+
+  button {
+    border: none;
+    border-radius: 999px;
+    padding: 7px 12px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform .1s ease, opacity .1s ease, background .1s ease;
+  }
+  button:hover { transform: translateY(-1px); }
+  button:disabled { cursor: not-allowed; opacity: .45; transform: none; }
+  .btn-primary { background: var(--accent); color: white; }
+  .btn-primary:hover { background: var(--accent-dark); }
+  .btn-secondary { background: #e5e7eb; color: var(--ink); }
+
+  .trial-layout {
+    display: grid;
+    grid-template-columns: minmax(360px, 1.05fr) minmax(315px, .95fr);
+    gap: 6px;
+    height: calc(100vh - 8px);
+  }
+
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 6px;
+    box-shadow: 0 10px 24px rgba(124, 45, 18, 0.08);
+    min-height: 0;
+  }
+
+  .left-panel, .right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow: hidden;
+  }
+
+  .topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .badge {
+    background: var(--soft);
+    color: var(--accent-dark);
+    border: 1px solid #fed7aa;
+    border-radius: 999px;
+    padding: 5px 10px;
+    font-size: .82rem;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+  .small-muted { color: var(--muted); font-size: .76rem; }
+
+  .statement-card {
+    background: #fffaf5;
+    border: 1px solid #fed7aa;
+    border-radius: 13px;
+    padding: 6px 8px;
+  }
+  .statement-card h2 { font-size: 1rem; margin-bottom: 2px; }
+  .statement-card p { margin: 0; color: var(--muted); font-size: .74rem; }
+
+  .comments {
+    display: grid;
+    gap: 4px;
+  }
+  .comment {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 7px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #ffffff;
+    font-size: .76rem;
+    line-height: 1.08;
+  }
+  .comment input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--support);
+  }
+  .comment.checked {
+    border-color: #86efac;
+    background: #f0fdf4;
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: auto;
+  }
+  .choice-summary {
+    font-size: .8rem;
+    color: var(--muted);
+  }
+  .choice-summary strong { color: var(--ink); }
+
+  .mini-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+  }
+  .stat-card {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 5px 7px;
+    background: #fffaf5;
+  }
+  .stat-card .label { color: var(--muted); font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+  .stat-card .value { font-size: .92rem; font-weight: 900; margin-top: 0; }
+
+  .chart-wrap {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 4px 5px;
+    background: #fff;
+  }
+  .chart-title {
+    font-weight: 900;
+    font-size: .78rem;
+    margin-bottom: 2px;
+    color: var(--ink);
+  }
+  canvas { width: 100%; display: block; }
+  #priorCanvas, #posteriorCanvas { height: 96px; }
+  #ridgeCanvas { height: 390px; }
+
+  .history {
+    display: none;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .74rem;
+  }
+  th, td {
+    padding: 4px 5px;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+    vertical-align: top;
+  }
+  th { background: #fff7ed; color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .03em; }
+  td.num, th.num { text-align: right; }
+  tr:last-child td { border-bottom: none; }
+
+  .final-layout {
+    display: grid;
+    grid-template-columns: minmax(500px, 1fr) minmax(260px, .42fr);
+    gap: 10px;
+    height: calc(100vh - 16px);
+  }
+  .final-header {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .final-header h1 { font-size: 1.55rem; letter-spacing: -0.04em; }
+  .summary-list {
+    display: grid;
+    gap: 5px;
+    overflow: hidden;
+  }
+  .summary-item {
+    border: 1px solid var(--line);
+    background: #fffaf5;
+    border-radius: 11px;
+    padding: 5px 7px;
+    font-size: .74rem;
+  }
+  .summary-item.final {
+    border-color: #fdba74;
+    background: #ffedd5;
+  }
+  .summary-item .row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: baseline;
+  }
+  .summary-item strong { font-size: .78rem; }
+  .summary-item .meta { color: var(--muted); font-size: .72rem; margin-top: 2px; }
+  .copy-area { margin-top: auto; padding-top: 8px; }
+  .copy-area button { width: 100%; }
+  .copy-note { color: var(--muted); font-size: .72rem; margin-top: 5px; text-align: center; }
+
+  @media (max-width: 850px) {
+    body { overflow: auto; }
+    .trial-layout { grid-template-columns: 1fr; height: auto; }
+    .rule-box { grid-template-columns: 1fr; }
+  }
+
+  /* Compact two-column final screen for Quarto embeds */
+  #finalScreen.active { height: calc(100vh - 8px); overflow: hidden; }
+  #finalScreen .final-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(245px, .92fr);
+    gap: 8px;
+    height: calc(100vh - 8px);
+    min-height: 0;
+  }
+  #finalScreen .panel {
+    padding: 7px;
+    border-radius: 14px;
+    min-height: 0;
+    overflow: hidden;
+  }
+  #finalScreen .final-header {
+    margin-bottom: 4px;
+    align-items: center;
+  }
+  #finalScreen .final-header h1 {
+    font-size: 1.15rem;
+    line-height: 1;
+    letter-spacing: -0.045em;
+    margin-bottom: 2px;
+  }
+  #finalScreen .final-header .small-muted { font-size: .68rem; }
+  #finalScreen #playAgainBtn {
+    padding: 4px 8px;
+    font-size: .68rem;
+  }
+  #finalScreen .chart-wrap {
+    padding: 4px;
+    border-radius: 10px;
+    height: calc(100% - 36px);
+    min-height: 0;
+  }
+  #finalScreen #ridgeCanvas {
+    height: 100%;
+    min-height: 250px;
+  }
+  #finalScreen .right-panel {
+    gap: 5px;
+  }
+  #finalScreen h3 {
+    font-size: .95rem;
+    line-height: 1;
+    margin-bottom: 1px;
+  }
+  #finalScreen .summary-list {
+    flex: 1 1 auto;
+    min-height: 0;
+    gap: 3px;
+    overflow: hidden;
+  }
+  #finalScreen .summary-item {
+    border-radius: 8px;
+    padding: 3px 5px;
+    font-size: .66rem;
+  }
+  #finalScreen .summary-item strong { font-size: .68rem; }
+  #finalScreen .summary-item .meta {
+    font-size: .62rem;
+    margin-top: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  #finalScreen .summary-item .row span {
+    font-size: .62rem;
+    white-space: nowrap;
+  }
+  #finalScreen .copy-area {
+    margin-top: 2px;
+    padding-top: 2px;
+  }
+  #finalScreen .copy-area button {
+    padding: 6px 8px;
+    font-size: .72rem;
+  }
+  #finalScreen .copy-note {
+    font-size: .62rem;
+    margin-top: 2px;
+  }
+
+  @media (max-width: 650px) {
+    body { overflow: auto; }
+    #finalScreen.active { height: auto; overflow: visible; }
+    #finalScreen .final-layout { grid-template-columns: 1fr; height: auto; }
+    #finalScreen #ridgeCanvas { height: 260px; }
+  }
+
+</style>
+</head>
+<body>
+<div class="app">
+  <section id="introScreen" class="screen active">
+    <div class="intro">
+      <div class="intro-card">
+        <h1>Should We Launch It?</h1>
+        <p class="lead">A café is deciding whether to launch a new drink. Your job is to read customer feedback and decide which comments count as genuine support.</p>
+        <div class="rule-box">
+          <div class="rule"><strong>Read 6 comments</strong><span>Each day shows six random customer statements drawn from a larger random pool.</span></div>
+          <div class="rule"><strong>Tick support</strong><span>Select comments that genuinely support launching the drink.</span></div>
+          <div class="rule"><strong>Update beliefs</strong><span>Your choices update a beta distribution for support.</span></div>
+        </div>
+        <p class="lead">The app starts with a flat prior, <strong>Beta(1,1)</strong>. If you tick <strong>x</strong> comments in a day, the posterior becomes <strong>Beta(alpha + x, beta + 6 - x)</strong>.</p>
+        <button class="btn-primary" id="startBtn">Start tasting panel</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="trialScreen" class="screen">
+    <div class="trial-layout">
+      <div class="panel left-panel">
+        <div class="topline">
+          <div>
+            <h2 id="roundTitle">Day 1</h2>
+            <div class="small-muted">Tick the comments that count as genuine support.</div>
+          </div>
+          <div class="badge" id="roundBadge">1 / 6</div>
+        </div>
+
+        <div class="statement-card">
+          <h2 id="scenarioTitle">Customer feedback</h2>
+          <p id="scenarioText">A group of customers sampled the new drink and left short comments.</p>
+        </div>
+
+        <div class="comments" id="commentsBox"></div>
+
+        <div class="actions">
+          <div class="choice-summary" id="choiceSummary">Selected <strong>0</strong> out of 6 as genuine support.</div>
+          <div>
+            <button class="btn-secondary" id="resetRoundBtn">Clear</button>
+            <button class="btn-primary" id="updateBtn">Update</button>
+            <button class="btn-primary" id="nextBtn" disabled>Next</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel right-panel">
+        <div class="mini-grid">
+          <div class="stat-card"><div class="label">Current prior</div><div class="value" id="priorText">Beta(1,1)</div></div>
+          <div class="stat-card"><div class="label">Posterior mean</div><div class="value" id="meanText">0.500</div></div>
+          <div class="stat-card"><div class="label">Total support</div><div class="value" id="totalText">0 / 0</div></div>
+        </div>
+
+        <div class="chart-wrap">
+          <div class="chart-title" id="priorChartTitle">Prior distribution — Beta(1, 1)</div>
+          <canvas id="priorCanvas"></canvas>
+        </div>
+
+        <div class="chart-wrap">
+          <div class="chart-title" id="posteriorChartTitle">Posterior distribution — waiting for update</div>
+          <canvas id="posteriorCanvas"></canvas>
+        </div>
+
+        <div class="history">
+          <table>
+            <thead>
+              <tr><th>Day</th><th class="num">x / 6</th><th>Posterior</th><th class="num">Mean</th></tr>
+            </thead>
+            <tbody id="historyBody"><tr><td colspan="4" class="small-muted">No updates yet.</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="finalScreen" class="screen">
+    <div class="final-layout">
+      <div class="panel">
+        <div class="final-header">
+          <div>
+            <h1>Final launch judgement</h1>
+            <div class="small-muted">The final posterior is shown at the front of the ridge plot.</div>
+          </div>
+          <button class="btn-secondary" id="playAgainBtn">Play again</button>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="ridgeCanvas"></canvas>
+        </div>
+      </div>
+      <div class="panel right-panel">
+        <h3>Distribution summary</h3>
+        <div class="summary-list" id="summaryList"></div>
+        <div class="copy-area">
+          <button class="btn-primary" id="copyDataBtn">Copy x values for R</button>
+          <div class="copy-note" id="copyNote">Copies my_data <- c(...)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+const statements = [
+  "I would definitely buy this if it was on the menu.",
+  "The flavour is good, but I think it is too expensive.",
+  "I liked it as a free sample, but I probably would not order it.",
+  "This is better than my usual drink.",
+  "I would recommend this to a friend.",
+  "It tastes interesting, but it is too sweet for me.",
+  "I would buy this once a week.",
+  "It is fine, but I prefer the drinks already on the menu.",
+  "This should definitely become a regular menu item.",
+  "I enjoyed it, but only because it was free.",
+  "The flavour is unique and I would pay for it.",
+  "It was okay, but I would not go out of my way to buy it.",
+  "I would choose this over my usual coffee.",
+  "The drink looks good, but the taste was not for me.",
+  "I would order this again.",
+  "I like the idea, but the serving size is too small.",
+  "This is exactly the kind of drink I would buy.",
+  "It is nice, but I do not think I would pay full price.",
+  "I would bring a friend here to try this.",
+  "The drink is too similar to something already on the menu.",
+  "I would be disappointed if this was not launched.",
+  "It was refreshing and worth the price.",
+  "I liked the first few sips, but got tired of the flavour.",
+  "I would buy this during summer.",
+  "The flavour was confusing, and I would not order it again.",
+  "This would be my new regular order.",
+  "It is good, but only as a limited-time special.",
+  "I would pay full price for this.",
+  "The drink was too sweet, but I can see others liking it.",
+  "I would tell other people to try this.",
+  "I would stop by specifically to buy this drink.",
+  "The taste was nice, but I would only buy it with a discount.",
+  "This feels like something students would actually purchase.",
+  "I tried it once and that was enough for me.",
+  "I would add this to my regular order.",
+  "The drink is refreshing, but not worth changing the menu for.",
+  "I would buy this before class.",
+  "It is too unusual for me to order again.",
+  "This is one of the best drinks I have tried here.",
+  "I liked the packaging more than the drink itself.",
+  "I would choose this if it cost the same as my usual drink.",
+  "The flavour is good, but I would prefer a smaller size.",
+  "I would post about this drink online.",
+  "I would not buy it, but I can see why other people might.",
+  "This should be launched as soon as possible.",
+  "It was pleasant, but not memorable enough to buy again.",
+  "I would get this instead of going to another cafe.",
+  "The drink tastes good, but the aftertaste is not great.",
+  "I would pay extra for this drink.",
+  "I think this would sell well during exam period."
+];
+
+const DAYS = 6;
+const COMMENTS_PER_DAY = 6;
+
+let rounds = [];
+let currentRound = 0;
+let alpha = 1;
+let beta = 1;
+let priorAlpha = 1;
+let priorBeta = 1;
+let history = [];
+let path = [{ label: "Initial prior", alpha: 1, beta: 1, mean: 0.5, x: null }];
+let updatedThisRound = false;
+
+function shuffle(array) {
+  const a = [...array];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function makeRounds() {
+  const shuffled = shuffle(statements);
+  rounds = [];
+  for (let i = 0; i < DAYS; i++) rounds.push(shuffled.slice(i * COMMENTS_PER_DAY, i * COMMENTS_PER_DAY + COMMENTS_PER_DAY));
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function betaFunc(a, b) {
+  return Math.exp(logGamma(a) + logGamma(b) - logGamma(a + b));
+}
+
+function logGamma(z) {
+  const g = 7;
+  const p = [
+    0.99999999999980993,
+    676.5203681218851,
+    -1259.1392167224028,
+    771.32342877765313,
+    -176.61502916214059,
+    12.507343278686905,
+    -0.13857109526572012,
+    9.9843695780195716e-6,
+    1.5056327351493116e-7
+  ];
+  if (z < 0.5) return Math.log(Math.PI) - Math.log(Math.sin(Math.PI * z)) - logGamma(1 - z);
+  z -= 1;
+  let x = p[0];
+  for (let i = 1; i < g + 2; i++) x += p[i] / (z + i);
+  const t = z + g + 0.5;
+  return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(x);
+}
+
+function dbeta(x, a, b) {
+  if (x <= 0 || x >= 1) return 0;
+  return Math.pow(x, a - 1) * Math.pow(1 - x, b - 1) / betaFunc(a, b);
+}
+
+function clearCanvas(canvas) {
+  const ctx = canvas.getContext('2d');
+  const ratio = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * ratio;
+  canvas.height = rect.height * ratio;
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  ctx.clearRect(0, 0, rect.width, rect.height);
+  return { ctx, w: rect.width, h: rect.height };
+}
+
+function drawAxes(ctx, w, h, pad) {
+  ctx.strokeStyle = '#d1d5db';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(pad.l, h - pad.b);
+  ctx.lineTo(w - pad.r, h - pad.b);
+  ctx.lineTo(w - pad.r, pad.t);
+  ctx.stroke();
+  ctx.fillStyle = '#6b7280';
+  ctx.font = '11px sans-serif';
+  ctx.fillText('0', pad.l - 3, h - pad.b + 16);
+  ctx.fillText('1', w - pad.r - 3, h - pad.b + 16);
+}
+
+function plotBetaLine(ctx, w, h, pad, a, b, color, fill=false, maxY=null) {
+  const xs = [];
+  let yMax = maxY || 0;
+  for (let i = 0; i <= 200; i++) {
+    const x = 0.001 + i * (0.998 / 200);
+    const y = dbeta(x, a, b);
+    xs.push({ x, y });
+    if (!maxY && y > yMax) yMax = y;
+  }
+  const xMap = x => pad.l + x * (w - pad.l - pad.r);
+  const yMap = y => h - pad.b - (y / yMax) * (h - pad.t - pad.b);
+  ctx.beginPath();
+  xs.forEach((p, i) => {
+    if (i === 0) ctx.moveTo(xMap(p.x), yMap(p.y));
+    else ctx.lineTo(xMap(p.x), yMap(p.y));
+  });
+  if (fill) {
+    ctx.lineTo(xMap(0.999), h - pad.b);
+    ctx.lineTo(xMap(0.001), h - pad.b);
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.globalAlpha = 0.16;
+    ctx.fill();
+    ctx.globalAlpha = 1;
+  }
+  ctx.beginPath();
+  xs.forEach((p, i) => {
+    if (i === 0) ctx.moveTo(xMap(p.x), yMap(p.y));
+    else ctx.lineTo(xMap(p.x), yMap(p.y));
+  });
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 2.4;
+  ctx.stroke();
+  return yMax;
+}
+
+function drawSingleBeta(canvasId, a, b, color, fill=false, blankMessage=null) {
+  const canvas = document.getElementById(canvasId);
+  const { ctx, w, h } = clearCanvas(canvas);
+  const pad = { l: 32, r: 15, t: 10, b: 24 };
+  drawAxes(ctx, w, h, pad);
+  if (blankMessage) {
+    ctx.fillStyle = '#6b7280';
+    ctx.font = '12px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(blankMessage, w / 2, h / 2);
+    ctx.textAlign = 'left';
+    return;
+  }
+  let maxY = 0;
+  for (let i = 0; i <= 200; i++) {
+    const x = 0.001 + i * (0.998 / 200);
+    maxY = Math.max(maxY, dbeta(x, a, b));
+  }
+  plotBetaLine(ctx, w, h, pad, a, b, color, fill, maxY);
+  const mean = a / (a + b);
+  const xMap = x => pad.l + x * (w - pad.l - pad.r);
+  ctx.strokeStyle = color;
+  ctx.setLineDash([3, 3]);
+  ctx.beginPath(); ctx.moveTo(xMap(mean), pad.t); ctx.lineTo(xMap(mean), h - pad.b); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = color;
+  ctx.font = '10px sans-serif';
+  ctx.fillText(`mean = ${mean.toFixed(3)}`, xMap(mean) + 4, pad.t + 10);
+}
+
+function drawPrior() {
+  drawSingleBeta('priorCanvas', priorAlpha, priorBeta, '#2563eb', false);
+}
+
+function drawPosterior() {
+  if (!updatedThisRound) {
+    drawSingleBeta('posteriorCanvas', alpha, beta, '#ea580c', false, 'Posterior appears after you click Update');
+    return;
+  }
+  drawSingleBeta('posteriorCanvas', alpha, beta, '#ea580c', true);
+}
+
+function drawRidge() {
+  const canvas = document.getElementById('ridgeCanvas');
+  const { ctx, w, h } = clearCanvas(canvas);
+  const pad = { l: 92, r: 16, t: 14, b: 24 };
+  const ordered = [...path];
+  const rowH = (h - pad.t - pad.b) / ordered.length;
+  let maxY = 0;
+  ordered.forEach(d => {
+    for (let i = 0; i <= 160; i++) {
+      const x = 0.001 + i * (0.998 / 160);
+      maxY = Math.max(maxY, dbeta(x, d.alpha, d.beta));
+    }
+  });
+  const xMap = x => pad.l + x * (w - pad.l - pad.r);
+  ctx.strokeStyle = '#d1d5db'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(pad.l, h - pad.b); ctx.lineTo(w - pad.r, h - pad.b); ctx.stroke();
+  ctx.fillStyle = '#6b7280'; ctx.font = '11px sans-serif';
+  ctx.fillText('0', pad.l - 3, h - pad.b + 15); ctx.fillText('1', w - pad.r - 3, h - pad.b + 15);
+
+  ordered.forEach((d, idx) => {
+    const base = pad.t + idx * rowH + rowH * 0.72;
+    const height = rowH * 0.68;
+    const color = idx === ordered.length - 1 ? '#ea580c' : '#94a3b8';
+    ctx.strokeStyle = '#e5e7eb';
+    ctx.beginPath(); ctx.moveTo(pad.l, base); ctx.lineTo(w - pad.r, base); ctx.stroke();
+    ctx.fillStyle = idx === ordered.length - 1 ? '#9a3412' : '#64748b';
+    ctx.font = '11px sans-serif';
+    ctx.fillText(d.label, 8, base + 3);
+    const pts = [];
+    for (let i = 0; i <= 180; i++) {
+      const x = 0.001 + i * (0.998 / 180);
+      const y = dbeta(x, d.alpha, d.beta);
+      pts.push({ x, y });
+    }
+    ctx.beginPath();
+    pts.forEach((p, i) => {
+      const xx = xMap(p.x);
+      const yy = base - (p.y / maxY) * height * 2.2;
+      if (i === 0) ctx.moveTo(xx, yy); else ctx.lineTo(xx, yy);
+    });
+    ctx.lineTo(xMap(0.999), base);
+    ctx.lineTo(xMap(0.001), base);
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.globalAlpha = idx === ordered.length - 1 ? 0.28 : 0.16;
+    ctx.fill();
+    ctx.globalAlpha = 1;
+    ctx.beginPath();
+    pts.forEach((p, i) => {
+      const xx = xMap(p.x);
+      const yy = base - (p.y / maxY) * height * 2.2;
+      if (i === 0) ctx.moveTo(xx, yy); else ctx.lineTo(xx, yy);
+    });
+    ctx.strokeStyle = color; ctx.lineWidth = idx === ordered.length - 1 ? 2.4 : 1.6; ctx.stroke();
+  });
+}
+
+function renderComments() {
+  const box = document.getElementById('commentsBox');
+  box.innerHTML = '';
+  rounds[currentRound].forEach((text, idx) => {
+    const label = document.createElement('label');
+    label.className = 'comment';
+    label.innerHTML = `<input type="checkbox" class="supportCheck" data-index="${idx}"><span>“${text}”</span>`;
+    box.appendChild(label);
+  });
+  document.querySelectorAll('.supportCheck').forEach(cb => cb.addEventListener('change', updateSelection));
+  updateSelection();
+}
+
+function updateSelection() {
+  const checks = [...document.querySelectorAll('.supportCheck')];
+  checks.forEach(cb => cb.closest('.comment').classList.toggle('checked', cb.checked));
+  const x = checks.filter(cb => cb.checked).length;
+  document.getElementById('choiceSummary').innerHTML = `Selected <strong>${x}</strong> out of ${COMMENTS_PER_DAY} as genuine support.`;
+}
+
+function selectedCount() {
+  return [...document.querySelectorAll('.supportCheck')].filter(cb => cb.checked).length;
+}
+
+function renderTrial() {
+  document.getElementById('roundTitle').textContent = `Day ${currentRound + 1}: Customer feedback`;
+  document.getElementById('roundBadge').textContent = `${currentRound + 1} / 6`;
+  document.getElementById('priorText').textContent = `Beta(${priorAlpha},${priorBeta})`;
+  document.getElementById('meanText').textContent = updatedThisRound ? (alpha / (alpha + beta)).toFixed(3) : '—';
+  document.getElementById('priorChartTitle').textContent = `Prior distribution — Beta(${priorAlpha}, ${priorBeta})`;
+  document.getElementById('posteriorChartTitle').textContent = updatedThisRound ? `Posterior distribution — Beta(${alpha}, ${beta})` : 'Posterior distribution — waiting for update';
+  const totalX = history.reduce((s, h) => s + h.x, 0);
+  const totalN = history.length * COMMENTS_PER_DAY;
+  document.getElementById('totalText').textContent = `${totalX} / ${totalN}`;
+  document.getElementById('nextBtn').textContent = currentRound === DAYS - 1 ? 'Finish' : 'Next';
+  document.getElementById('nextBtn').disabled = !updatedThisRound;
+  document.getElementById('updateBtn').disabled = updatedThisRound;
+  document.querySelectorAll('.supportCheck').forEach(cb => cb.disabled = updatedThisRound);
+  renderHistory();
+  drawPrior();
+  drawPosterior();
+}
+
+function renderHistory() {
+  const body = document.getElementById('historyBody');
+  if (history.length === 0) {
+    body.innerHTML = '<tr><td colspan="4" class="small-muted">No updates yet.</td></tr>';
+    return;
+  }
+  body.innerHTML = history.map(h => `
+    <tr>
+      <td>${h.label}</td>
+      <td class="num">${h.x} / ${COMMENTS_PER_DAY}</td>
+      <td>Beta(${h.alpha}, ${h.beta})</td>
+      <td class="num">${h.mean.toFixed(3)}</td>
+    </tr>
+  `).join('');
+}
+
+function updateRound() {
+  if (updatedThisRound) return;
+  const checks = [...document.querySelectorAll('.supportCheck')];
+  const selected = checks.map((cb, idx) => cb.checked ? idx + 1 : null).filter(v => v !== null);
+  const x = selected.length;
+  priorAlpha = alpha;
+  priorBeta = beta;
+  alpha += x;
+  beta += COMMENTS_PER_DAY - x;
+  const label = `Day ${currentRound + 1}`;
+  const mean = alpha / (alpha + beta);
+  history.push({ label, day: currentRound + 1, x, n: COMMENTS_PER_DAY, alpha, beta, mean, selected });
+  path.push({ label, day: currentRound + 1, x, n: COMMENTS_PER_DAY, alpha, beta, mean, selected });
+  updatedThisRound = true;
+  renderTrial();
+}
+
+function nextRound() {
+  if (currentRound === DAYS - 1) {
+    showScreen('finalScreen');
+    renderFinal();
+    setTimeout(drawRidge, 40);
+    return;
+  }
+  currentRound += 1;
+  priorAlpha = alpha;
+  priorBeta = beta;
+  updatedThisRound = false;
+  renderComments();
+  renderTrial();
+}
+
+function resetRound() {
+  if (updatedThisRound) return;
+  document.querySelectorAll('.supportCheck').forEach(cb => cb.checked = false);
+  updateSelection();
+}
+
+function makeRCode() {
+  const xs = history.map(h => h.x).join(', ');
+  return `my_data <- c(${xs})`;
+}
+
+function renderFinal() {
+  const list = document.getElementById('summaryList');
+  list.innerHTML = path.map((d, i) => {
+    const final = i === path.length - 1;
+    const data = d.x === null ? 'before feedback' : `${d.x}/${COMMENTS_PER_DAY} selected as genuine support`;
+    return `
+      <div class="summary-item ${final ? 'final' : ''}">
+        <div class="row"><strong>${final ? 'Final posterior' : d.label}</strong><span>mean ${d.mean.toFixed(3)}</span></div>
+        <div class="meta">Beta(${d.alpha}, ${d.beta}) · ${data}</div>
+      </div>
+    `;
+  }).join('');
+  drawRidge();
+}
+
+function copyResults() {
+  const text = makeRCode();
+  const note = document.getElementById('copyNote');
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(() => {
+      note.textContent = 'Copied my_data. Paste into RStudio.';
+    }).catch(() => fallbackCopy(text, note));
+  } else {
+    fallbackCopy(text, note);
+  }
+}
+
+function fallbackCopy(text, note) {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.style.position = 'fixed';
+  textarea.style.left = '-9999px';
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+  try {
+    document.execCommand('copy');
+    note.textContent = 'Copied my_data. Paste into RStudio.';
+  } catch (err) {
+    note.textContent = 'Copy failed. Select the data from the browser console.';
+  }
+  document.body.removeChild(textarea);
+}
+
+function startApp() {
+  makeRounds();
+  currentRound = 0; alpha = 1; beta = 1; priorAlpha = 1; priorBeta = 1; history = [];
+  path = [{ label: 'Initial prior', alpha: 1, beta: 1, mean: 0.5, x: null }];
+  updatedThisRound = false;
+  renderComments();
+  renderTrial();
+  showScreen('trialScreen');
+}
+
+document.getElementById('startBtn').addEventListener('click', startApp);
+document.getElementById('updateBtn').addEventListener('click', updateRound);
+document.getElementById('nextBtn').addEventListener('click', nextRound);
+document.getElementById('resetRoundBtn').addEventListener('click', resetRound);
+document.getElementById('playAgainBtn').addEventListener('click', startApp);
+document.getElementById('copyDataBtn').addEventListener('click', copyResults);
+window.addEventListener('resize', () => {
+  if (document.getElementById('trialScreen').classList.contains('active')) { drawPrior(); drawPosterior(); }
+  if (document.getElementById('finalScreen').classList.contains('active')) drawRidge();
+});
+</script>
+</body>
+</html>

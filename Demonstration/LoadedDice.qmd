@@ -1,0 +1,106 @@
+---
+title: "Loaded Dices"
+format: html
+---
+
+::: {.tag-list}
+[Central Limit Theorem]{.tag}
+[Simulation]{.tag}
+[Discrete Probability]{.tag}
+[Sampling Distributions]{.tag}
+:::
+
+## About
+
+This is an instructor-led demonstration of the Central Limit Theorem using two secretly loaded dice. Before any rolling happens, the instructor seals an envelope with a precise prediction about where the running total of many rolls will land. Because the dice are rigged, this "impossible" prediction is guaranteed — but the deeper lesson is that the same *shape* (a bell curve) would emerge from summing enough rolls even with fair dice. The bias is what makes the trick land; the Central Limit Theorem is what makes it true either way.
+
+::: callout-note
+
+### Note
+
+Students may get bored if you are performing 40-50 rolls yourself. Either reduce this number or acquire more loaded dices, so that you can invite some students up to do this simultaneously. With 5 sets of loaded (i.e. 10 dices), you can get ask each student to roll 5 times relatively quickly.
+
+:::
+
+
+
+## Demonstration
+
+## Materials
+
+- **Two dice with a known, deliberate bias** — e.g. weighted dice, dice with rounded edges, or novelty/magic-shop dice designed to favour certain faces (see Pre-tasks)
+- A regular fair die or two, for later comparison
+- A sealed envelope or hidden slide for your prediction
+- A document camera or projector so the class can see each roll clearly
+- A whiteboard, spreadsheet, or slide to build the running histogram live in front of the class
+
+## Step-by-Step Plan
+
+### 0 (Pre-tasks)
+
+- Obtain two loaded dice and determine each one's true long-run average roll value in advance — either from the manufacturer's spec, or by rolling each several hundred times yourself beforehand and recording the empirical mean and standard deviation
+- Calculate the combined mean and variance of rolling both dice together and summing them: $\mu = \mu_A + \mu_B$, $\sigma^2 = \sigma_A^2 + \sigma_B^2$
+- Decide on a fixed number of rolls you'll perform in class (e.g. 40–50 rolls of both dice together)
+- Using the CLT formula (see Step 4), calculate the expected range for the running total's distribution after all rolls, and write your prediction in the sealed envelope
+- Make sure the loaded dice are visually indistinguishable from fair dice — the class shouldn't be able to tell just by looking at them
+
+### 1 (Setup)
+
+Hold up the two dice and the sealed envelope. Say:
+
+> "I'm going to roll these two dice together, over and over, and add up the total each time. Before I roll a single die, I've already sealed a prediction in this envelope about the shape and location of the results we're about to see. Let's find out if I'm right."
+
+### 2 (Roll and Record)
+
+Roll both dice together under the document camera, sum the two faces, and record the result on the board or a live spreadsheet. Repeat this for your predetermined number of rolls (e.g. 40–50 times), narrating occasionally:
+
+> "Watch — each roll on its own just gives us a number between 2 and 12. Nothing special about any single roll."
+
+### 3 (Build the Histogram)
+
+As results accumulate, plot a running histogram of all the roll-sums so far, updating it live after each roll (or in small batches, e.g. every 5 rolls, if that's easier to manage). Ask the class:
+
+> "We're just adding two numbers each time. Would you expect the pile of totals to end up random and shapeless, or to settle into some kind of pattern?"
+
+Let the histogram build in front of them — it should settle into a smooth, roughly symmetric, bell-like shape, centred somewhere other than where a fair pair of dice would center.
+
+### 4 (The Reveal)
+
+Open the envelope. Reveal your prediction, and show that the actual accumulated results land almost exactly where you said they would — both in shape and in location.
+
+::: {.callout-tip collapse="false"}
+## How the trick works
+
+Both dice were secretly loaded with a known bias, so their true combined mean, $\mu$, isn't 7 like a fair pair of dice, and their combined variance, $\sigma^2$, isn't the standard value either. Because you measured each die's true parameters in advance (Step 0), you could predict exactly where the running total's distribution would settle using the Central Limit Theorem:
+
+$$
+\text{Sum of } n \text{ rolls} \sim \text{Approximately } N\left(n\mu,\; n\sigma^2\right)
+$$
+
+For $n$ rolls, the predicted range for the running total was:
+
+$$
+n\mu \pm 2\sqrt{n\sigma^2}
+$$
+
+This is what let you write a precise, narrow prediction in advance — not psychic ability, just knowing the true (biased) parameters of the dice before the class did.
+:::
+
+### 5 (Compare to Fair Dice)
+
+Now repeat the same process using two genuinely fair dice — either live, if time allows, or using a pre-built simulation you can display instantly (recommended, to save class time). Build a second histogram alongside the first.
+
+Ask the class:
+
+> "Both histograms look roughly bell-shaped. What's actually different between them?"
+
+Guide them to notice: the *shape* (approximately normal) is similar in both cases, but the loaded dice's histogram is shifted away from where fair dice would centre (7). This is the key insight — **the Central Limit Theorem guarantees the shape, not the location.** Any pair of dice, fair or loaded, produces a roughly normal distribution of sums as the number of rolls grows; only the true mean and variance of the dice determine *where* that bell curve sits.
+
+## Bonus / Optional:
+
+- Can relate this activity to sample size and the shrinking of standard error
+- A few extensions to try:
+    - **Vary the roll count:** Show pre-simulated histograms built from 10, 50, and 500 rolls, and compare how much "smoother" and narrower the resulting distribution becomes as the roll count increases.
+    - **Detecting the load:** Ask the class how many rolls it would take before they could *statistically* detect the dice were loaded, just from the shift in the histogram — a nice callback to the hypothesis-testing and card-trick activities.
+    - **Single die vs. summed pair:** Show a histogram of individual die faces (1–6, roughly flat/biased but not bell-shaped) next to the summed-pair histogram (bell-shaped). This reinforces that CLT applies to sums/averages, not raw individual outcomes.
+    - **Simulate instead of roll:** If class time is short, simulate thousands of virtual rolls of both fair and loaded dice pairs (e.g. in R) and overlay the resulting histograms, letting students see the CLT effect at a much larger sample size than is feasible by hand.

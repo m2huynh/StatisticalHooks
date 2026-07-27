@@ -1,0 +1,95 @@
+{
+  "index.qmd": {
+    "index.html": "0b672f7d"
+  },
+  "about.qmd": {
+    "about.html": "8a844c9a"
+  },
+  "Demonstration/Lollies.qmd": {
+    "Lollies.html": "35b856cc"
+  },
+  "Demonstration/Graphs.qmd": {
+    "Graphs.html": "bce1d790"
+  },
+  "Demonstration/Polls.qmd": {
+    "Polls.html": "a62a68f6"
+  },
+  "Interactive/MontyHall.qmd": {
+    "MontyHall.html": "776da5dd"
+  },
+  "Demonstration/LadyTastingTea.qmd": {
+    "LadyTastingTea.html": "63889578"
+  },
+  "Demonstration/4Aces.qmd": {
+    "4Aces.html": "0c1d6dbb"
+  },
+  "Demonstration/AlwaysHeads.qmd": {
+    "AlwaysHeads.html": "269175da"
+  },
+  "Demonstration/StackedDeck.qmd": {
+    "StackedDeck.html": "de65081a"
+  },
+  "Demonstration/Yawn.qmd": {
+    "Yawn.html": "5d765c49"
+  },
+  "Demonstration/LoadedDice.qmd": {
+    "LoadedDice.html": "a1b060fa"
+  },
+  "Demonstration/HeartRate.qmd": {
+    "HeartRate.html": "bbacfaa4"
+  },
+  "Demonstration/Skittles.qmd": {
+    "Skittles.html": "49303228"
+  },
+  "Demonstration/Movies.qmd": {
+    "Movies.html": "b64ff3c4"
+  },
+  "Demonstration/Psycho.qmd": {
+    "Psycho.html": "8d5f3f82"
+  },
+  "Demonstration/Cluster.qmd": {
+    "Cluster.html": "01907320"
+  },
+  "Interactive/Witness.qmd": {
+    "Witness.html": "33a8aee3"
+  },
+  "Interactive/RPS.qmd": {
+    "RPS.html": "227731a8"
+  },
+  "Interactive/Surveyor.qmd": {
+    "Surveyor.html": "580c3576"
+  },
+  "Interactive/Stack.qmd": {
+    "Stack.html": "59cc39ef"
+  },
+  "Interactive/Colour.qmd": {
+    "Colour.html": "b91d6de8"
+  },
+  "Interactive/10s.qmd": {
+    "10s.html": "3a566653"
+  },
+  "Interactive/FIFA.qmd": {
+    "FIFA.html": "5bc983b9"
+  },
+  "Interactive/Stolen.qmd": {
+    "Stolen.html": "e25129b2"
+  },
+  "Interactive/Coffee.qmd": {
+    "Coffee.html": "4c8c1322"
+  },
+  "Interactive/SA.qmd": {
+    "SA.html": "e79deb2d"
+  },
+  "Interactive/Movies.qmd": {
+    "Movies.html": "92a4146d"
+  },
+  "collab.qmd": {
+    "collab.html": "b7f82e62"
+  },
+  "research.qmd": {
+    "research.html": "1f7a10e8"
+  },
+  "school.qmd": {
+    "school.html": "326d8f33"
+  }
+}

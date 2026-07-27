@@ -1,0 +1,48 @@
+---
+title: "World Cup Simulator"
+format: html
+---
+::: tag-list
+[Likelihood]{.tag} [Simulation]{.tag} [Monte Carlo Methods]{.tag} [Probability Models]{.tag}
+:::
+
+## About
+
+This app simulates a full 32-team knockout World Cup bracket across three tabs of increasing sophistication. The **50/50 bracket** tab (tab 1) runs the tournament with every match decided by a coin flip, letting students see how the bracket structure itself works and how much randomness alone can produce a "surprise" champion. The **Custom probabilities** tab (tab 2) hands control to the students — before each match, they set the probability that the higher-seeded team wins, immediately turning an abstract "likelihood" into something they're directly manipulating and watching play out. The **Team strengths** tab is the main event: students assign a strength rating (0–100) to every team, the app converts each pair of ratings into a match-win probability, and then runs the entire tournament hundreds or thousands of times, tallying how often each team reaches each stage. This is a hands-on introduction to likelihood-based modelling — students aren't just predicting a single outcome, they're defining the *probability model* itself, then using repeated simulation to see what that model implies about the full range of possible tournaments.
+
+## App
+
+Below is an example of what the app looks like when embeded into a Quarto document.
+```{=html}
+<iframe
+  src="Apps/fifa_b.html"
+  width="100%"
+  height="800"
+  style="border: none;"
+></iframe>
+```
+
+## Download
+
+You can download the app directly using the link below. This should open as a standalone app that can open on any device. You can also wrap this around a `=html` code chunk in your Quarto document to achieve a similar effect to what is seen above.
+
+<center>
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(downloadthis)
+download_file(
+  path = "Apps/fifa_b.html",
+  button_label = "World Cup Simulator",
+  button_type = 'success'
+)
+```
+</center>
+
+## General questions
+
+- In the 50/50 bracket, does a team's path through the draw (who they happen to face each round) matter at all, given every match is a coin flip? Why might a "weak" team still end up champion sometimes?
+- On the Custom probabilities tab, if you set every match to 70% in favour of the stronger team, does that guarantee the stronger team wins the tournament? What does "70% per match" actually compound into across 5 rounds?
+- On the Team strengths tab, two teams rated 80 and 20 face off. Roughly what does the model say their win probability split should be, and does that feel fair given the 4x difference in rating?
+- Why does running the simulation 1000 times give you a very different (and more useful) picture than running it just once, even though the underlying probability model hasn't changed at all?
+- If your favourite team wins the "Champion" column only 15 times out of 1000 simulations, does that mean the model thinks they're unlikely to win, or does 15/1000 still represent a real chance? How would you explain that number to someone who's never seen a simulation like this before?
+- The strength ratings you assign are essentially a guess. How would you go about testing whether your ratings are actually reasonable, using real-world information about the teams?
+- What's the difference between the *probability* the model assigns to a team winning a single match, and the *likelihood* of that team ending up champion after 5 rounds? Why aren't these the same number?

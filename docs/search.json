@@ -1,0 +1,1698 @@
+[
+  {
+    "objectID": "school.html",
+    "href": "school.html",
+    "title": "Secondary School Teachers",
+    "section": "",
+    "text": "These resources aren’t just for university classrooms. You’re more than welcome to bring them into your own secondary school teaching. Most of the hooks and activities on this site come with self-guided instructions, so you can pick one up, adapt it to your year level, and run it with minimal preparation. If you’d like a bit more support getting started, though, I’m happy to run a training session or professional development day for your staff, whether that’s a hands-on walkthrough of specific activities, or a broader conversation about building this kind of engagement-first approach into your own teaching.\nI also offer free live talks in schools, mainly around the Melbourne (Australia) area. These sessions cover why maths, statistics, and data science actually matter, not in an abstract “it’s important” sense, but through real activities, real jobs, and honest conversations about where the field is heading, including AI (and why I’m not particularly worried about it). I run students through some of the same kinds of hooks featured on this site, talk about the career paths these skills open up, and try to leave them with a genuinely different picture of what statistics and data science look like in practice. Talks are fully customisable to different year levels, from junior secondary through to senior students starting to think about post-school options.\nThis is something I offer freely, as part of my role as Deputy Director of Engagement. I think engaging with schools and the wider community is one of the most valuable things a university can do, not just as outreach, but as a genuine two-way relationship. Students get exposure to ideas and pathways they might not otherwise encounter, and in turn, it keeps me grounded in what actually resonates with a room full of teenagers, which shapes how I think about teaching more broadly.\nIf a training session, PD day, or school talk sounds like something your school would be interested in, please get in touch at minh.huynh1@monash.edu. Let me know your year level, group size, and what you’re hoping to get out of it, and we can figure out the right format together.",
+    "crumbs": [
+      "Secondary School Teachers"
+    ]
+  },
+  {
+    "objectID": "Interactive/Witness.html",
+    "href": "Interactive/Witness.html",
+    "title": "The Witness Test",
+    "section": "",
+    "text": "Eyewitness Memory Overconfidence Calibration Uncertainty",
+    "crumbs": [
+      "Interactive Hooks",
+      "The Witness Test"
+    ]
+  },
+  {
+    "objectID": "Interactive/Witness.html#about",
+    "href": "Interactive/Witness.html#about",
+    "title": "The Witness Test",
+    "section": "About",
+    "text": "About\nThis app puts students in the position of an eyewitness. They watch a short 15-second animated crime scene, then answer 10 multiple-choice questions about what they saw — rating their confidence alongside each answer. The gap between confidence and accuracy is the whole point: students are almost always more sure of themselves than their actual scores justify, mirroring a well-documented finding in eyewitness testimony research. This is a great entry point for discussing calibration (does 80% confidence really mean 80% correct?), the reliability of eyewitness evidence in legal contexts, and how overconfidence can quietly distort real-world decision-making even when someone feels certain.",
+    "crumbs": [
+      "Interactive Hooks",
+      "The Witness Test"
+    ]
+  },
+  {
+    "objectID": "Interactive/Witness.html#app",
+    "href": "Interactive/Witness.html#app",
+    "title": "The Witness Test",
+    "section": "App",
+    "text": "App\nBelow is an example of what the app looks like when embeded into a Quarto document.",
+    "crumbs": [
+      "Interactive Hooks",
+      "The Witness Test"
+    ]
+  },
+  {
+    "objectID": "Interactive/Witness.html#download",
+    "href": "Interactive/Witness.html#download",
+    "title": "The Witness Test",
+    "section": "Download",
+    "text": "Download\nYou can download the app directly using the link below. This should open as a standalone app that can open on any device. You can also wrap this around a =html code chunk in your Quarto document to achieve a similar effect to what is seen above.\n\n\n\n The Witness Test",
+    "crumbs": [
+      "Interactive Hooks",
+      "The Witness Test"
+    ]
+  },
+  {
+    "objectID": "Interactive/Witness.html#general-questions",
+    "href": "Interactive/Witness.html#general-questions",
+    "title": "The Witness Test",
+    "section": "General questions",
+    "text": "General questions\n\nBefore seeing your score, how confident were you overall that you’d remembered the scene accurately? Did your actual score match that feeling?\nWere there any specific questions where you felt very confident but got the answer wrong? What might explain that gap?\nDoes higher confidence always mean higher accuracy? Based on your own results, what would you say the relationship actually looks like?\nIf a real eyewitness tells police “I’m 100% sure that’s the person I saw,” should that statement alone be treated as strong evidence? Why or why not?\nWhat factors do you think affect how well someone remembers a brief, stressful event — and were any of those factors present (or missing) in this 15-second clip?\nAs a class, compare everyone’s confidence-vs-accuracy patterns. Does everyone show the same overconfidence pattern, or do some people seem better calibrated than others?\nCourts often rely heavily on eyewitness testimony, sometimes as the primary piece of evidence in a case. Based on this activity, what changes (if any) do you think should be made to how eyewitness evidence is used or presented in trials?\nOutside of courtrooms, where else in life might overconfidence in your own memory or judgment cause problems, even when you feel completely certain?",
+    "crumbs": [
+      "Interactive Hooks",
+      "The Witness Test"
+    ]
+  },
+  {
+    "objectID": "Interactive/Stolen.html",
+    "href": "Interactive/Stolen.html",
+    "title": "The Stolen Laptop",
+    "section": "",
+    "text": "Bayesian Inference Prior & Posterior Beta Distribution Sequential Updating",
+    "crumbs": [
+      "Interactive Hooks",
+      "The Stolen Laptop"
+    ]
+  },
+  {
+    "objectID": "Interactive/Stolen.html#about",
+    "href": "Interactive/Stolen.html#about",
+    "title": "The Stolen Laptop",
+    "section": "About",
+    "text": "About\nThis app puts students in the role of a judge in a Bayesian courtroom. Minh is on trial for stealing a laptop, and students start with a completely uninformative prior — a flat Beta(1, 1) distribution over the probability of guilt. Across 8 rounds, the prosecution and defence alternate presenting pieces of evidence, and after each one, students rate how strongly it points toward guilt or innocence on a 0–10 slider. That rating is converted into binomial-style evidence and used to update the posterior distribution — which then becomes the prior for the next round. By the end, students can see the full sequence of distributions stacked as a ridge plot, watching the belief about Minh’s guilt sharpen (or shift) with every new piece of evidence. This is a concrete, visual way to teach Bayesian updating as an iterative process rather than a single formula — and a good opportunity to discuss how much any one juror’s subjective rating of “how strong is this evidence” ends up steering the entire final verdict.",
+    "crumbs": [
+      "Interactive Hooks",
+      "The Stolen Laptop"
+    ]
+  },
+  {
+    "objectID": "Interactive/Stolen.html#app",
+    "href": "Interactive/Stolen.html#app",
+    "title": "The Stolen Laptop",
+    "section": "App",
+    "text": "App\nBelow is an example of what the app looks like when embeded into a Quarto document.",
+    "crumbs": [
+      "Interactive Hooks",
+      "The Stolen Laptop"
+    ]
+  },
+  {
+    "objectID": "Interactive/Stolen.html#download",
+    "href": "Interactive/Stolen.html#download",
+    "title": "The Stolen Laptop",
+    "section": "Download",
+    "text": "Download\nYou can download the app directly using the link below. This should open as a standalone app that can open on any device. You can also wrap this around a =html code chunk in your Quarto document to achieve a similar effect to what is seen above.\n\n\n\n The Stolen Laptop",
+    "crumbs": [
+      "Interactive Hooks",
+      "The Stolen Laptop"
+    ]
+  },
+  {
+    "objectID": "Interactive/Stolen.html#general-questions",
+    "href": "Interactive/Stolen.html#general-questions",
+    "title": "The Stolen Laptop",
+    "section": "General questions",
+    "text": "General questions\n\nWhy does the app start with a Beta(1, 1) prior instead of, say, assuming Minh is 50% likely to be guilty from the outset? What does a “flat” prior actually represent?\nAfter the very first piece of evidence, how much did the posterior mean shift? Did it feel proportional to how strongly you rated that evidence?\nThe posterior from one round becomes the prior for the next. Why does this sequential updating process make sense, rather than treating each piece of evidence completely independently?\nIf two different students rated the exact same piece of evidence very differently on the slider, would they end up with different final verdicts? What does that tell you about the role of subjective judgement in this model?\nLook at the ridge plot at the end. Does the distribution get narrower (more confident) or wider (less confident) as more evidence comes in? Why would that happen either way?\nIf the very last piece of evidence were extremely strong, would it “erase” everything the earlier evidence suggested, or does it just nudge the existing posterior? Why?\nReal juries don’t use sliders and formal posterior distributions, but arguably do something similar in their heads. What are the risks of that being done informally rather than explicitly, the way this app forces you to?\nIf the order of evidence presentation were shuffled (defence evidence first, prosecution last, etc.), would you expect the final posterior to end up the same? Why or why not?",
+    "crumbs": [
+      "Interactive Hooks",
+      "The Stolen Laptop"
+    ]
+  },
+  {
+    "objectID": "Interactive/SA.html",
+    "href": "Interactive/SA.html",
+    "title": "The Life Ledger",
+    "section": "",
+    "text": "Survival Analysis Hazard Function Survival Curve Competing Risks",
+    "crumbs": [
+      "Interactive Hooks",
+      "The Life Ledger"
+    ]
+  },
+  {
+    "objectID": "Interactive/SA.html#about",
+    "href": "Interactive/SA.html#about",
+    "title": "The Life Ledger",
+    "section": "About",
+    "text": "About\nThis app turns survival analysis into a life-simulation game. Students first choose between two difficulty settings — Standard Mode, representing a well-resourced setting with strong healthcare, education, and social safety nets, or Hard Mode, representing a low-resource setting where the same choices carry far more risk — before allocating a fixed budget of points across five life traits: Health, Fitness, Intelligence, Discipline, and Social. These shape three emergent traits (Vitality, Happiness, Risk) that students don’t control directly. From there, students simulate their character year by year, watching age-appropriate life events unfold — school, then work or study, with a chance of marriage and kids along the way (weighted by Social and Happiness) — while a hazard function recalculates their odds of death every year from natural ageing risk, accident risk, and freak-chance risk. Every decade guarantees two positive events (shown in green) and two negative events (shown in red), with negative events escalating to hospitalizations or mental-health crises if Health or Social drop too low — and those, in turn, substantially raise the character’s ongoing risk of death.\nAt the end of each life, students get a comparable Life Score and a short written summary of how that life went. The two modes are calibrated very differently: in Standard Mode, dying before 60 is engineered to be extremely rare (under a 1-in-1000 chance for a typically-played character), while in Hard Mode it’s far more common and much more sensitive to neglecting Health and Fitness early on — making the two modes a natural pair to compare side by side.",
+    "crumbs": [
+      "Interactive Hooks",
+      "The Life Ledger"
+    ]
+  },
+  {
+    "objectID": "Interactive/SA.html#app",
+    "href": "Interactive/SA.html#app",
+    "title": "The Life Ledger",
+    "section": "App",
+    "text": "App\nBelow is an example of what the app looks like when embeded into a Quarto document.",
+    "crumbs": [
+      "Interactive Hooks",
+      "The Life Ledger"
+    ]
+  },
+  {
+    "objectID": "Interactive/SA.html#download",
+    "href": "Interactive/SA.html#download",
+    "title": "The Life Ledger",
+    "section": "Download",
+    "text": "Download\nYou can download the app directly using the link below. This should open as a standalone app that can open on any device. You can also wrap this around a =html code chunk in your Quarto document to achieve a similar effect to what is seen above.\n\n\n\n The Life Ledger",
+    "crumbs": [
+      "Interactive Hooks",
+      "The Life Ledger"
+    ]
+  },
+  {
+    "objectID": "Interactive/SA.html#general-questions",
+    "href": "Interactive/SA.html#general-questions",
+    "title": "The Life Ledger",
+    "section": "General questions",
+    "text": "General questions\n\nBefore playing, which mode did you expect to feel harder — and once you played both, was the actual difference bigger or smaller than you expected?\nIn Standard Mode, dying before 60 is supposed to happen in fewer than 1 in 1000 playthroughs. Did that match your experience — and if you did die young in Standard Mode, what led to it?\nTwo students could allocate their points identically in Hard Mode and still end up with very different outcomes — one dies at 40, one lives to 90. What does that tell you about the difference between a probability of survival and a guarantee of survival?\nMarriage and kids are random events weighted by Social and Happiness, not guaranteed outcomes. Did your character marry or have kids? If not, what do you think held that back?\nLook at your final Life Score. What does it actually reward — longevity, well-rounded stats, life events, or some mix? Do you think it’s measuring the “right” things, or would you weight it differently?\nIf you ran the same trait allocation through Hard Mode ten times, would you expect wildly different outcomes each time, or fairly similar ones? What does that suggest about how much of a life’s length is “luck” versus “choices” in this model?\nCompare your Standard Mode life summary to your Hard Mode one side by side. Beyond just the age at death, what else changed about the shape of the two lives?",
+    "crumbs": [
+      "Interactive Hooks",
+      "The Life Ledger"
+    ]
+  },
+  {
+    "objectID": "Interactive/Movies.html",
+    "href": "Interactive/Movies.html",
+    "title": "Box Office Model Builder",
+    "section": "",
+    "text": "Multiple Regression Variable Selection Omitted Variable Bias Model Fit",
+    "crumbs": [
+      "Interactive Hooks",
+      "Box Office Model Builder"
+    ]
+  },
+  {
+    "objectID": "Interactive/Movies.html#about",
+    "href": "Interactive/Movies.html#about",
+    "title": "Box Office Model Builder",
+    "section": "About",
+    "text": "About\nThis app puts students in the seat of a data analyst pitching a box office model. Students first choose exactly 3 predictors — from a pool of 23 candidate variables, roughly half genuinely related to box office and half mostly noise — and fit a real OLS regression on 200 synthetic past films, complete with coefficients, standard errors, t-statistics, p-values, R², adjusted R², and RMSE. Then the twist: an “executive” insists on adding 3 more variables, and students must allocate a fixed £100m budget across all 6 fields before the true (previously hidden) box office outcome is revealed. The gap between the student’s 3-variable prediction and the revealed truth is a direct, visual lesson in omitted variable bias — a model can look statistically solid and still be badly wrong if it’s missing the variables that actually matter. The budget stage adds a second layer: since real investment is modelled to genuinely shift outcomes (with diminishing returns), students also see the consequence of spreading money across variables that don’t actually move the needle versus committing to the ones that do.",
+    "crumbs": [
+      "Interactive Hooks",
+      "Box Office Model Builder"
+    ]
+  },
+  {
+    "objectID": "Interactive/Movies.html#app",
+    "href": "Interactive/Movies.html#app",
+    "title": "Box Office Model Builder",
+    "section": "App",
+    "text": "App\nBelow is an example of what the app looks like when embeded into a Quarto document.",
+    "crumbs": [
+      "Interactive Hooks",
+      "Box Office Model Builder"
+    ]
+  },
+  {
+    "objectID": "Interactive/Movies.html#download",
+    "href": "Interactive/Movies.html#download",
+    "title": "Box Office Model Builder",
+    "section": "Download",
+    "text": "Download\nYou can download the app directly using the link below. This should open as a standalone app that can open on any device. You can also wrap this around a =html code chunk in your Quarto document to achieve a similar effect to what is seen above.\n\n\n\n Box Office Model Builder",
+    "crumbs": [
+      "Interactive Hooks",
+      "Box Office Model Builder"
+    ]
+  },
+  {
+    "objectID": "Interactive/Movies.html#general-questions",
+    "href": "Interactive/Movies.html#general-questions",
+    "title": "Box Office Model Builder",
+    "section": "General questions",
+    "text": "General questions\n\nBefore seeing the regression output, how did you decide which 3 variables to pick? Did your reasoning match what the p-values and R² ended up showing?\nTwo students could pick 3 completely different variables and both get a “significant” model (low p-values). Does statistical significance alone tell you whether a model is actually good? What else would you want to check?\nYour R² was well below 1, even with genuinely strong predictors. Why would a regression using real, meaningful variables still leave a lot of variation unexplained?\nWhen the executive added 3 more variables, did you already suspect what kind of variables they might be? How did seeing them change your view of your original model?\nIf your final prediction was way off from the true outcome, was that because your original 3 variables were poorly chosen, or because any 3-variable model was always going to miss something? How would you tell the difference?\nIn the budget stage, did you spread your £100m evenly, or concentrate it on a few fields? Looking back, would a different allocation have changed the final outcome much?\nIf you allocated a large chunk of budget to one of the executive’s added variables and it barely moved the outcome, what does that tell you about the difference between a variable being included in a budget decision versus a variable actually driving the result?\nIn the real film industry, studios spend heavily on data and market research before greenlighting a movie. Based on this activity, what’s the risk of trusting a model that only includes 3 or 4 variables, even if it looks statistically strong?",
+    "crumbs": [
+      "Interactive Hooks",
+      "Box Office Model Builder"
+    ]
+  },
+  {
+    "objectID": "Interactive/FIFA.html",
+    "href": "Interactive/FIFA.html",
+    "title": "World Cup Simulator",
+    "section": "",
+    "text": "Likelihood Simulation Monte Carlo Methods Probability Models",
+    "crumbs": [
+      "Interactive Hooks",
+      "World Cup Simulator"
+    ]
+  },
+  {
+    "objectID": "Interactive/FIFA.html#about",
+    "href": "Interactive/FIFA.html#about",
+    "title": "World Cup Simulator",
+    "section": "About",
+    "text": "About\nThis app simulates a full 32-team knockout World Cup bracket across three tabs of increasing sophistication. The 50/50 bracket tab (tab 1) runs the tournament with every match decided by a coin flip, letting students see how the bracket structure itself works and how much randomness alone can produce a “surprise” champion. The Custom probabilities tab (tab 2) hands control to the students — before each match, they set the probability that the higher-seeded team wins, immediately turning an abstract “likelihood” into something they’re directly manipulating and watching play out. The Team strengths tab is the main event: students assign a strength rating (0–100) to every team, the app converts each pair of ratings into a match-win probability, and then runs the entire tournament hundreds or thousands of times, tallying how often each team reaches each stage. This is a hands-on introduction to likelihood-based modelling — students aren’t just predicting a single outcome, they’re defining the probability model itself, then using repeated simulation to see what that model implies about the full range of possible tournaments.",
+    "crumbs": [
+      "Interactive Hooks",
+      "World Cup Simulator"
+    ]
+  },
+  {
+    "objectID": "Interactive/FIFA.html#app",
+    "href": "Interactive/FIFA.html#app",
+    "title": "World Cup Simulator",
+    "section": "App",
+    "text": "App\nBelow is an example of what the app looks like when embeded into a Quarto document.",
+    "crumbs": [
+      "Interactive Hooks",
+      "World Cup Simulator"
+    ]
+  },
+  {
+    "objectID": "Interactive/FIFA.html#download",
+    "href": "Interactive/FIFA.html#download",
+    "title": "World Cup Simulator",
+    "section": "Download",
+    "text": "Download\nYou can download the app directly using the link below. This should open as a standalone app that can open on any device. You can also wrap this around a =html code chunk in your Quarto document to achieve a similar effect to what is seen above.\n\n\n\n World Cup Simulator",
+    "crumbs": [
+      "Interactive Hooks",
+      "World Cup Simulator"
+    ]
+  },
+  {
+    "objectID": "Interactive/FIFA.html#general-questions",
+    "href": "Interactive/FIFA.html#general-questions",
+    "title": "World Cup Simulator",
+    "section": "General questions",
+    "text": "General questions\n\nIn the 50/50 bracket, does a team’s path through the draw (who they happen to face each round) matter at all, given every match is a coin flip? Why might a “weak” team still end up champion sometimes?\nOn the Custom probabilities tab, if you set every match to 70% in favour of the stronger team, does that guarantee the stronger team wins the tournament? What does “70% per match” actually compound into across 5 rounds?\nOn the Team strengths tab, two teams rated 80 and 20 face off. Roughly what does the model say their win probability split should be, and does that feel fair given the 4x difference in rating?\nWhy does running the simulation 1000 times give you a very different (and more useful) picture than running it just once, even though the underlying probability model hasn’t changed at all?\nIf your favourite team wins the “Champion” column only 15 times out of 1000 simulations, does that mean the model thinks they’re unlikely to win, or does 15/1000 still represent a real chance? How would you explain that number to someone who’s never seen a simulation like this before?\nThe strength ratings you assign are essentially a guess. How would you go about testing whether your ratings are actually reasonable, using real-world information about the teams?\nWhat’s the difference between the probability the model assigns to a team winning a single match, and the likelihood of that team ending up champion after 5 rounds? Why aren’t these the same number?",
+    "crumbs": [
+      "Interactive Hooks",
+      "World Cup Simulator"
+    ]
+  },
+  {
+    "objectID": "Interactive/Coffee.html",
+    "href": "Interactive/Coffee.html",
+    "title": "Should We Launch It?",
+    "section": "",
+    "text": "Bayesian Inference Beta-Binomial Model Conjugate Priors Sequential Updating",
+    "crumbs": [
+      "Interactive Hooks",
+      "Should We Launch It?"
+    ]
+  },
+  {
+    "objectID": "Interactive/Coffee.html#about",
+    "href": "Interactive/Coffee.html#about",
+    "title": "Should We Launch It?",
+    "section": "About",
+    "text": "About\nThis app is a companion piece to The Stolen Laptop, but framed around a business decision instead of a courtroom: should a café launch a new product, based on customer feedback? Students start with a flat Beta(1, 1) prior on the true proportion of customers who genuinely support the launch. Over 6 simulated days, a fresh batch of customer comments arrives each day, and students read through them, checking off which ones they judge as genuine support. That count (say, 6 out of 10 comments) is treated as binomial data and combined with the current prior using the conjugate beta-binomial update: \\(\\alpha \\to \\alpha + x\\), \\(\\beta \\to \\beta + (n - x)\\). Because the update rule is just simple addition, this is a great follow-up to the courtroom app for showing students why the beta distribution is used as a prior for proportions in the first place — the math is transparent enough to do by hand, while the app’s ridge plot makes the accumulating evidence visually obvious. The app also lets students copy the day-by-day data directly into R, to double-check the same result using dbeta() or a package like bayesrules.",
+    "crumbs": [
+      "Interactive Hooks",
+      "Should We Launch It?"
+    ]
+  },
+  {
+    "objectID": "Interactive/Coffee.html#app",
+    "href": "Interactive/Coffee.html#app",
+    "title": "Should We Launch It?",
+    "section": "App",
+    "text": "App\nBelow is an example of what the app looks like when embeded into a Quarto document.",
+    "crumbs": [
+      "Interactive Hooks",
+      "Should We Launch It?"
+    ]
+  },
+  {
+    "objectID": "Interactive/Coffee.html#download",
+    "href": "Interactive/Coffee.html#download",
+    "title": "Should We Launch It?",
+    "section": "Download",
+    "text": "Download\nYou can download the app directly using the link below. This should open as a standalone app that can open on any device. You can also wrap this around a =html code chunk in your Quarto document to achieve a similar effect to what is seen above.\n\n\n\n Should We Launch It?",
+    "crumbs": [
+      "Interactive Hooks",
+      "Should We Launch It?"
+    ]
+  },
+  {
+    "objectID": "Interactive/Coffee.html#general-questions",
+    "href": "Interactive/Coffee.html#general-questions",
+    "title": "Should We Launch It?",
+    "section": "General questions",
+    "text": "General questions\n\nWhy is Beta(1, 1) a sensible “starting point” if you genuinely have no idea whether customers support the launch? What would it mean to start with a different prior instead, like Beta(10, 10) or Beta(2, 8)?\nThe update rule is just \\(\\alpha \\to \\alpha + x\\) and \\(\\beta \\to \\beta + (n - x)\\). Why does adding the count of “genuine support” comments to \\(\\alpha\\), and the count of the rest to \\(\\beta\\), make sense conceptually?\nDoes the order in which the 6 days of feedback arrive change the final posterior? Try to reason through this without running the app again — would summing everything at once give the same answer as updating day by day?\nAfter 6 days, is the posterior distribution narrower or wider than the Day 1 posterior? What does that tell you about how confident you should be by the end?\nIf Day 1 had unusually strong support (say, 9 out of 10 comments) purely by chance, how much does that early result continue to influence the final posterior after 5 more days of data? Does its influence shrink over time?\nHow is this beta-binomial setup similar to the courtroom app’s evidence-rating process? How is it different — specifically, which one relies on a subjective 0–10 rating, and which one relies on a countable, objective tally?\nIf you were the café owner, at what posterior mean (or what width of posterior distribution) would you feel comfortable actually launching the product? Is there a “right” threshold, or is that a business judgement call layered on top of the statistics?\nThe app lets you copy the daily counts into R. Why might it be useful to double-check an app’s calculations independently, rather than just trusting the visual output?",
+    "crumbs": [
+      "Interactive Hooks",
+      "Should We Launch It?"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "About",
+    "section": "",
+    "text": "This site is a collection of statistical hooks - quick, memorable ways to open a topic, grab attention, and make an abstract concept feel concrete before you dive into the technical details. The idea is simple:\n\nif you can hook students’ curiosity early, you can hold their attention longer once the harder explanations start.\nThey also work well as a reset: a way to re-energise the room after wrapping up a dense topic, before moving on to the next.\n\nThe resource is currently split into two main sections, with a third on the way.\nDemonstration Hooks are designed for larger classes, like lectures, where the instructor leads the activity (think a card trick, a rigged coin flip, or a jar of lollies passed around the room). These work well as a live, front-of-room demonstration: you’re doing the trick, and the class is watching, guessing, and reacting together. They’re a great way to open a lecture or transition between topics without needing every student to have a device in hand.\nInteractive Hooks flip the above dynamic. Students engage directly with an app or activity themselves, often game-like in nature. These can still work in a lecture setting, but I’ve mostly used them in smaller classes, like tutorials, where everyone can get hands-on. Many include a built-in scoring system, and students genuinely respond to that competitive edge — it’s a small addition that adds a surprising amount of engagement.\nA third section, Stories, is coming soon — a collection of interesting real-world stories you can bring into class to illustrate statistical ideas in action.\nBelow is quick summary table of the hooks and the area (topic) where they could be used:\n\n\n\n\n\n\n\n\nType\nHook\nTopics\n\n\n\n\nDemonstration\nJar of Lollies\nDescriptive Statistics Sampling Estimation Wisdom-of-Crowds\n\n\nDemonstration\nBad Graphs Gallery\nData Visualisation Misleading Graphs Critical Thinking\n\n\nDemonstration\nClass Polls\nConfidence Intervals Sampling Proportions Live Data\n\n\nDemonstration\nLady Tasting Tea\nHypothesis Testing Combinatorics Experimental Design p-values\n\n\nDemonstration\nFour Aces\nProbability Sampling Conditional Probability Multiplication Rule\n\n\nDemonstration\nLoaded Dices\nCentral Limit Theorem Simulation Discrete Probability Sampling Distributions\n\n\nDemonstration\nStacked Deck\nHypothesis Testing Null Hypothesis Type I Error Probability\n\n\nDemonstration\nHeads every time\nBinomial Distribution Probability Expected Value\n\n\nDemonstration\nPsychopath Test\nBetween-subjects Independent samples t-test Group comparisons\n\n\nDemonstration\nHeart Rates\nWithin-subjects Paired t-test Repeated Measures ANOVA\n\n\nDemonstration\nContagious Yawns\nCorrelation Linear Regression Data Collection\n\n\nDemonstration\nSkittle Science\nChi Square Test Goodness of Fit Categorical Data Expected vs Observed\n\n\nDemonstration\nMovie Posters\nInter-rater reliability Cohen's Kappa Agreement Categorical Data\n\n\nDemonstration\nFind your cluster\nK-means clustering Unsupervised learning Multivariate Data Standardisation\n\n\nInteractive\nThe Witness Test\nEyewitness memory Uncertainty\n\n\nInteractive\nMonty Hall\nProbability Conditional Probability Simulation Bayesian\n\n\nInteractive\nRock Paper Scissors\nSampling Law of large numbers Randomness Sampling\n\n\nInteractive\n10 Second Challenge\nResiduals Normal Distribution Measurement Error\n\n\nInteractive\nSurveyor Builder\nEstimation Sampling Bias Survey Design Standard Error\n\n\nInteractive\nStack Game\nHypothesis Testing Between-subjects Independent samples t-test\n\n\nInteractive\nColor Game\nPermutation Tests Bootstrap Between-subjects Resampling\n\n\nInteractive\nWorld Cup Simulator\nLikelihood Simulation Monte Carlo Probability Models\n\n\nInteractive\nThe Stolen Laptop\nBayesian Prior & Posterior Sequential Updating\n\n\nInteractive\nShould We Launch It?\nBayesian Prior & Posterior Beta-binomial Distribution Sequential Updating\n\n\nInteractive\nThe Life Ledger\nSurvival Analysis Hazard Function Competing Risks\n\n\nInteractive\nBox Office Model Builder\nMultiple Regression Variable Selection Model Fit",
+    "crumbs": [
+      "About"
+    ]
+  },
+  {
+    "objectID": "index.html#welcome-to-statistical-hooks",
+    "href": "index.html#welcome-to-statistical-hooks",
+    "title": "About",
+    "section": "",
+    "text": "This site is a collection of statistical hooks - quick, memorable ways to open a topic, grab attention, and make an abstract concept feel concrete before you dive into the technical details. The idea is simple:\n\nif you can hook students’ curiosity early, you can hold their attention longer once the harder explanations start.\nThey also work well as a reset: a way to re-energise the room after wrapping up a dense topic, before moving on to the next.\n\nThe resource is currently split into two main sections, with a third on the way.\nDemonstration Hooks are designed for larger classes, like lectures, where the instructor leads the activity (think a card trick, a rigged coin flip, or a jar of lollies passed around the room). These work well as a live, front-of-room demonstration: you’re doing the trick, and the class is watching, guessing, and reacting together. They’re a great way to open a lecture or transition between topics without needing every student to have a device in hand.\nInteractive Hooks flip the above dynamic. Students engage directly with an app or activity themselves, often game-like in nature. These can still work in a lecture setting, but I’ve mostly used them in smaller classes, like tutorials, where everyone can get hands-on. Many include a built-in scoring system, and students genuinely respond to that competitive edge — it’s a small addition that adds a surprising amount of engagement.\nA third section, Stories, is coming soon — a collection of interesting real-world stories you can bring into class to illustrate statistical ideas in action.\nBelow is quick summary table of the hooks and the area (topic) where they could be used:\n\n\n\n\n\n\n\n\nType\nHook\nTopics\n\n\n\n\nDemonstration\nJar of Lollies\nDescriptive Statistics Sampling Estimation Wisdom-of-Crowds\n\n\nDemonstration\nBad Graphs Gallery\nData Visualisation Misleading Graphs Critical Thinking\n\n\nDemonstration\nClass Polls\nConfidence Intervals Sampling Proportions Live Data\n\n\nDemonstration\nLady Tasting Tea\nHypothesis Testing Combinatorics Experimental Design p-values\n\n\nDemonstration\nFour Aces\nProbability Sampling Conditional Probability Multiplication Rule\n\n\nDemonstration\nLoaded Dices\nCentral Limit Theorem Simulation Discrete Probability Sampling Distributions\n\n\nDemonstration\nStacked Deck\nHypothesis Testing Null Hypothesis Type I Error Probability\n\n\nDemonstration\nHeads every time\nBinomial Distribution Probability Expected Value\n\n\nDemonstration\nPsychopath Test\nBetween-subjects Independent samples t-test Group comparisons\n\n\nDemonstration\nHeart Rates\nWithin-subjects Paired t-test Repeated Measures ANOVA\n\n\nDemonstration\nContagious Yawns\nCorrelation Linear Regression Data Collection\n\n\nDemonstration\nSkittle Science\nChi Square Test Goodness of Fit Categorical Data Expected vs Observed\n\n\nDemonstration\nMovie Posters\nInter-rater reliability Cohen's Kappa Agreement Categorical Data\n\n\nDemonstration\nFind your cluster\nK-means clustering Unsupervised learning Multivariate Data Standardisation\n\n\nInteractive\nThe Witness Test\nEyewitness memory Uncertainty\n\n\nInteractive\nMonty Hall\nProbability Conditional Probability Simulation Bayesian\n\n\nInteractive\nRock Paper Scissors\nSampling Law of large numbers Randomness Sampling\n\n\nInteractive\n10 Second Challenge\nResiduals Normal Distribution Measurement Error\n\n\nInteractive\nSurveyor Builder\nEstimation Sampling Bias Survey Design Standard Error\n\n\nInteractive\nStack Game\nHypothesis Testing Between-subjects Independent samples t-test\n\n\nInteractive\nColor Game\nPermutation Tests Bootstrap Between-subjects Resampling\n\n\nInteractive\nWorld Cup Simulator\nLikelihood Simulation Monte Carlo Probability Models\n\n\nInteractive\nThe Stolen Laptop\nBayesian Prior & Posterior Sequential Updating\n\n\nInteractive\nShould We Launch It?\nBayesian Prior & Posterior Beta-binomial Distribution Sequential Updating\n\n\nInteractive\nThe Life Ledger\nSurvival Analysis Hazard Function Competing Risks\n\n\nInteractive\nBox Office Model Builder\nMultiple Regression Variable Selection Model Fit",
+    "crumbs": [
+      "About"
+    ]
+  },
+  {
+    "objectID": "Demonstration/StackedDeck.html",
+    "href": "Demonstration/StackedDeck.html",
+    "title": "Stacked Deck",
+    "section": "",
+    "text": "Hypothesis Testing Null vs Alternative Type I Error Probability",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Stacked Deck"
+    ]
+  },
+  {
+    "objectID": "Demonstration/StackedDeck.html#about",
+    "href": "Demonstration/StackedDeck.html#about",
+    "title": "Stacked Deck",
+    "section": "About",
+    "text": "About\nThis activity uses a fully controlled card trick to walk students through five hypothesis tests in a row, live. Before class, the instructor writes down five pairs of hypotheses and secretly stacks the deck so that, one at a time, each “rare” alternative outcome is forced to occur. Because the audience believes the cards are shuffled randomly, each reveal looks like a genuinely surprising result — which is exactly the intuition hypothesis testing is built on: if the null were true, this outcome would almost never happen, so something else must be going on.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Stacked Deck"
+    ]
+  },
+  {
+    "objectID": "Demonstration/StackedDeck.html#demonstration",
+    "href": "Demonstration/StackedDeck.html#demonstration",
+    "title": "Stacked Deck",
+    "section": "Demonstration",
+    "text": "Demonstration",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Stacked Deck"
+    ]
+  },
+  {
+    "objectID": "Demonstration/StackedDeck.html#materials",
+    "href": "Demonstration/StackedDeck.html#materials",
+    "title": "Stacked Deck",
+    "section": "Materials",
+    "text": "Materials\n\nA standard deck of 52 playing cards, pre-arranged in advance (see Pre-tasks)\n5 printed or written prediction cards/slides, sealed or hidden until each reveal\nA table or document camera so the class can see the cards clearly\nA whiteboard or slide to record each hypothesis pair and the outcome",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Stacked Deck"
+    ]
+  },
+  {
+    "objectID": "Demonstration/StackedDeck.html#the-five-predictions",
+    "href": "Demonstration/StackedDeck.html#the-five-predictions",
+    "title": "Stacked Deck",
+    "section": "The Five Predictions",
+    "text": "The Five Predictions\nWrite these down and seal them before class. Rewritten slightly below for statistical clarity — feel free to adjust wording to match your own phrasing style.\n\n\n\n\n\n\n\n\n#\n\\(H_0\\) (expected / common)\n\\(H_1\\) (rare / alternative)\n\n\n\n\n1\nThe number of face-up cards will equal the number of face-down cards\nThe number of face-up cards will be less than the number of face-down cards\n\n\n2\nOf the remaining cards, there will be a mix of number cards and picture cards\nOf the remaining cards, there will be number cards only\n\n\n3\nOf the remaining cards, there will be a mix of red and black cards\nOf the remaining cards, there will be exactly 10 black cards\n\n\n4\nOf those 10 black cards, there will be a mix of spades and clubs\nOf those 10 black cards, there will be clubs only\n\n\n5\n—\nThe one black card that isn’t a club is the Ace of Spades\n\n\n\n\n\n\n\n\n\nHow the trick works\n\n\n\n\n\nThe entire deck is pre-arranged before class using a false shuffle (a shuffle that looks random but preserves a known order) combined with cards deliberately mixed face-up and face-down in a controlled pattern. Because the final arrangement is fully known in advance, each “surprising” outcome — fewer face-up cards, only number cards remaining, exactly 10 black cards, all clubs but one — is guaranteed rather than genuinely random. At the end of each round, the previous pile is discarded, narrowing the deck down toward the final, pre-planned punchline: the Ace of Spades. This requires significant practice with the false shuffle and the face-up/face-down mixing sequence before performing it live.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Stacked Deck"
+    ]
+  },
+  {
+    "objectID": "Demonstration/StackedDeck.html#step-by-step-plan",
+    "href": "Demonstration/StackedDeck.html#step-by-step-plan",
+    "title": "Stacked Deck",
+    "section": "Step-by-Step Plan",
+    "text": "Step-by-Step Plan\n\n0 (Pre-tasks)\n\nWrite down all five hypothesis pairs in advance and seal or hide them (e.g. in envelopes, or on slides revealed one at a time) so the class can confirm you predicted the outcome before seeing the cards\nPractice the false shuffle and the face-up/face-down control sequence until it looks convincingly random, see guide below:\n\n\n\n\n1 (Setup)\nHold up the deck and say:\n\n“Before I touch this deck, I’ve already written down five predictions about what will happen as I shuffle and deal these cards. Each prediction has a ‘boring’ expected outcome — the null hypothesis — and a much rarer outcome — the alternative hypothesis. Let’s see which one actually happens each time.”\n\nShuffle the deck using your false shuffle in full view of the class.\n\n\n2 (Prediction 1 — Face-up vs Face-down)\nReveal the first sealed prediction. Ask the class:\n\n“If I mix these cards face-up and face-down randomly, would you expect roughly equal numbers of each, or a clear imbalance?”\n\nDeal through the deck, mixing cards face-up and face-down. Count the result. Reveal that face-down cards outnumber face-up cards — matching \\(H_1\\), not \\(H_0\\).\nDiscard the face-up pile, keeping only the face-down cards for the next round.\n\n\n3 (Prediction 2 — Number Cards Only)\nReveal the second sealed prediction. Ask the class:\n\n“Of the cards we have left, would you expect a mix of number cards and picture cards, or something more unusual?”\n\nTurn over the remaining cards. Reveal that only number cards remain — again matching \\(H_1\\).\nDiscard any picture cards (there shouldn’t be any, but this keeps the “elimination” pattern consistent), keeping the number cards for the next round.\n\n\n4 (Prediction 3 — Exactly 10 Black Cards)\nReveal the third sealed prediction. Ask the class:\n\n“Of these remaining number cards, would you expect a mix of red and black, or something more specific?”\n\nSort the cards by colour. Reveal exactly 10 black cards — a strikingly specific outcome to have predicted in advance.\nDiscard the red cards, keeping the 10 black cards for the next round.\n\n\n5 (Prediction 4 — Clubs Only… Almost)\nReveal the fourth sealed prediction. Ask the class:\n\n“Of these 10 black cards, would you expect a mix of spades and clubs, or only clubs?”\n\nSort the black cards. This is the twist: the prediction says “clubs only,” but reveal that there are 9 clubs and 1 spade — meaning \\(H_0\\) (a mix of spades and clubs) is technically what occurred, not the predicted \\(H_1\\).\nPause here and let the class notice the mismatch. This is a deliberate teaching moment (see the callout below).\n\n\n\n\n\n\nWhy Prediction 4 is designed to “fail”\n\n\n\n\n\nThis is the one prediction in the sequence that doesn’t match its stated alternative hypothesis — and that’s intentional. It’s a live demonstration that not every hypothesis test rejects the null, and that a predicted alternative can fail to materialise even in a fully controlled setup. Use this moment to ask: if this were a real experiment and not a trick, how would we interpret a result like this? This is a natural segue into discussing Type I and Type II errors, and the fact that failing to reject \\(H_0\\) doesn’t mean \\(H_0\\) is true — only that this particular test didn’t provide evidence against it.\n\n\n\n\n\n6 (Prediction 5 — The Final Card)\nReveal the fifth and final sealed prediction — it contains only one statement: “The black card that isn’t a club is the Ace of Spades.”\nTurn over the single spade. Reveal that it is, in fact, the Ace of Spades — landing the final punchline and tying the whole sequence together as one long, fully pre-determined chain of outcomes.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Stacked Deck"
+    ]
+  },
+  {
+    "objectID": "Demonstration/StackedDeck.html#how-unlikely-is-this-really",
+    "href": "Demonstration/StackedDeck.html#how-unlikely-is-this-really",
+    "title": "Stacked Deck",
+    "section": "How Unlikely Is This, Really?",
+    "text": "How Unlikely Is This, Really?\nAssuming a genuinely random shuffle and deal, here’s what each stage of the reveal would cost you in probability — and how those probabilities compound.\n\n\n\n\n\n\nWorked example (using one plausible run-through)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStep\nEvent (if truly random)\nProbability\nRunning total\n\n\n\n\n1\nExactly 30 of 52 cards land face-down (rather than an even 26/26 split)\n\\(\\approx 0.060\\)\n\\(\\approx 0.060\\)\n\n\n2\nAll 30 of those face-down cards happen to be number cards (no picture cards at all)\n\\(\\approx 3.1 \\times 10^{-6}\\)\n\\(\\approx 1.9 \\times 10^{-7}\\)\n\n\n3\nExactly 10 of those 30 number cards turn out to be black\n\\(\\approx 2.2 \\times 10^{-4}\\)\n\\(\\approx 4.1 \\times 10^{-11}\\)\n\n\n4\nOf those 10 black cards, exactly 9 are clubs and 1 is a spade\n\\(\\approx 5.4 \\times 10^{-4}\\)\n\\(\\approx 2.2 \\times 10^{-14}\\)\n\n\n5\nThat one spade is specifically the Ace of Spades (1 of 10 possible spade ranks)\n\\(0.1\\)\n\\(\\approx 2.2 \\times 10^{-15}\\)\n\n\n\nOverall probability of this exact sequence happening by pure chance: roughly 1 in 450 trillion.\n\n\n\nAsk the class: does that number feel believable for something that “just happened” to occur? This is the same reasoning behind a p-value — an outcome this extreme under the null hypothesis (a genuinely random shuffle and deal) is essentially never going to happen on its own, so something else must be going on. In this case: the deck wasn’t random at all.\nNote for the instructor: these figures are illustrative, based on one example run. Recalculate steps 1–4 using your own actual observed counts each time you perform it — the shrinking pattern will hold regardless of the exact numbers, since each additional constraint multiplies in another small probability.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Stacked Deck"
+    ]
+  },
+  {
+    "objectID": "Demonstration/StackedDeck.html#bonus-optional",
+    "href": "Demonstration/StackedDeck.html#bonus-optional",
+    "title": "Stacked Deck",
+    "section": "Bonus / Optional:",
+    "text": "Bonus / Optional:\n\nCan relate this activity to Type I/II errors and the logic of statistical significance\nA few extensions to try:\n\nCalculate the true probabilities: For each step, work out the actual probability of the observed outcome occurring by pure chance (e.g. probability of exactly 10 black cards remaining after random dealing), and compare how small these numbers get when compounded across all five predictions.\nDiscuss p-hacking: Ask what would happen if, instead of 5 predictions, you’d secretly made 50 and only shown the class the 5 that “worked.” This is a great entry point into p-hacking and the multiple comparisons problem.\nType I vs Type II: Use Prediction 4’s “failure” to concretely define a Type II error (failing to detect a real effect) versus a Type I error (falsely detecting an effect that isn’t there).\nDiscuss trust and evidence: Ask the class how their confidence in your “predictive powers” would change if you’d gotten 4 out of 5 right versus 5 out of 5 — and connect this to how much evidence is “enough” to reject a null hypothesis in real research.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Stacked Deck"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Psycho.html",
+    "href": "Demonstration/Psycho.html",
+    "title": "Psychopath Test",
+    "section": "",
+    "text": "Between-Subjects Design Independent Samples t-Test Group Comparison Psychology",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Psychopath Test"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Psycho.html#about",
+    "href": "Demonstration/Psycho.html#about",
+    "title": "Psychopath Test",
+    "section": "About",
+    "text": "About\nThis activity uses a famous (if unproven) riddle to split the class into two independent groups, those who solve it and those who don’t, and compares their scores on a short psychopathy questionnaire. We will treat this as is a genuinely between-subjects design: each student belongs to exactly one group, and the two groups are compared against each other rather than against themselves. It’s a natural setup for the independent samples t-test.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Psychopath Test"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Psycho.html#demonstration",
+    "href": "Demonstration/Psycho.html#demonstration",
+    "title": "Psychopath Test",
+    "section": "Demonstration",
+    "text": "Demonstration",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Psychopath Test"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Psycho.html#materials",
+    "href": "Demonstration/Psycho.html#materials",
+    "title": "Psychopath Test",
+    "section": "Materials",
+    "text": "Materials\n\nAccess to a short online psychopathy questionnaire — e.g. Psychology Today’s Psychopathy Test\nA tool for students to submit their score and riddle group in real time (e.g. Google Forms)\nThe riddle text, ready to display on screen (see below)\nPaper for students to write their riddle answer independently\nA spreadsheet or R session set up to run the independent samples t-test live",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Psychopath Test"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Psycho.html#the-riddle",
+    "href": "Demonstration/Psycho.html#the-riddle",
+    "title": "Psychopath Test",
+    "section": "The Riddle",
+    "text": "The Riddle\nDisplay this on screen so every student sees it at exactly the same time:\n\nThis is a story about a girl.\nWhile at the funeral of her own mother, she met a guy whom she did not know. She thought this guy was amazing, so much the dream guy that she was searching for that she fell in love with him immediately.\nHowever, she never asked for his name or number and afterward could not find anyone who knew who he was.\nA few days later the girl killed her own sister.\nQuestion: Why did she kill her sister?\n\n\n\n\n\n\n\nAnswer (for the instructor only — don’t reveal until after data collection)\n\n\n\n\n\nShe reasoned that if the guy appeared at her mother’s funeral, he might appear at another family funeral too — so she killed her sister in the hope of seeing him again.\nNote for the class: there’s a persistent (but never actually proven) claim that this riddle was used by an American psychologist to test for psychopathic thinking, and that several apprehended serial killers answered it correctly. Treat this as an interesting hook rather than a verified fact — it’s worth being upfront with students that this origin story is folklore rather than documented research, which is itself a nice discussion point about how “psychology facts” spread.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Psychopath Test"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Psycho.html#step-by-step-plan",
+    "href": "Demonstration/Psycho.html#step-by-step-plan",
+    "title": "Psychopath Test",
+    "section": "Step-by-Step Plan",
+    "text": "Step-by-Step Plan\n\n0 (Pre-tasks)\n\nTest the psychopathy questionnaire link yourself and confirm it produces a clear numeric score\nSet up a submission form with three fields: (1) Name/ID, (2) psychopathy score, (3) whether they solved the riddle correctly (Yes/No)\nPrepare the riddle slide, ready to display but not yet shown\n\n\n\n1 (Setup)\nExplain the two-part process to the class without revealing the riddle yet:\n\n“In a moment, I’m going to show you a short riddle. I want everyone to try to solve it silently and write your answer down on paper — don’t say it out loud, don’t discuss it with your neighbour. This needs to stay independent, so please keep your answer to yourself for now.”\n\n\n\n2 (Present the Riddle)\nDisplay the riddle on screen for the whole class simultaneously. Give students a fixed amount of time (e.g. 2–3 minutes) to write their answer down on paper.\n\n\n3 (Reveal and Group)\nReveal the correct answer. Have students self-report (via the form) whether their written answer matched — this sorts the class into two groups:\n\nGroup 1: Solved the riddle correctly\nGroup 2: Did not solve the riddle correctly\n\n\n\n4 (Complete the Psychopathy Questionnaire)\nDirect students to complete the psychopathy questionnaire and record their score through the form, alongside their riddle group from Step 3.\n\n\n5 (Set Up the Hypotheses)\nBefore running the test, formalise what’s being compared:\n\\[\nH_0: \\mu_{\\text{solved}} = \\mu_{\\text{not solved}}\n\\]\n\\[\nH_1: \\mu_{\\text{solved}} \\neq \\mu_{\\text{not solved}}\n\\]\nwhere \\(\\mu_{\\text{solved}}\\) and \\(\\mu_{\\text{not solved}}\\) are the true mean psychopathy scores for each group.\n\n\n6 (Explore the Data)\nBefore calculating anything, look at the two groups’ distributions side by side (e.g. boxplots or a simple dot plot of scores by group). Ask the class:\n\n“Just from looking at this, does it look like the two groups differ much? What would make you confident either way?”\n\n\n\n7 (Run the Independent Samples t-Test)\nCalculate the test statistic comparing the two independent groups.\n\n\n\n\n\n\nFormula: Independent Samples t-Test\n\n\n\n\n\n\\[\nt = \\frac{\\bar{x}_1 - \\bar{x}_2}{\\sqrt{\\dfrac{s_1^2}{n_1} + \\dfrac{s_2^2}{n_2}}}\n\\]\nwhere:\n\n\\(\\bar{x}_1, \\bar{x}_2\\) = mean psychopathy score for each group\n\\(s_1^2, s_2^2\\) = variance of scores within each group\n\\(n_1, n_2\\) = number of students in each group\n\nDegrees of freedom (using the Welch–Satterthwaite approximation, which doesn’t assume equal variances):\n\\[\ndf \\approx \\frac{\\left(\\dfrac{s_1^2}{n_1} + \\dfrac{s_2^2}{n_2}\\right)^2}{\\dfrac{(s_1^2/n_1)^2}{n_1 - 1} + \\dfrac{(s_2^2/n_2)^2}{n_2 - 1}}\n\\]\n\n\n\nCompare the calculated \\(t\\) to the critical value (or compute the exact p-value) and decide whether to reject \\(H_0\\).\n\n\n8 (Discuss)\nWork through these questions as a class:\n\nWhy is this a between-subjects design rather than a within-subjects one? What would a within-subjects version of this study even look like (and would it make sense here)?\nIf a significant difference is found, does that mean solving the riddle causes higher psychopathy scores? What alternative explanations exist (e.g. general problem-solving ability, prior exposure to the riddle, self-selection in who answers honestly)?\nWhat might explain groups being very unequal in size (e.g. only 3 students solve it, 40 don’t)? How does that unevenness affect how much you’d trust the result?\nGiven the shaky, unverified origin story behind this riddle, how should that affect how much weight we put on the result even if it is statistically significant?",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Psychopath Test"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Psycho.html#bonus-optional",
+    "href": "Demonstration/Psycho.html#bonus-optional",
+    "title": "Psychopath Test",
+    "section": "Bonus / Optional:",
+    "text": "Bonus / Optional:\n\nCan relate this activity to effect size and unequal sample sizes\nA few extensions to try:\n\nEffect size: Calculate Cohen’s \\(d\\) for the group difference, to discuss how large the gap is, not just whether it’s statistically detectable.\nEqual variance assumption: Compare the standard Student’s t-test (equal variances assumed) to Welch’s t-test (unequal variances allowed) and discuss when each is appropriate — this is a good moment to introduce Levene’s test for equality of variances.\nNon-parametric alternative: If the psychopathy scores look skewed rather than normally distributed, introduce the Mann-Whitney U test as a non-parametric alternative to the independent samples t-test.\nReplicate the folklore: Search for the actual origin of this riddle claim as a class exercise in evaluating psychological “urban legends” — a nice tie-in to research literacy and misinformation about psychology.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Psychopath Test"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Movies.html",
+    "href": "Demonstration/Movies.html",
+    "title": "Movie Posters",
+    "section": "",
+    "text": "Inter-Rater Reliability Cohen’s Kappa Agreement Categorical Data",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Movie Posters"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Movies.html#about",
+    "href": "Demonstration/Movies.html#about",
+    "title": "Movie Posters",
+    "section": "About",
+    "text": "About\nThis activity uses movie posters to introduce inter-rater reliability, a core concept whenever multiple people (raters, judges, coders) are asked to classify the same thing and you need to know how much their judgments actually agree. Students are shown a series of obscure, mostly unknown movie posters with the title blacked out, and simply guess the genre from the visual alone. Because nobody actually knows the “correct” answer, this isn’t really about accuracy — it’s about how consistently different people converge on the same interpretation, which is exactly the question Cohen’s Kappa is built to answer.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Movie Posters"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Movies.html#demonstration",
+    "href": "Demonstration/Movies.html#demonstration",
+    "title": "Movie Posters",
+    "section": "Demonstration",
+    "text": "Demonstration",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Movie Posters"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Movies.html#materials",
+    "href": "Demonstration/Movies.html#materials",
+    "title": "Movie Posters",
+    "section": "Materials",
+    "text": "Materials\n\n10 movie posters from fairly obscure/arthouse films (title and any obvious genre text blacked out or cropped out). Below are some samples:\n\n\nPoster RedactedPoster Revealed\n\n\n\n\n\n\n\nDrama\n\n\n\n\n\n\n\nPoster RedactedPoster Revealed\n\n\n\n\n\n\n\nScience Fiction\n\n\n\n\n\n\n\nPoster RedactedPoster Revealed\n\n\n\n\n\n\n\nComedy\n\n\n\n\n\n\n\nPoster RedactedPoster Revealed\n\n\n\n\n\n\n\nThriller\n\n\n\n\n\n\n\nPoster RedactedPoster Revealed\n\n\n\n\n\n\n\nThriller\n\n\n\n\n\n\n\nPoster RedactedPoster Revealed\n\n\n\n\n\n\n\nAction\n\n\n\n\n\n\n\nPoster RedactedPoster Revealed\n\n\n\n\n\n\n\nFantasy\n\n\n\n\n\n\n\nPoster RedactedPoster Revealed\n\n\n\n\n\n\n\nHorror\n\n\n\n\n\n\n\nPoster RedactedPoster Revealed\n\n\n\n\n\n\n\nHorror\n\n\n\n\n\n\n\nPoster RedactedPoster Revealed\n\n\n\n\n\n\n\nComedy\n\n\n\n\n\n\n\nA tool for students to submit their genre guess per poster (e.g. Google Forms)\nA fixed, shared list of genre categories for students to choose from (e.g. Horror, Comedy, Drama, Thriller, Romance, Sci-Fi)\nA spreadsheet or R session set up to calculate agreement statistics live",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Movie Posters"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Movies.html#step-by-step-plan",
+    "href": "Demonstration/Movies.html#step-by-step-plan",
+    "title": "Movie Posters",
+    "section": "Step-by-Step Plan",
+    "text": "Step-by-Step Plan\n\n0 (Pre-tasks)\n\nSelect 10 movie posters, ideally from lesser-known or foreign/arthouse films — the less recognisable the film, the more the guesses reflect genuine visual interpretation rather than prior knowledge\nEdit each poster to remove the title, tagline, and any text that gives away the genre directly (e.g. “A Hilarious New Comedy”)\nDecide on a fixed set of genre categories in advance, so every student is choosing from the same options (open-ended text responses are much harder to score for agreement)\nSet up the submission form with one question per poster, using the same category list each time\n\n\n\n1 (Setup)\nDisplay the first poster and explain the task:\n\n“I’m going to show you 10 movie posters, one at a time. The titles have been removed. I just want you to guess the genre, based purely on what you see. There’s no ‘correct’ answer I’m expecting — I’m actually more interested in whether you all agree with each other than whether you’re right. Note: some movies can have multiple genres, just pick what you think is the main one.”\n\n\n\n2 (Collect Judgments)\nShow each poster for a fixed amount of time (e.g. 15–20 seconds), and have students submit their genre guess before moving to the next one. Repeat for all 10 posters.\n\n\n3 (Reveal the Films)\nOnce all judgments are collected, reveal the actual title and genre of each film. Let the class react to how close (or far off) their guesses were, but keep the focus on the next step — this reveal is mostly for fun/context, not the main statistical point.\n\n\n4 (Explore Agreement — Two Raters)\nPick any two students at random and compare their 10 genre guesses side by side.\n\n\n\n\n\n\nSimple (Naive) Percent Agreement\n\n\n\n\n\n\\[\nP_o = \\frac{\\text{Number of posters both raters agreed on}}{\\text{Total number of posters}}\n\\]\nThis is the most intuitive way to measure agreement, but it has a major flaw: two raters could agree by pure chance, especially if one genre (e.g. “Drama”) is a common guess. Percent agreement doesn’t account for this.\n\n\n\n\n\n5 (Introduce Cohen’s Kappa)\nCohen’s Kappa corrects for the agreement we’d expect by chance alone, giving a more honest measure of how much two raters actually agree beyond guessing.\n\n\n\n\n\n\nFormula: Cohen’s Kappa\n\n\n\n\n\n\\[\n\\kappa = \\frac{P_o - P_e}{1 - P_e}\n\\]\nwhere:\n\n\\(P_o\\) = observed proportion of agreement (from Step 4)\n\\(P_e\\) = expected proportion of agreement by chance, calculated from the marginal proportions of each genre each rater used\n\n\\[\nP_e = \\sum_{i} p_{A_i} \\cdot p_{B_i}\n\\]\nwhere \\(p_{A_i}\\) and \\(p_{B_i}\\) are the proportion of times Rater A and Rater B each chose genre \\(i\\).\n\n\n\nWalk through the calculation live using your two selected students’ data, building the confusion matrix (a genre-by-genre table of who guessed what) on the board first, since \\(P_e\\) depends on it directly.\n\n\n6 (Interpret Kappa)\nDiscuss what the resulting \\(\\kappa\\) value actually means:\n\n\n\nKappa Range\nInterpretation\n\n\n\n\n&lt; 0\nWorse than chance agreement\n\n\n0.01 – 0.20\nSlight agreement\n\n\n0.21 – 0.40\nFair agreement\n\n\n0.41 – 0.60\nModerate agreement\n\n\n0.61 – 0.80\nSubstantial agreement\n\n\n0.81 – 1.00\nAlmost perfect agreement\n\n\n\nAsk the class: does the calculated \\(\\kappa\\) feel surprising, given how confident individual students may have felt about their own guesses?\n\n\n7 (Scale Up — Whole Class Agreement)\nTwo raters is a nice starting point, but the real dataset involves the whole class. Introduce Fleiss’ Kappa as the extension of Cohen’s Kappa to more than two raters, and calculate it for the full class’s judgments on all 10 posters.\n\n\n\n\n\n\nFormula: Fleiss’ Kappa (concept)\n\n\n\n\n\n\\[\n\\kappa = \\frac{\\bar{P} - \\bar{P_e}}{1 - \\bar{P_e}}\n\\]\nwhere \\(\\bar{P}\\) is the mean observed agreement across all posters and raters, and \\(\\bar{P_e}\\) is the mean expected agreement by chance, calculated from how often each genre was chosen overall across the whole class.\n\n\n\nDiscuss how this whole-class \\(\\kappa\\) compares to the two-student value calculated earlier — is agreement higher or lower once everyone is included?",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Movie Posters"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Movies.html#bonus-optional",
+    "href": "Demonstration/Movies.html#bonus-optional",
+    "title": "Movie Posters",
+    "section": "Bonus / Optional:",
+    "text": "Bonus / Optional:\n\nCan relate this activity to real-world applications of inter-rater reliability\nA few extensions to try:\n\nPoster-by-poster breakdown: Calculate agreement separately for each of the 10 posters — which posters had the highest agreement, and which were the most contested? Discuss what visual features might drive consensus versus disagreement.\nReal-world context: Discuss where inter-rater reliability actually matters in practice — e.g. medical diagnoses from imaging, essay grading, content moderation, or coding qualitative interview data — and why researchers report kappa values in these settings.\nChance agreement demo: Show what happens to \\(\\kappa\\) if two “raters” guessed completely randomly (simulate this) — it should hover near 0, even though raw percent agreement might still look moderately high by chance alone.\nWeighted kappa: For genres that are “closer” to each other (e.g. Thriller vs. Horror) versus totally different (e.g. Comedy vs. Horror), introduce weighted kappa, which penalises near-miss disagreements less than totally opposite ones.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Movie Posters"
+    ]
+  },
+  {
+    "objectID": "Demonstration/LoadedDice.html",
+    "href": "Demonstration/LoadedDice.html",
+    "title": "Loaded Dices",
+    "section": "",
+    "text": "Central Limit Theorem Simulation Discrete Probability Sampling Distributions",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Loaded Dices"
+    ]
+  },
+  {
+    "objectID": "Demonstration/LoadedDice.html#about",
+    "href": "Demonstration/LoadedDice.html#about",
+    "title": "Loaded Dices",
+    "section": "About",
+    "text": "About\nThis is an instructor-led demonstration of the Central Limit Theorem using two secretly loaded dice. Before any rolling happens, the instructor seals an envelope with a precise prediction about where the running total of many rolls will land. Because the dice are rigged, this “impossible” prediction is guaranteed — but the deeper lesson is that the same shape (a bell curve) would emerge from summing enough rolls even with fair dice. The bias is what makes the trick land; the Central Limit Theorem is what makes it true either way.\n\n\n\n\n\n\nNote\n\n\n\nStudents may get bored if you are performing 40-50 rolls yourself. Either reduce this number or acquire more loaded dices, so that you can invite some students up to do this simultaneously. With 5 sets of loaded (i.e. 10 dices), you can get ask each student to roll 5 times relatively quickly.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Loaded Dices"
+    ]
+  },
+  {
+    "objectID": "Demonstration/LoadedDice.html#demonstration",
+    "href": "Demonstration/LoadedDice.html#demonstration",
+    "title": "Loaded Dices",
+    "section": "Demonstration",
+    "text": "Demonstration",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Loaded Dices"
+    ]
+  },
+  {
+    "objectID": "Demonstration/LoadedDice.html#materials",
+    "href": "Demonstration/LoadedDice.html#materials",
+    "title": "Loaded Dices",
+    "section": "Materials",
+    "text": "Materials\n\nTwo dice with a known, deliberate bias — e.g. weighted dice, dice with rounded edges, or novelty/magic-shop dice designed to favour certain faces (see Pre-tasks)\nA regular fair die or two, for later comparison\nA sealed envelope or hidden slide for your prediction\nA document camera or projector so the class can see each roll clearly\nA whiteboard, spreadsheet, or slide to build the running histogram live in front of the class",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Loaded Dices"
+    ]
+  },
+  {
+    "objectID": "Demonstration/LoadedDice.html#step-by-step-plan",
+    "href": "Demonstration/LoadedDice.html#step-by-step-plan",
+    "title": "Loaded Dices",
+    "section": "Step-by-Step Plan",
+    "text": "Step-by-Step Plan\n\n0 (Pre-tasks)\n\nObtain two loaded dice and determine each one’s true long-run average roll value in advance — either from the manufacturer’s spec, or by rolling each several hundred times yourself beforehand and recording the empirical mean and standard deviation\nCalculate the combined mean and variance of rolling both dice together and summing them: \\(\\mu = \\mu_A + \\mu_B\\), \\(\\sigma^2 = \\sigma_A^2 + \\sigma_B^2\\)\nDecide on a fixed number of rolls you’ll perform in class (e.g. 40–50 rolls of both dice together)\nUsing the CLT formula (see Step 4), calculate the expected range for the running total’s distribution after all rolls, and write your prediction in the sealed envelope\nMake sure the loaded dice are visually indistinguishable from fair dice — the class shouldn’t be able to tell just by looking at them\n\n\n\n1 (Setup)\nHold up the two dice and the sealed envelope. Say:\n\n“I’m going to roll these two dice together, over and over, and add up the total each time. Before I roll a single die, I’ve already sealed a prediction in this envelope about the shape and location of the results we’re about to see. Let’s find out if I’m right.”\n\n\n\n2 (Roll and Record)\nRoll both dice together under the document camera, sum the two faces, and record the result on the board or a live spreadsheet. Repeat this for your predetermined number of rolls (e.g. 40–50 times), narrating occasionally:\n\n“Watch — each roll on its own just gives us a number between 2 and 12. Nothing special about any single roll.”\n\n\n\n3 (Build the Histogram)\nAs results accumulate, plot a running histogram of all the roll-sums so far, updating it live after each roll (or in small batches, e.g. every 5 rolls, if that’s easier to manage). Ask the class:\n\n“We’re just adding two numbers each time. Would you expect the pile of totals to end up random and shapeless, or to settle into some kind of pattern?”\n\nLet the histogram build in front of them — it should settle into a smooth, roughly symmetric, bell-like shape, centred somewhere other than where a fair pair of dice would center.\n\n\n4 (The Reveal)\nOpen the envelope. Reveal your prediction, and show that the actual accumulated results land almost exactly where you said they would — both in shape and in location.\n\n\n\n\n\n\nHow the trick works\n\n\n\n\n\nBoth dice were secretly loaded with a known bias, so their true combined mean, \\(\\mu\\), isn’t 7 like a fair pair of dice, and their combined variance, \\(\\sigma^2\\), isn’t the standard value either. Because you measured each die’s true parameters in advance (Step 0), you could predict exactly where the running total’s distribution would settle using the Central Limit Theorem:\n\\[\n\\text{Sum of } n \\text{ rolls} \\sim \\text{Approximately } N\\left(n\\mu,\\; n\\sigma^2\\right)\n\\]\nFor \\(n\\) rolls, the predicted range for the running total was:\n\\[\nn\\mu \\pm 2\\sqrt{n\\sigma^2}\n\\]\nThis is what let you write a precise, narrow prediction in advance — not psychic ability, just knowing the true (biased) parameters of the dice before the class did.\n\n\n\n\n\n5 (Compare to Fair Dice)\nNow repeat the same process using two genuinely fair dice — either live, if time allows, or using a pre-built simulation you can display instantly (recommended, to save class time). Build a second histogram alongside the first.\nAsk the class:\n\n“Both histograms look roughly bell-shaped. What’s actually different between them?”\n\nGuide them to notice: the shape (approximately normal) is similar in both cases, but the loaded dice’s histogram is shifted away from where fair dice would centre (7). This is the key insight — the Central Limit Theorem guarantees the shape, not the location. Any pair of dice, fair or loaded, produces a roughly normal distribution of sums as the number of rolls grows; only the true mean and variance of the dice determine where that bell curve sits.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Loaded Dices"
+    ]
+  },
+  {
+    "objectID": "Demonstration/LoadedDice.html#bonus-optional",
+    "href": "Demonstration/LoadedDice.html#bonus-optional",
+    "title": "Loaded Dices",
+    "section": "Bonus / Optional:",
+    "text": "Bonus / Optional:\n\nCan relate this activity to sample size and the shrinking of standard error\nA few extensions to try:\n\nVary the roll count: Show pre-simulated histograms built from 10, 50, and 500 rolls, and compare how much “smoother” and narrower the resulting distribution becomes as the roll count increases.\nDetecting the load: Ask the class how many rolls it would take before they could statistically detect the dice were loaded, just from the shift in the histogram — a nice callback to the hypothesis-testing and card-trick activities.\nSingle die vs. summed pair: Show a histogram of individual die faces (1–6, roughly flat/biased but not bell-shaped) next to the summed-pair histogram (bell-shaped). This reinforces that CLT applies to sums/averages, not raw individual outcomes.\nSimulate instead of roll: If class time is short, simulate thousands of virtual rolls of both fair and loaded dice pairs (e.g. in R) and overlay the resulting histograms, letting students see the CLT effect at a much larger sample size than is feasible by hand.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Loaded Dices"
+    ]
+  },
+  {
+    "objectID": "Demonstration/HeartRate.html",
+    "href": "Demonstration/HeartRate.html",
+    "title": "Heart Rates",
+    "section": "",
+    "text": "Within-Subjects Design Paired Design Repeated Measures ANOVA Physiological Data",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Heart Rates"
+    ]
+  },
+  {
+    "objectID": "Demonstration/HeartRate.html#about",
+    "href": "Demonstration/HeartRate.html#about",
+    "title": "Heart Rates",
+    "section": "About",
+    "text": "About\nThis activity turns the whole class into their own control group. Each student measures their own resting heart rate as a baseline, then watches three short video clips designed to trigger different emotional states: fear, sadness, and arousal, recording their heart rate after each one. Because every student contributes a baseline and three follow-up measurements, this is a live, hands-on introduction to within-subjects (repeated measures) design, where each participant acts as their own control, removing a lot of the between-person variability that a between-subjects design would have to deal with.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Heart Rates"
+    ]
+  },
+  {
+    "objectID": "Demonstration/HeartRate.html#demonstration",
+    "href": "Demonstration/HeartRate.html#demonstration",
+    "title": "Heart Rates",
+    "section": "Demonstration",
+    "text": "Demonstration",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Heart Rates"
+    ]
+  },
+  {
+    "objectID": "Demonstration/HeartRate.html#materials",
+    "href": "Demonstration/HeartRate.html#materials",
+    "title": "Heart Rates",
+    "section": "Materials",
+    "text": "Materials\n\nA visible countdown timer (60s, or 30s if you want a quicker task — see Step 2)\n3 short (~1 minute) video clips, one each for fear, sadness, and arousal (see Pre-tasks)\nA way to dim/turn off the lecture hall lights, for added atmosphere during the fear and sadness clips\nA tool for students to record their heart rate readings after each stage (e.g. Google Forms, or a simple show-of-hands/paper tally if you’d rather keep it low-tech)\nOptional: a pre-prepared dataset from a previous run of this activity, for the within-subjects ANOVA walkthrough in Step 6",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Heart Rates"
+    ]
+  },
+  {
+    "objectID": "Demonstration/HeartRate.html#step-by-step-plan",
+    "href": "Demonstration/HeartRate.html#step-by-step-plan",
+    "title": "Heart Rates",
+    "section": "Step-by-Step Plan",
+    "text": "Step-by-Step Plan\n\n0 (Pre-tasks)\n\nSelect a ~1 minute fear clip (plenty available on YouTube — jump-scare compilations or horror clip snippets work well)\nSelect a ~1 minute sad clip (a well-known emotional film scene works well here)\nDecide how you’ll handle the “arousal” stimulus — see the note in Step 5\nSet up your countdown timer and data collection form in advance\nIf using a pre-prepared dataset for Step 6, have it ready to load and analyse live\n\n\n\n1 (Setup)\nExplain the activity to the class:\n\n“Today you’re the data. We’re going to measure your heart rate at rest, and then again after three short video clips designed to trigger different emotions. Everyone will have a baseline measurement and three follow-up measurements — so each of you is essentially your own control group.”\n\nShow students how to find their pulse — usually at the wrist (radial artery, on the thumb side) or the neck (carotid artery, just beside the windpipe).\n\n\n\n\n\n2 (Baseline Heart Rate)\nHave students sit quietly and locate their pulse. Start the 60-second countdown timer on screen and say “start.” When the timer hits zero, say “stop.”\n\nIf you’re short on time, a 30-second count multiplied by 2 works almost as well for a classroom demonstration — it doesn’t need to be clinically precise, just a consistent baseline.\n\nHave students record their baseline heart rate (beats per minute).\n\n\n3 (Stimulus 1 — Fear)\nDim or turn off the lights for effect. Play the fear clip.\nImmediately afterward, have students find their pulse again and re-time (60s or 30s x2, matching whatever method you used for the baseline). Record heart rate as “Fear.”\n\n\n4 (Stimulus 2 — Sadness)\nPlay the sad clip (lights can stay dimmed for continued effect).\nRepeat the same heart rate measurement process. Record heart rate as “Sadness.”\n\n\n5 (Stimulus 3 — Arousal)\nFor the arousal condition, say something like:\n\n“I have to keep this class PG-rated, so for this one, just close your eyes and imagine whatever you’d like for the next minute.”\n\nThis usually gets a laugh and works surprisingly well as a stand-in stimulus without needing any actual video content.\nRepeat the heart rate measurement process. Record heart rate as “Arousal.”\n\n\n6 (Analyse as a Class)\nCompile the four measurements per student (Baseline, Fear, Sadness, Arousal) into a single dataset — either using the class’s live data or a pre-prepared dataset from a previous run, if you’d rather not wait on data entry.\n\n\n\n\n\n\nWhy this is a within-subjects design\n\n\n\n\n\nBecause every student contributes a measurement under all four conditions, each student acts as their own control. This removes between-person variability (e.g. some people naturally have higher resting heart rates than others) from the comparison, making it much easier to detect whether the stimuli themselves caused a change — a key advantage of paired/within-subjects designs over between-subjects designs.\n\n\n\nStart with the simplest comparison — baseline vs. one stimulus — using a paired t-test:\n\\[\nt = \\frac{\\bar{d}}{s_d / \\sqrt{n}}\n\\]\nwhere:\n\n\\(\\bar{d}\\) = mean of the differences (stimulus heart rate − baseline heart rate) across students\n\\(s_d\\) = standard deviation of those differences\n\\(n\\) = number of students\n\nThen extend to comparing all three stimuli at once using repeated measures ANOVA:\n\\[\nF = \\frac{MS_{\\text{condition}}}{MS_{\\text{error}}}\n\\]\nwhere \\(MS_{\\text{condition}}\\) captures variability between the fear/sadness/arousal conditions, and \\(MS_{\\text{error}}\\) captures the leftover within-subject variability once each student’s own baseline tendency has been accounted for.\n\n\n7 (Discuss)\nAsk the class:\n\nWhich condition produced the biggest average increase from baseline? Does that match what you’d expect physiologically?\nWas the change consistent across students, or did some people barely react while others spiked?\nWhy might a between-subjects version of this experiment (different groups of students each watching only one clip) be a noisier, less reliable design than what we just did?",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Heart Rates"
+    ]
+  },
+  {
+    "objectID": "Demonstration/HeartRate.html#bonus-optional",
+    "href": "Demonstration/HeartRate.html#bonus-optional",
+    "title": "Heart Rates",
+    "section": "Bonus / Optional:",
+    "text": "Bonus / Optional:\n\nCan relate this activity to effect size and individual variability\nA few extensions to try:\n\nOrder effects: Discuss what might happen if every class always watched fear → sadness → arousal in the same order — could earlier stimuli “carry over” and affect later readings? Introduce the idea of counterbalancing as a solution.\nEffect size: Beyond just significance, calculate Cohen’s \\(d\\) for one of the paired comparisons to discuss how large the heart rate change was, not just whether it was statistically detectable.\nIndividual differences: Plot each student’s four measurements as a connected line (a “spaghetti plot”) to show how much the pattern of response varies person to person, even when the average trend is consistent.\nPost-hoc comparisons: If the repeated measures ANOVA is significant, discuss why you can’t just conclude “the conditions differ” — introduce pairwise post-hoc tests (e.g. Bonferroni-corrected paired t-tests) to identify which specific conditions differ from each other.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Heart Rates"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Cluster.html",
+    "href": "Demonstration/Cluster.html",
+    "title": "Find Your Cluster",
+    "section": "",
+    "text": "K-Means Clustering Unsupervised Learning Multivariate Data Standardisation",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Find Your Cluster"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Cluster.html#about",
+    "href": "Demonstration/Cluster.html#about",
+    "title": "Find Your Cluster",
+    "section": "About",
+    "text": "About\nThis activity uses a short self-report app to give every student a personal profile across six dimensions: Speed, Risk, Structure, Ambiguity, Social, and Pattern — covering things like how quickly they make decisions, how comfortable they are with uncertainty, and whether they lean toward independent or collaborative work. Once the whole class has a six-number profile, the instructor runs k-means clustering live to sort students into groups based on similarity — and if the room allows, students physically move to sit with their cluster, turning an abstract clustering output into something they can immediately feel and discuss.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Find Your Cluster"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Cluster.html#demonstration",
+    "href": "Demonstration/Cluster.html#demonstration",
+    "title": "Find Your Cluster",
+    "section": "Demonstration",
+    "text": "Demonstration",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Find Your Cluster"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Cluster.html#materials",
+    "href": "Demonstration/Cluster.html#materials",
+    "title": "Find Your Cluster",
+    "section": "Materials",
+    "text": "Materials\n\nThe Six Micro-Tests Score App (download below) — each student needs a device to access it\n\n\n\n\n Six dimensions test\n\n\n\n\n\nA tool for students to submit their six scores (e.g. Google Forms, or directly via the app’s “Copy CSV” button if you’re collecting responses manually)\nA stats package (R recommended) set up to run k-means clustering live\nOptional: enough open floor space or movable tables for students to physically regroup by cluster afterward",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Find Your Cluster"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Cluster.html#the-six-dimensions",
+    "href": "Demonstration/Cluster.html#the-six-dimensions",
+    "title": "Find Your Cluster",
+    "section": "The Six Dimensions",
+    "text": "The Six Dimensions\n\n\n\nDimension\nWhat it measures\n\n\n\n\nSpeed\nQuick vs. careful decision-making\n\n\nRisk\nCautious vs. risk-seeking responses\n\n\nStructure\nPreference for clear instructions and rules\n\n\nAmbiguity\nComfort with unclear situations\n\n\nSocial\nIndependent vs. collaborative working style\n\n\nPattern\nRule-based vs. intuitive thinking\n\n\n\nEach test has 5 items on a 1–5 scale (with reverse-scored items handled automatically), giving a raw score from 5–25 per dimension, or a mean item score from 1–5.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Find Your Cluster"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Cluster.html#step-by-step-plan",
+    "href": "Demonstration/Cluster.html#step-by-step-plan",
+    "title": "Find Your Cluster",
+    "section": "Step-by-Step Plan",
+    "text": "Step-by-Step Plan\n\n0 (Pre-tasks)\n\nTest the app yourself and confirm the “Copy CSV” function works as expected on your setup\nSet up a submission form (or a shared spreadsheet) where students can paste in their name and six scores\nHave your R session or spreadsheet ready with a k-means script prepared in advance (see Step 4), so you’re not writing code live in front of the class\n\n\n\n1 (Setup)\nDirect students to the app and explain the task:\n\n“You’re going to complete six very short tests, each with 5 quick questions. Just answer honestly and quickly — there’s no right or wrong answer here. Give yourself 5 to 10 minutes to get through all six.”\n\n\n\n2 (Complete the Tests)\nGive students 5–10 minutes to work through all six tests in the app. Once finished, they click “Calculate scores” and then “Copy CSV” to get their six-dimension profile.\n\n\n3 (Collect the Data)\nHave students paste their name and six scores into your shared submission form or spreadsheet. Compile the full class dataset — each row is one student, each column is one of the six dimension scores.\n\n\n4 (Standardise the Data)\nBefore running k-means, standardise each dimension so no single test dominates the clustering just because it happens to have more spread.\n\n\n\n\n\n\nWhy standardise first?\n\n\n\n\n\nK-means clustering is based on distance between points. If one dimension has a much larger range or variance than the others, it will dominate the distance calculation and effectively drown out the other five dimensions. Standardising each column to a mean of 0 and standard deviation of 1 puts all six dimensions on equal footing.\n\\[\nz = \\frac{x - \\bar{x}}{s}\n\\]\n\n\n\nscores_raw &lt;- read.csv(\"class_scores.csv\")\nscores_z &lt;- scale(scores_raw[, c(\"speed\",\"risk\",\"structure\",\"ambiguity\",\"social\",\"pattern\")])\n\n\n5 (Choose the Number of Clusters)\nBefore running k-means, decide how many clusters (\\(k\\)) to use. A simple, visual approach for class purposes is the elbow method: plot total within-cluster variation against different values of \\(k\\), and look for the point where adding more clusters stops giving a big improvement.\nwss &lt;- sapply(1:8, function(k) kmeans(scores_z, centers = k, nstart = 10)$tot.withinss)\nplot(1:8, wss, type = \"b\", xlab = \"Number of clusters (k)\", ylab = \"Within-cluster sum of squares\")\nDiscuss with the class where the “elbow” appears to be, and pick a \\(k\\) that’s small enough to be meaningful for regrouping the room (e.g. 3–5 clusters).\n\n\n6 (Run K-Means)\nset.seed(123)\nkm &lt;- kmeans(scores_z, centers = 4, nstart = 25)\nscores_raw$cluster &lt;- km$cluster\nDisplay each student’s assigned cluster alongside their name.\n\n\n7 (Interpret the Clusters)\nFor each cluster, calculate the average (standardised) score on each of the six dimensions, and display it as a table or radar-style summary.\naggregate(scores_z, by = list(cluster = km$cluster), FUN = mean)\nAsk the class to help name each cluster based on its profile — e.g. a cluster high on Risk and low on Structure might get nicknamed “The Improvisers,” while a cluster high on Structure and Pattern might be “The Planners.”\n\n\n8 (Move and Discuss)\nIf the room allows, announce each student’s cluster and have them physically move to sit with their group.\nOnce seated together, give each group a few minutes to discuss:\n\nDo you feel like this cluster actually describes you? Why or why not?\nWhat do you have in common with the others at your table, beyond just the six numbers?\nIs there a dimension where your group is surprisingly split, even though you were clustered together overall?",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Find Your Cluster"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Cluster.html#bonus-optional",
+    "href": "Demonstration/Cluster.html#bonus-optional",
+    "title": "Find Your Cluster",
+    "section": "Bonus / Optional:",
+    "text": "Bonus / Optional:\n\nCan relate this activity to dimensionality and the curse of high dimensions\nA few extensions to try:\n\nVisualise in 2D: Run PCA on the standardised data and plot the first two principal components, coloured by cluster, so students can see a 2D “map” of the whole class.\nCompare k values: Re-run the clustering with a different \\(k\\) (e.g. 3 vs. 6) and discuss how the groupings — and the physical seating — would have changed.\nHierarchical clustering: Run an agglomerative hierarchical clustering on the same data and display a dendrogram, comparing which students get grouped together versus the k-means result.\nStability check: Re-run k-means a few times with different random starting points (nstart) and discuss why the algorithm can converge to different results depending on initialisation — a nice segue into why nstart with multiple restarts is standard practice.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Find Your Cluster"
+    ]
+  },
+  {
+    "objectID": "Demonstration/4Aces.html",
+    "href": "Demonstration/4Aces.html",
+    "title": "Four Aces",
+    "section": "",
+    "text": "Probability Sampling Without Replacement Conditional Probability Multiplication Rule",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Four Aces"
+    ]
+  },
+  {
+    "objectID": "Demonstration/4Aces.html#about",
+    "href": "Demonstration/4Aces.html#about",
+    "title": "Four Aces",
+    "section": "About",
+    "text": "About\nThis activity uses a simple card trick to build intuition for probability without replacement — one of the trickiest ideas for students to grasp because each draw changes the probabilities for the next one. Students predict the probability of drawing an ace at each step, watch the instructor “defy the odds” by pulling an ace every time, and then unpack why the trick works using the multiplication rule for dependent events.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Four Aces"
+    ]
+  },
+  {
+    "objectID": "Demonstration/4Aces.html#demonstration",
+    "href": "Demonstration/4Aces.html#demonstration",
+    "title": "Four Aces",
+    "section": "Demonstration",
+    "text": "Demonstration",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Four Aces"
+    ]
+  },
+  {
+    "objectID": "Demonstration/4Aces.html#materials",
+    "href": "Demonstration/4Aces.html#materials",
+    "title": "Four Aces",
+    "section": "Materials",
+    "text": "Materials\n\nA standard deck of 52 playing cards (with all 4 aces easily locatable — see Pre-tasks)\nA whiteboard or slide to record probabilities as you go\nA table or document camera so the class can see the deck (optional, but adds drama)",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Four Aces"
+    ]
+  },
+  {
+    "objectID": "Demonstration/4Aces.html#step-by-step-plan",
+    "href": "Demonstration/4Aces.html#step-by-step-plan",
+    "title": "Four Aces",
+    "section": "Step-by-Step Plan",
+    "text": "Step-by-Step Plan\n\n0 (Pre-tasks)\n\nBefore class, arrange the deck so all 4 aces are on top of the deck (this is your setup for the trick — see the callout in Step 2)\nPractice a false shuffle: a shuffle that looks random to the audience but keeps the top few cards (your aces) in place. Here is one example of a false shuffle, where you involve two spectators to both say “stop” at any time fo their choosing:\n\n\n\n\n1 (Setup)\nHold up the deck (shuffled with your false shuffle, aces secretly on top) and say:\n\n“This is a standard, well-shuffled deck of 52 cards. I’m going to draw cards one at a time, and each time, I want you to tell me: what’s the probability that the card I draw is an ace?”\n\n\n\n2 (First Draw)\nAsk the class:\n\n“What’s the probability that the first card I draw is an ace?”\n\nWrite the answer on the board:\n\\[\nP(\\text{Ace}_1) = \\frac{4}{52}\n\\]\n\n\n\n\n\n\nHow the trick works\n\n\n\n\n\nBecause the deck is secretly stacked with all 4 aces on top (and your shuffle only ever moved cards below them), the top card is guaranteed to be an ace no matter what the class thinks the odds are. Draw the top card with normal, unhurried motion — don’t rush this draw, since the “reveal” only works if it looks like a genuine, random draw from a full deck.\n\n\n\nReveal the card. It’s an ace. Let the class react.\n\n\n3 (Second Draw — Without Replacement)\nSet the ace aside (do not return it to the deck — this is the “without replacement” part) and ask:\n\n“Now that one ace is gone and the deck has one fewer card, what’s the probability the next card I draw is also an ace?”\n\nGuide the class to the updated probability:\n\\[\nP(\\text{Ace}_2 \\mid \\text{Ace}_1) = \\frac{3}{51}\n\\]\nDraw the second card from the top (again, secretly still an ace) and reveal it.\n\n\n4 (Third and Fourth Draws)\nRepeat the process, updating the probability each time and writing the running multiplication on the board:\n\\[\nP(\\text{Ace}_3 \\mid \\text{Ace}_1, \\text{Ace}_2) = \\frac{2}{50}\n\\]\n\\[\nP(\\text{Ace}_4 \\mid \\text{Ace}_1, \\text{Ace}_2, \\text{Ace}_3) = \\frac{1}{49}\n\\]\nBy the fourth draw, students should notice the probability is shrinking fast — and yet you pull the ace again.\n\n\n5 (Reveal the Full Picture)\nOnce all 4 aces are on the table, ask the class:\n\n“What’s the probability that all four of my draws were aces, if I were really just drawing randomly from a full deck each time?”\n\nBuild up the joint probability using the multiplication rule for dependent events:\n\\[\nP(\\text{all 4 aces}) = \\frac{4}{52} \\times \\frac{3}{51} \\times \\frac{2}{50} \\times \\frac{1}{49} \\approx 0.0000037\n\\]\nLet that number sink in — roughly a 1-in-270,725 chance. Then reveal the trick: the deck was stacked in advance, and this is exactly why the result felt “too good to be true.” Tie it back to the earlier card activity: an outcome this improbable under random drawing is strong evidence that the process wasn’t actually random — the same logic as a hypothesis test.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Four Aces"
+    ]
+  },
+  {
+    "objectID": "Demonstration/4Aces.html#bonus-optional",
+    "href": "Demonstration/4Aces.html#bonus-optional",
+    "title": "Four Aces",
+    "section": "Bonus / Optional:",
+    "text": "Bonus / Optional:\n\nCan relate this activity to combinatorics and hypergeometric distributions\nA few extensions to try:\n\nCompare with replacement: Ask what the probability would have been with replacement (returning each card and reshuffling before the next draw) — \\(\\left(\\frac{4}{52}\\right)^4\\) — and discuss why it’s different (and much smaller) than the without-replacement version.\nGeneralise the formula: Introduce the hypergeometric distribution as the general tool for “probability of k successes when sampling without replacement,” and connect it back to this specific case.\nFlip the trick: Ask students to calculate the probability of drawing 4 aces in a row if you hadn’t stacked the deck — this is the number you just calculated — and discuss what threshold of “surprising” would make them suspect a stacked deck in real life.\nDifferent depths: What if you only wanted to guarantee the first 2 draws are aces, not all 4? How does the stacking strategy — and the multiplication — change?",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Four Aces"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "collab.html",
+    "href": "collab.html",
+    "title": "Want to Contribute?",
+    "section": "",
+    "text": "I believe teaching is, at its core, about collaboration. The best classroom activities are rarely invented in isolation. They’re passed between colleagues, tweaked in a tutorial, refined after a lecture that didn’t quite land, and shared over a coffee break. Some of the hooks on this site started life exactly that way, borrowed and adapted from other educators generous enough to share what worked (and what did not) for them.\nThat’s the spirit behind making this resource open access. Good teaching materials shouldn’t sit locked away in one person’s slide deck, only ever used once a year by one class. The hope is that by putting these hooks out in the open, other educators can pick them up, adapt them to their own courses, and hopefully build on them further, the same way I’ve built on ideas from others.\nIf you have an activity, demonstration, or story you think would work well here, I’d love to hear about it. Chances are you’ve got a hook of your own that consistently gets a room’s attention, and this collection only gets better the more perspectives it draws on.\nFeel free to reach out at minh.huynh1@monash.edu. You’ll of course be credited for your contribution — or, if you’d rather stay behind the scenes, you’re welcome to remain anonymous.",
+    "crumbs": [
+      "Want to Contribute?"
+    ]
+  },
+  {
+    "objectID": "Demonstration/AlwaysHeads.html",
+    "href": "Demonstration/AlwaysHeads.html",
+    "title": "Heads Every Time",
+    "section": "",
+    "text": "Binomial Distribution Probability Independent Trials Expected Value",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Heads Every Time"
+    ]
+  },
+  {
+    "objectID": "Demonstration/AlwaysHeads.html#about",
+    "href": "Demonstration/AlwaysHeads.html#about",
+    "title": "Heads Every Time",
+    "section": "About",
+    "text": "About\nThis activity uses a coin-flipping trick as a hook into the binomial distribution. Students first calculate the probability of an instructor “getting lucky” with heads a few times in a row, and are suitably unimpressed when it happens once or twice. But as the run of heads keeps going, the class starts to realise the odds of pure chance are shrinking fast, setting up a discussion of the binomial distribution, independent trials, and how we decide when a result is too surprising to be random.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Heads Every Time"
+    ]
+  },
+  {
+    "objectID": "Demonstration/AlwaysHeads.html#demonstration",
+    "href": "Demonstration/AlwaysHeads.html#demonstration",
+    "title": "Heads Every Time",
+    "section": "Demonstration",
+    "text": "Demonstration",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Heads Every Time"
+    ]
+  },
+  {
+    "objectID": "Demonstration/AlwaysHeads.html#materials",
+    "href": "Demonstration/AlwaysHeads.html#materials",
+    "title": "Heads Every Time",
+    "section": "Materials",
+    "text": "Materials\n\nA coin (a slightly weighted or grippy coin can make the technique in Step 0 easier, but a standard coin works fine with practice)\nA whiteboard or slide to record probabilities as you go\nA table or document camera so the class can see each flip clearly",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Heads Every Time"
+    ]
+  },
+  {
+    "objectID": "Demonstration/AlwaysHeads.html#step-by-step-plan",
+    "href": "Demonstration/AlwaysHeads.html#step-by-step-plan",
+    "title": "Heads Every Time",
+    "section": "Step-by-Step Plan",
+    "text": "Step-by-Step Plan\n\n0 (Pre-tasks)\nBefore class, practice the coin-control technique below until it looks like a natural, casual flip, the trick relies on it not looking rehearsed.\n\nThe technique relies on a controlled flip rather than a true toss. With practice, the coin can be made to land on the same face almost every time while still looking like a normal flip to onlookers.\n\n\n1 (Setup)\nHold up the coin and say:\n\n“I’m going to flip this coin several times in a row. Before each flip, I want you to tell me: what’s the probability that it lands heads?”\n\n\n\n2 (First Flip)\nAsk the class:\n\n“What’s the probability this coin lands heads?”\n\nWrite the answer on the board:\n\\[\nP(\\text{Heads}) = \\frac{1}{2} = 0.5\n\\]\nFlip the coin using your practiced technique. It lands heads. Let the class shrug it off — one heads is nothing special.\n\n\n3 (Repeated Flips)\nFlip again, and again, each time asking the class to update the cumulative probability of seeing this many heads in a row, assuming a fair coin:\n\\[\nP(\\text{2 heads in a row}) = \\left(\\frac{1}{2}\\right)^2 = \\frac{1}{4}\n\\]\n\\[\nP(\\text{3 heads in a row}) = \\left(\\frac{1}{2}\\right)^3 = \\frac{1}{8}\n\\]\n\\[\nP(\\text{4 heads in a row}) = \\left(\\frac{1}{2}\\right)^4 = \\frac{1}{16}\n\\]\nKeep going for 6–8 flips, writing the shrinking probability on the board each time. By flip 6 or 7, the class should be visibly suspicious.\n\n\n4 (The Reveal)\nAsk the class:\n\n“If this were really a fair coin, what’s the probability of seeing 8 heads in a row?”\n\n\\[\nP(\\text{8 heads in a row}) = \\left(\\frac{1}{2}\\right)^8 = \\frac{1}{256} \\approx 0.0039\n\\]\nReveal the technique from Step 0. Tie it back to the earlier activities: a result this improbable under a “fair” process is exactly the kind of evidence that should make us question whether the process really was fair — the same logic used in the card trick and cup-tasting demonstrations.\n\n\n5 (Formalise the Binomial Distribution)\nIntroduce the general binomial formula, using the coin flips as a running example:\n\\[\nP(X = k) = \\binom{n}{k} p^k (1-p)^{n-k}\n\\]\nwhere:\n\n\\(n\\) = number of flips\n\\(k\\) = number of heads\n\\(p\\) = probability of heads on a single flip (0.5 for a fair coin)\n\nWork through an example as a class: what’s the probability of getting exactly 5 heads out of 8 flips (not necessarily in a row) with a fair coin?\n\\[\nP(X = 5) = \\binom{8}{5} (0.5)^5 (0.5)^3 = 56 \\times 0.03125 \\times 0.125 \\approx 0.219\n\\]\nContrast this with the probability of 8 heads in a row, calculated earlier — this is a good moment to highlight the difference between “exactly k successes in any order” versus “k successes in a specific sequence.”",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Heads Every Time"
+    ]
+  },
+  {
+    "objectID": "Demonstration/AlwaysHeads.html#bonus-optional",
+    "href": "Demonstration/AlwaysHeads.html#bonus-optional",
+    "title": "Heads Every Time",
+    "section": "Bonus / Optional:",
+    "text": "Bonus / Optional:\n\nCan relate this activity to expected value and variance\nA few extensions to try:\n\nExpected value: Ask how many heads students would expect out of 8 fair flips on average, introducing \\(E(X) = np\\).\nLive simulation: Have the whole class flip real coins simultaneously (8 flips each) and tally how many people got runs of 5+ heads in a row, comparing the empirical rate to the theoretical \\(1/32\\) probability.\nVary p: Discuss how the binomial formula changes for a biased coin (e.g. \\(p = 0.7\\)), and how much more likely a run of heads becomes.\nLink to hypothesis testing: Introduce the idea of a significance threshold — at what point (5 heads? 6? 8?) would the class have been justified in calling out “that’s not a fair coin” before the reveal?",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Heads Every Time"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Graphs.html",
+    "href": "Demonstration/Graphs.html",
+    "title": "Bad Graphs Gallery",
+    "section": "",
+    "text": "Data Visualisation Misleading Graphs Critical thinking",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Bad Graphs Gallery"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Graphs.html#about",
+    "href": "Demonstration/Graphs.html#about",
+    "title": "Bad Graphs Gallery",
+    "section": "About",
+    "text": "About\nThis activity turns students into data detectives. By examining real graphs that have been published in the news, on social media, or in official reports, students learn to spot the tricks — truncated axes, misleading scales, cherry-picked data, poor chart choices — that can distort how a graph is interpreted. The activity builds critical data literacy skills while reinforcing what makes a graph good by contrast.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Bad Graphs Gallery"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Graphs.html#demonstration",
+    "href": "Demonstration/Graphs.html#demonstration",
+    "title": "Bad Graphs Gallery",
+    "section": "Demonstration",
+    "text": "Demonstration",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Bad Graphs Gallery"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Graphs.html#materials",
+    "href": "Demonstration/Graphs.html#materials",
+    "title": "Bad Graphs Gallery",
+    "section": "Materials",
+    "text": "Materials\n\nA collection of real “bad graph” examples (screenshots or links) sourced from news articles, social media, or reports\nA tool for students to respond in real time or in small groups (e.g. Google Forms, Padlet, or simple discussion)\n\nHere are some that I have found (mostly from Fox News)\n\nOriginalRevisions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOriginalRevisions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOriginalRevisions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOriginalRevisions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOriginalRevisions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOriginalRevisions\n\n\n\n\n\n\n\nThis one here looks like people were allowed to choose multiple options (I think that’s why it exceeds 100%). Choose a different type of graph.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Bad Graphs Gallery"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Graphs.html#step-by-step-plan",
+    "href": "Demonstration/Graphs.html#step-by-step-plan",
+    "title": "Bad Graphs Gallery",
+    "section": "Step-by-Step Plan",
+    "text": "Step-by-Step Plan\n\n0 (Pre-tasks)\n\nCurate 4–6 examples of poorly constructed or misleading graphs (truncated y-axis, dual axes, 3D pie charts, cherry-picked timeframes, etc.)\nFor each graph, prepare the correct or redrawn version if possible, to reveal later\nOptionally set up a short form or worksheet with prompts like “What is this graph trying to tell you?” and “What’s actually misleading about it?”\n\n\n\n1 (Setup)\nIn class (face-to-face or online), display the first graph and say:\n\n“This graph was published in [source]. Take 30 seconds — what’s your first impression? What story does it seem to tell?”\n\n\n\n2 (Collect responses)\nHave students jot down or submit their first impression of each graph before any discussion — this captures the “gut reaction” the graph was designed to produce.\n\n\n3 (Diagnose the problem)\nWork through each graph as a class or in small groups, identifying the specific technique used to mislead (e.g. truncated axis exaggerating a trend, inconsistent bin widths, area encoding that distorts proportions). Introduce the relevant vocabulary as it comes up.\n\n\n4 (Redraw / Fix)\nShow a corrected version of the graph (or challenge students to sketch one) using the same data. Discuss how the story changes once the distortion is removed.\n\n\n5 (Reveal)\nReveal the source and context of the original graph, including any explanation from the publisher (if available) or the pushback it received online. Discuss why these distortions are so common — intentional persuasion vs. simple carelessness.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Bad Graphs Gallery"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Graphs.html#bonus-optional",
+    "href": "Demonstration/Graphs.html#bonus-optional",
+    "title": "Bad Graphs Gallery",
+    "section": "Bonus / Optional:",
+    "text": "Bonus / Optional:\n\nCan relate this activity to critical evaluation of data reporting more broadly\nAfter working through the curated set, try a few extensions:\n\nStudent-sourced examples: Ask students to find and submit their own “bad graph” from the past week — from news, social media, or advertising — for the next class.\nRedesign challenge: Give students the raw data behind one bad graph and have them redesign the chart from scratch, following good visualisation principles.\nRank the offenders: Have students rank the examples from “misleading but minor” to “actively deceptive,” and defend their ranking — this opens discussion about intent vs. impact.\nCompare to a good graph: Show a well-designed graph on a similar topic and discuss what specific choices make it trustworthy and clear.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Bad Graphs Gallery"
+    ]
+  },
+  {
+    "objectID": "Demonstration/LadyTastingTea.html",
+    "href": "Demonstration/LadyTastingTea.html",
+    "title": "A Modern Lady Tasting Tea",
+    "section": "",
+    "text": "Hypothesis Testing Combinatorics Experimental Design p-values",
+    "crumbs": [
+      "Demonstration Hooks",
+      "A Modern Lady Tasting Tea"
+    ]
+  },
+  {
+    "objectID": "Demonstration/LadyTastingTea.html#about",
+    "href": "Demonstration/LadyTastingTea.html#about",
+    "title": "A Modern Lady Tasting Tea",
+    "section": "About",
+    "text": "About\nThis is a modern twist on Ronald Fisher’s famous “Lady Tasting Tea” experiment, the original thought experiment that gave us the foundations of the randomised experiment and the p-value. Instead of milk and tea (feel free to substitute the original if you prefer), this version uses ice and water, which is easier to source, faster to prepare, and just as visually convincing under a projector. Students get a hands-on introduction to combinatorics, the null hypothesis, and just how surprising, or unsurprising, a “perfect score” really is.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "A Modern Lady Tasting Tea"
+    ]
+  },
+  {
+    "objectID": "Demonstration/LadyTastingTea.html#demonstration",
+    "href": "Demonstration/LadyTastingTea.html#demonstration",
+    "title": "A Modern Lady Tasting Tea",
+    "section": "Demonstration",
+    "text": "Demonstration",
+    "crumbs": [
+      "Demonstration Hooks",
+      "A Modern Lady Tasting Tea"
+    ]
+  },
+  {
+    "objectID": "Demonstration/LadyTastingTea.html#materials",
+    "href": "Demonstration/LadyTastingTea.html#materials",
+    "title": "A Modern Lady Tasting Tea",
+    "section": "Materials",
+    "text": "Materials\n\n6 identical cups (opaque enough that the order can’t be seen from the side, but see-through from above under the projector)\nIce cubes (2 per cup that gets ice first)\nA jug of water\nA document camera or projector positioned over the table, so the whole class can watch the cups being prepared\nOptional: a “mole” in the room (e.g. a tutor or TA) who can quietly relay the true order to you before you re-enter — see the note in Step 3",
+    "crumbs": [
+      "Demonstration Hooks",
+      "A Modern Lady Tasting Tea"
+    ]
+  },
+  {
+    "objectID": "Demonstration/LadyTastingTea.html#step-by-step-plan",
+    "href": "Demonstration/LadyTastingTea.html#step-by-step-plan",
+    "title": "A Modern Lady Tasting Tea",
+    "section": "Step-by-Step Plan",
+    "text": "Step-by-Step Plan\n\n0 (Pre-tasks)\n\nSet up 6 cups on a table positioned under the document camera/projector, so the class (but not you) can see everything from above\nDecide in advance how you’ll receive the answer once you step outside (see Step 3)\n\n\n\n1 (Setup)\nInvite 6 students up to the table. Explain the task:\n\n“In front of you are 6 cups. I’m going to leave the room. While I’m gone, I want 3 of you to each take a cup, place 2 pieces of ice in it, and then pour water in about halfway. I want the other 3 of you to do the same thing, but in the opposite order, i.e., water first, then ice. Do this under the camera so the rest of the class can see exactly what you did. When you’re done, mix up the order of the cups on the table.”\n\n\n\n2 (Prediction)\nBefore you leave the room, ask the rest of the class:\n\n“Once I come back in, my job is to correctly identify which 3 cups had ice first and which 3 had water first, just by looking. If I were purely guessing, what’s the chance I get all 6 correct? What’s the chance I get at least one correct?”\n\nLet students attempt this calculation (or come back to it in Step 5) — it’s a nice lead-in to combinatorics.\n\n\n3 (Leave the room)\nStep outside while the students prepare and mix the cups on camera.\n\n\n\n\n\n\nHow the “trick” works\n\n\n\n\n\nThis demonstration relies on you actually finding out the order before you walk back in — the surprise is for the audience, not for you. There are two common ways to do this:\n\nA mole in the room: A tutor, TA, or colleague who is in on the demonstration can watch the setup and quietly text you or signal you the order before you re-enter.\nA live broadcast: If the class is being recorded or live-streamed (e.g. lecture capture, Zoom), you can watch the feed on your phone from just outside the room while the students set up the cups on camera.\n\nEither way, the “reveal” should still involve genuinely looking at and handling the cups when you return, so it reads as observation rather than being told the answer.\n\n\n\n\n\n4 (Reveal)\nReturn to the room. Examine the cups (condensation, temperature, appearance can all serve as your “reasoning” for the audience, even though you already know the order) and announce your classification of each cup as “ice first” or “water first.” Confirm your answers with the students who prepared them.\n\n\n5 (The Statistics)\nNow unpack what just happened:\n\n\n\n\n\n\nHow many ways can 6 cups be split into two groups of 3?\n\n\n\n\n\n\\[\n\\binom{6}{3} = \\frac{6!}{3!\\,3!} = 20\n\\]\nIf you were purely guessing which 3 cups were “ice first,” there are 20 equally likely ways to choose them — so the probability of guessing the exact correct split by chance is:\n\\[\nP(\\text{all correct}) = \\frac{1}{20} = 0.05\n\\]\n\n\n\nAsk the class:\n\nDoes a 1-in-20 chance of guessing all 6 correctly feel high or low?\nThis is exactly the logic behind Fisher’s original experiment and the modern p-value: if someone can correctly sort the cups, and pure guessing would only succeed 5% of the time, do we believe they were guessing?\nWhat if you’d only gotten 5 out of 6 correct — does partial credit change how convinced the class should be?",
+    "crumbs": [
+      "Demonstration Hooks",
+      "A Modern Lady Tasting Tea"
+    ]
+  },
+  {
+    "objectID": "Demonstration/LadyTastingTea.html#bonus-optional",
+    "href": "Demonstration/LadyTastingTea.html#bonus-optional",
+    "title": "A Modern Lady Tasting Tea",
+    "section": "Bonus / Optional:",
+    "text": "Bonus / Optional:\n\nCan relate this activity to hypothesis testing and Type I error\nA few extensions to try:\n\nFormalise the hypotheses: Define \\(H_0\\): “the taster/observer has no ability to distinguish the cups” vs. \\(H_1\\): “the taster/observer can distinguish them,” and map the demonstration onto this framework.\nChange the design: What happens to the probability of guessing correctly if you used 8 cups (4 and 4) instead of 6? Recalculate \\(\\binom{8}{4}\\) and discuss how experimental design affects the strength of evidence.\nPartial credit: Discuss how you’d calculate the probability of getting exactly 2 out of 3 correct by chance, introducing the hypergeometric distribution.\nHistorical link: Introduce the real Lady Tasting Tea experiment (Muriel Bristol, Ronald Fisher, 1920s Cambridge) and discuss how this simple demonstration led to the development of modern experimental design and significance testing.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "A Modern Lady Tasting Tea"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Lollies.html",
+    "href": "Demonstration/Lollies.html",
+    "title": "Jar of Lollies",
+    "section": "",
+    "text": "Descriptive Statistics Sampling Estimation Wisdom of Crowds",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Jar of Lollies"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Lollies.html#about",
+    "href": "Demonstration/Lollies.html#about",
+    "title": "Jar of Lollies",
+    "section": "About",
+    "text": "About\nThis classic “lolly jar” activity is an energetic way to open the semester and immediately involve students in real data collection. By making a simple, intuitive guess, students contribute to a dataset that we can analyse together in real time. The activity introduces the core ideas of descriptive statistics while showing how even everyday judgments form the basis of statistical reasoning.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Jar of Lollies"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Lollies.html#demonstration",
+    "href": "Demonstration/Lollies.html#demonstration",
+    "title": "Jar of Lollies",
+    "section": "Demonstration",
+    "text": "Demonstration",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Jar of Lollies"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Lollies.html#materials",
+    "href": "Demonstration/Lollies.html#materials",
+    "title": "Jar of Lollies",
+    "section": "Materials",
+    "text": "Materials\n\nOne transparent jar filled with small lollies (count them in advance!)\nA tool to for students to provide their guess in real time (e.g. Google forms, Poll Everywhere)",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Jar of Lollies"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Lollies.html#step-by-step-plan",
+    "href": "Demonstration/Lollies.html#step-by-step-plan",
+    "title": "Jar of Lollies",
+    "section": "Step-by-Step Plan",
+    "text": "Step-by-Step Plan\n\n0 (Pre-tasks)\n\nFill a transparent jar with small lollies. Record how many lollies are in the jar for yourself\nCreate a question using an online platform (such as Google forms) that only has two questions: (1) Name and (2) Estimate\n\n\n\n1 (Setup)\nIn class (face-to-face or online), hold up the jar and say:\n\n“This jar represents our first dataset of the semester. Your task: estimate how many lollies are inside. Don’t overthink it — just go with your gut.”\n\n\n\n2 (Collect data)\nProvide students with the link to the online form and get them to fill in their Name and Estimate\n\n\n3 (Descriptive Stats)\nDownload the data (Google forms should allow you to export a csv) and show calculations for basic descriptive stats, such as the mean, median, range, variance, sd, etc.\n\n\n4 (Optional: Plots)\nYou could generate some plots as a visualisation and link them to certain concepts (e.g. histograms and skewness). You could embed fake responses yourself that are quite extreme to show / talk about outliers.\n\n\n5 (Reveal)\nShow the real count and provide a prize to the winning (or closest guessing) student (if it’s only one correct guess I usually give the whole jar). Multiple winners usually split the prize.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Jar of Lollies"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Lollies.html#bonus-optional",
+    "href": "Demonstration/Lollies.html#bonus-optional",
+    "title": "Jar of Lollies",
+    "section": "Bonus / Optional:",
+    "text": "Bonus / Optional:\n\nCan relate this activity to sampling\nAfter you’ve revealed the true number, tell students you’ll run a few short experiments to see what happens when we “sample” the data differently. For example:\n\nSmall vs. large samples: Randomly select 5 guesses and compute their average. Then select 15 guesses and compute that average. Compare both to the true number — students see that larger samples produce more stable estimates.\nRemoving outliers: Remove the extreme guesses and recompute the mean and median. Discuss how outliers affect measures of central tendency.\nSampling bias: Ask who sat near the front (closer view of the jar) and whether their guesses were systematically different from those at the back. Introduce the idea of bias and why random sampling matters.\nWisdom of Crowds: If you’re teaching ensemble machine learning, you could consider each individual estimate as a weak learner / model. But by ensembling, you should get an estimate that is quite close to the true value.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Jar of Lollies"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Polls.html",
+    "href": "Demonstration/Polls.html",
+    "title": "Class Polls",
+    "section": "",
+    "text": "Confidence Intervals Sampling Proportions Live Data",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Class Polls"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Polls.html#about",
+    "href": "Demonstration/Polls.html#about",
+    "title": "Class Polls",
+    "section": "About",
+    "text": "About\nThis activity gets students to generate their own live dataset, again using a simple online form, but this time with two different types of variables:\n\na numeric response (willingness to pay for coffee) and\na binary response (a light-hearted yes/no question).\n\nOnce responses are in, the instructor builds 95% confidence intervals for both live in class, showing students how the CI formula changes depending on whether the underlying variable is continuous or categorical.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Class Polls"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Polls.html#demonstration",
+    "href": "Demonstration/Polls.html#demonstration",
+    "title": "Class Polls",
+    "section": "Demonstration",
+    "text": "Demonstration",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Class Polls"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Polls.html#materials",
+    "href": "Demonstration/Polls.html#materials",
+    "title": "Class Polls",
+    "section": "Materials",
+    "text": "Materials\n\nA tool for students to respond in real time (e.g. Google Forms, Poll Everywhere)\nA spreadsheet or R session set up in advance to calculate CIs live",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Class Polls"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Polls.html#step-by-step-plan",
+    "href": "Demonstration/Polls.html#step-by-step-plan",
+    "title": "Class Polls",
+    "section": "Step-by-Step Plan",
+    "text": "Step-by-Step Plan\n\n0 (Pre-tasks)\n\nCreate a two-question online form:\n\nNumeric: “How much are you willing to pay for a cup of coffee? ($)”\nBinary: “Are you wearing fresh underwear today? (Yes/No)”\n\nTest the form yourself and confirm responses export cleanly to a spreadsheet/CSV\nHave your stats software (Excel or R) ready with the CI formulas pre-built so you can just paste in live data\n\n\n\n1 (Setup)\nIn class (face-to-face or online), introduce the activity:\n\n“We’re going to collect two very different kinds of data today, one numeric, one binary, and use both to build confidence intervals live. First question is straightforward. Second question… well, the true question is, do we really want to know the answer?”\n\n\n\n2 (Collect data)\nShare the form link and give students 2–3 minutes to respond to both questions anonymously.\n\n\n3 (Numeric CI — Coffee Spend)\nDownload the responses and calculate the 95% CI for the mean amount students are willing to pay.\n\n\n3 (Numeric CI — Coffee Spend)\nDownload the responses and calculate the 95% CI for the mean amount students are willing to pay.\n\n\n\n\n\n\nFormula: 95% CI for a Mean\n\n\n\n\n\n\\[\n\\bar{x} \\pm t_{\\alpha/2, \\, n-1} \\cdot \\frac{s}{\\sqrt{n}}\n\\]\nwhere:\n\n\\(\\bar{x}\\) = sample mean\n\\(s\\) = sample standard deviation\n\\(n\\) = sample size\n\\(t_{\\alpha/2, \\, n-1}\\) = critical value from the t-distribution with \\(n-1\\) degrees of freedom\n\n\n\n\n\n\n4 (Binary CI — Fresh Underwear)\nNow calculate the 95% CI for the proportion of students who answered “Yes.”\n\n\n\n\n\n\nFormula: 95% CI for a Proportion\n\n\n\n\n\n\\[\n\\hat{p} \\pm z_{\\alpha/2} \\cdot \\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}}\n\\]\nwhere:\n\n\\(\\hat{p}\\) = sample proportion answering “Yes”\n\\(n\\) = sample size\n\\(z_{\\alpha/2} = 1.96\\) for 95% confidence\n\n\n\n\n\n\n5 (Discuss)\nCompare the two intervals as a class:\n\nWhy does the coffee CI use a t-distribution while the underwear CI uses a normal approximation?\nWhat happens to each interval’s width as n increases?\nWhat would happen to the binary CI if p̂ were very close to 0 or 1 (e.g. almost everyone says “Yes”)? This is a good moment to mention that the normal approximation breaks down in that case, and alternatives like the Wilson or Clopper-Pearson interval exist.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Class Polls"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Polls.html#bonus-optional",
+    "href": "Demonstration/Polls.html#bonus-optional",
+    "title": "Class Polls",
+    "section": "Bonus / Optional:",
+    "text": "Bonus / Optional:\n\nCan relate this activity to sample size and margin of error more broadly\nA few extensions to try:\n\nShrinking the CI: Ask “what sample size would we need to halve this margin of error?” and calculate it live.\nCompare subgroups: If you collected any grouping variable (e.g. year level), compute separate CIs for each group and compare.\nInterval interpretation: Poll students on what they think “95% confidence” means, then correct common misconceptions (it’s not “95% probability the true value is in this interval”).\nMethod comparison: For the binary variable, compute the Wilson interval alongside the normal-approximation interval and discuss when they diverge.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Class Polls"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Skittles.html",
+    "href": "Demonstration/Skittles.html",
+    "title": "Skittle Science",
+    "section": "",
+    "text": "Chi-Square Test Goodness of Fit Categorical Data Expected vs Observed",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Skittle Science"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Skittles.html#about",
+    "href": "Demonstration/Skittles.html#about",
+    "title": "Skittle Science",
+    "section": "About",
+    "text": "About\nThis activity uses a large bag of Skittles to test a simple assumption most students take for granted: that each colour is equally likely. Before opening the bag, students guess the colour distribution and submit a prediction, with a prize for whoever gets closest (the instructor can decide how this works). Once the bag is counted, the class discovers whether the colours really are split evenly — and uses a chi-square goodness-of-fit test to formally check whether the observed counts are consistent with an equal (“uniform”) distribution, or whether the deviation is too large to be chance.\n\n\n\n\n\n\nNote\n\n\n\nIf you want to do this as a trick, then open (carefully) and count this yourself first. And write down the exact distribution. Then place the skittles back in, try to seal it in a way that looks like it has not been opened. When performing the demonstration, open from that original location.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Skittle Science"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Skittles.html#demonstration",
+    "href": "Demonstration/Skittles.html#demonstration",
+    "title": "Skittle Science",
+    "section": "Demonstration",
+    "text": "Demonstration",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Skittle Science"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Skittles.html#materials",
+    "href": "Demonstration/Skittles.html#materials",
+    "title": "Skittle Science",
+    "section": "Materials",
+    "text": "Materials\n\nOne large bag of Skittles (the bigger the better — more candy means a more reliable test)\nA tool for students to submit their distribution guesses (e.g. Google Forms)\nA way to sort and count the Skittles by colour in front of the class (paper plates, cups, or just piles on a table under a document camera)\nA small prize for the closest guess\nA spreadsheet or R session set up to calculate the chi-square statistic live",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Skittle Science"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Skittles.html#step-by-step-plan",
+    "href": "Demonstration/Skittles.html#step-by-step-plan",
+    "title": "Skittle Science",
+    "section": "Step-by-Step Plan",
+    "text": "Step-by-Step Plan\n\n0 (Pre-tasks)\n\nBuy one large bag of Skittles — don’t open it or count it in advance, so the reveal is genuine\nSet up a short prediction form asking students to guess the percentage split across the standard colours (e.g. Red, Orange, Yellow, Green, Purple)\nDecide on your prize and how you’ll score “closest” guess (see the callout in Step 4)\n\n\n\n1 (Setup)\nHold up the unopened bag and ask the class:\n\n“If I open this bag and count every Skittle by colour, what distribution would you expect? Equal numbers of each colour, or something else?”\n\nLet the class debate briefly before moving on.\n\n\n2 (Collect Predictions)\nHave each student submit their guess for the colour distribution — e.g. as five percentages that sum to 100%, or as a ranked order from “most common” to “least common” colour if you want a simpler task.\n\n“Whoever’s guess ends up closest to the real distribution wins the prize — so think carefully.”\n\n\n\n3 (Open and Count)\nOpen the bag and sort the Skittles into piles by colour under the document camera, counting each pile out loud as you go so the whole class can follow along. Record the final counts on the board.\n\n\n4 (Reveal the Winner)\nCompare each student’s prediction to the actual counts and announce the winner.\n\n\n\n\n\n\nScoring the guesses\n\n\n\n\n\nA simple way to score “closest” is to sum the absolute difference between each student’s guessed percentage and the actual percentage for every colour, then award the prize to whoever has the smallest total difference. This also doubles as a nice lead-in to talking about error/residuals before you even get to the chi-square formula.\n\n\n\n\n\n5 (Set Up the Hypotheses)\nBefore running any test, formalise what you’re actually checking:\n\\[\nH_0: \\text{All colours are equally likely } \\left(p_{\\text{red}} = p_{\\text{orange}} = p_{\\text{yellow}} = p_{\\text{green}} = p_{\\text{purple}} = \\frac{1}{5}\\right)\n\\]\n\\[\nH_1: \\text{At least one colour's true proportion differs from } \\frac{1}{5}\n\\]\n\n\n6 (Calculate Expected Counts)\nIf the null hypothesis were true, each colour should make up an equal share of the total. Calculate the expected count per colour:\n\\[\nE_i = \\frac{n}{k}\n\\]\nwhere \\(n\\) is the total number of Skittles counted and \\(k\\) is the number of colour categories (typically 5).\n\n\n7 (Calculate the Chi-Square Statistic)\nCompare the observed counts (\\(O_i\\)) from Step 3 to the expected counts (\\(E_i\\)) from Step 6:\n\\[\n\\chi^2 = \\sum_{i=1}^{k} \\frac{(O_i - E_i)^2}{E_i}\n\\]\nWalk through the calculation live, colour by colour, building the sum on the board so students see exactly how much each colour contributes to the total statistic.\n\n\n8 (Compare to the Critical Value)\nCompare your calculated \\(\\chi^2\\) statistic to the critical value from a chi-square distribution with \\(k - 1\\) degrees of freedom (4, for 5 colours) at \\(\\alpha = 0.05\\).\n\n\n\n\n\n\nDegrees of Freedom\n\n\n\n\n\n\\[\ndf = k - 1\n\\]\nFor 5 colours, \\(df = 4\\). Look up (or calculate) the critical value \\(\\chi^2_{0.05, \\, 4}\\), and compare it to your calculated statistic — if your statistic exceeds the critical value, reject \\(H_0\\).\n\n\n\n\n\n9 (Conclude)\nDiscuss the result as a class: was the distribution actually equal, or did the test detect a real imbalance? Which colour(s) contributed the most to the chi-square statistic, and does that match what the class predicted back in Step 2?",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Skittle Science"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Skittles.html#bonus-optional",
+    "href": "Demonstration/Skittles.html#bonus-optional",
+    "title": "Skittle Science",
+    "section": "Bonus / Optional:",
+    "text": "Bonus / Optional:\n\nCan relate this activity to sample size and statistical power\nA few extensions to try:\n\nPool the class’s bags: If multiple students each bring their own small bag, pool all the counts together and compare the chi-square result using the full pooled sample versus just your one large bag — larger \\(n\\) typically makes it easier to detect a real deviation.\nCompare bag sizes/brands: If time allows, repeat with a different bag size or a different candy brand entirely, and discuss whether the “equal distribution” assumption holds up across different production batches.\nEffect size: Beyond just significance, calculate Cramér’s V to discuss how large the imbalance actually is, not just whether it’s statistically detectable.\nLink to independence testing: Discuss how this differs from a chi-square test of independence (e.g. testing whether colour distribution differs between two different bags) versus the goodness-of-fit test used here (comparing one bag’s distribution to a fixed theoretical expectation).",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Skittle Science"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Yawn.html",
+    "href": "Demonstration/Yawn.html",
+    "title": "Contagious Yawns",
+    "section": "",
+    "text": "Correlation Linear Regression Data Collection Psychology of Empathy",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Contagious Yawns"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Yawn.html#about",
+    "href": "Demonstration/Yawn.html#about",
+    "title": "Contagious Yawns",
+    "section": "About",
+    "text": "About\nContagious yawning has long been studied as a possible marker of empathy — the idea being that people who are more attuned to others’ emotional and physical states are more likely to “catch” a yawn. This activity turns that idea into a live regression exercise: students watch a short yawning video and record the exact moment (if any) they yawned, then complete a short empathy questionnaire. The two measurements: time-to-yawn and empathy score become the dataset for a hands-on correlation and regression analysis.",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Contagious Yawns"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Yawn.html#demonstration",
+    "href": "Demonstration/Yawn.html#demonstration",
+    "title": "Contagious Yawns",
+    "section": "Demonstration",
+    "text": "Demonstration",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Contagious Yawns"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Yawn.html#materials",
+    "href": "Demonstration/Yawn.html#materials",
+    "title": "Contagious Yawns",
+    "section": "Materials",
+    "text": "Materials\n\nA short video of people yawning, with a visible on-screen counter/timer (see Step 2)\nAccess to an online empathy questionnaire (see Step 3)\nA tool for students to submit their data in real time (e.g. Google Forms)\nA stats package (Excel, R, or similar) to run the correlation and regression live",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Contagious Yawns"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Yawn.html#step-by-step-plan",
+    "href": "Demonstration/Yawn.html#step-by-step-plan",
+    "title": "Contagious Yawns",
+    "section": "Step-by-Step Plan",
+    "text": "Step-by-Step Plan\n\n0 (Pre-tasks)\n\nPreview the yawning video yourself and confirm the on-screen counter is clearly visible throughout\nSet up a short online form with three fields: (1) Name/ID, (2) Time (in seconds) at which they yawned, or “Did not yawn,” and (3) their empathy score from the questionnaire\nTest the empathy questionnaire link yourself and note roughly how long it takes to complete (so you can budget class time)\n\n\n\n1 (Setup)\nIn class, explain the activity without revealing the hypothesis in too much detail up front:\n\n“I’m going to play a short video. Just watch it naturally. There’s a counter in the corner — if you yawn at any point, note down the number on the counter at that exact moment. If you don’t yawn at all, that’s fine too, just note that down.”\n\n\n\n2 (Watch and Record — Predictor Variable)\nPlay the yawning video. You may want to stop the video earlier if your class time is short.\nhttps://www.youtube.com/watch?v=AJXX4vF6Zh0\nImmediately afterward, have students record:\n\nThe counter value at the moment they yawned, or\n“Did not yawn” if they didn’t\n\nThis is your predictor variable (\\(X\\)) — time-to-yawn (or a large/undefined value for non-yawners, discussed further in the Bonus section).\n\n\n3 (Empathy Questionnaire — Outcome Variable)\nDirect students to complete the empathy questionnaire and record their score. This is your outcome variable (\\(Y\\)).\nHave students submit both values through your form.\n\n\n4 (Explore the Data)\nDownload the combined dataset and start with a scatterplot of empathy score (y-axis) against time-to-yawn (x-axis), restricted to students who yawned.\n\nScatterplot (concept)What to look for\n\n\nPlot empathy score against yawn time. Ask the class: does there seem to be a pattern? Do earlier yawners cluster toward higher or lower empathy scores?\n\n\n\nDirection: Does empathy tend to go up or down as yawn-time increases?\nStrength: Are the points tightly clustered around a line, or scattered widely?\nOutliers: Any students who yawned very early or very late with an unexpected empathy score?\n\n\n\n\n\n\n5 (Correlation)\nCalculate the correlation coefficient between yawn time and empathy score. I usually use software, but you can do it manually as well:\n\n\n\n\n\n\nFormula: Pearson Correlation Coefficient\n\n\n\n\n\n\\[\nr = \\frac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sqrt{\\sum (x_i - \\bar{x})^2 \\sum (y_i - \\bar{y})^2}}\n\\]\nwhere \\(x_i\\) is each student’s yawn time and \\(y_i\\) is their empathy score.\n\\(r\\) ranges from \\(-1\\) to \\(1\\). A negative \\(r\\) here would suggest that earlier yawning is associated with higher empathy — consistent with the contagious-yawning-as-empathy hypothesis.\n\n\n\n\n\n6 (Simple Linear Regression)\nFit a regression line predicting empathy score from yawn time. Again, software is a huge time saver.\n\n\n\n\n\n\nFormula: Simple Linear Regression\n\n\n\n\n\n\\[\n\\hat{Y} = b_0 + b_1 X\n\\]\n\\[\nb_1 = \\frac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sum (x_i - \\bar{x})^2}\n\\qquad\nb_0 = \\bar{y} - b_1 \\bar{x}\n\\]\nwhere:\n\n\\(b_1\\) = the estimated change in empathy score for each additional second before yawning\n\\(b_0\\) = the predicted empathy score for a (hypothetical) yawn time of zero seconds\n\n\n\n\nPlot the fitted line over the scatterplot from Step 4 and discuss what the slope means in plain terms: for every extra second before a student yawns, how much does their predicted empathy score change?\n\n\n7 (Interpret and Critique)\nDiscuss as a class:\n\nHow strong was the correlation, really? Is it statistically meaningful given the sample size (your class)?\nWhat does \\(R^2\\) tell us about how much of the variation in empathy scores is “explained” by yawn time?\nWhat are the limitations of this design? (Small sample, self-reported yawning, single time-point, potential confounders like tiredness or attention)",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Contagious Yawns"
+    ]
+  },
+  {
+    "objectID": "Demonstration/Yawn.html#bonus-optional",
+    "href": "Demonstration/Yawn.html#bonus-optional",
+    "title": "Contagious Yawns",
+    "section": "Bonus / Optional:",
+    "text": "Bonus / Optional:\n\nCan relate this activity to confounding variables and the difference between correlation and causation\nA few extensions to try:\n\nHandling non-yawners: Discuss how to treat students who didn’t yawn at all — should they be excluded, or coded as a large value/right-censored? This is a nice, gentle introduction to the idea of censored data.\nMultiple regression: If you collect additional variables (e.g. hours of sleep, whether they watched a screen recently), extend the model to multiple predictors and discuss how each new variable changes the interpretation of the others.\nCorrelation ≠ causation: Ask the class to brainstorm alternative explanations for any observed relationship — e.g. more attentive/empathetic students may simply have been watching the video more closely, rather than empathy directly causing yawning.\nResidual analysis: Plot the residuals from the regression model and discuss what a “good” residual plot should look like (no clear pattern) versus a problematic one (funnel shape, curve).",
+    "crumbs": [
+      "Demonstration Hooks",
+      "Contagious Yawns"
+    ]
+  },
+  {
+    "objectID": "Interactive/10s.html",
+    "href": "Interactive/10s.html",
+    "title": "10 Second Challenge",
+    "section": "",
+    "text": "Residuals Normal Distribution Measurement Error Bias vs. Variance",
+    "crumbs": [
+      "Interactive Hooks",
+      "10 Second Challenge"
+    ]
+  },
+  {
+    "objectID": "Interactive/10s.html#about",
+    "href": "Interactive/10s.html#about",
+    "title": "10 Second Challenge",
+    "section": "About",
+    "text": "About\nStudents try to stop a timer as close as possible to exactly 10.00 seconds. Each attempt records a signed error (observed time minus target time), and after several attempts, the app summarises the mean error, best absolute error, and standard deviation of times. This is a simple but effective hook for residuals: every attempt’s error is exactly analogous to a residual in a regression model — the gap between an observed value and a “true” target. With enough attempts pooled across the class, the errors tend to scatter in a roughly bell-shaped pattern around zero, giving a hands-on way to introduce the normal distribution of errors, and to separate two very different kinds of “being wrong”: a biased timer (consistently early or late — a non-zero mean error) versus a noisy one (highly variable, but centred correctly — a large standard deviation with a mean error near zero).",
+    "crumbs": [
+      "Interactive Hooks",
+      "10 Second Challenge"
+    ]
+  },
+  {
+    "objectID": "Interactive/10s.html#app",
+    "href": "Interactive/10s.html#app",
+    "title": "10 Second Challenge",
+    "section": "App",
+    "text": "App\nBelow is an example of what the app looks like when embeded into a Quarto document.",
+    "crumbs": [
+      "Interactive Hooks",
+      "10 Second Challenge"
+    ]
+  },
+  {
+    "objectID": "Interactive/10s.html#download",
+    "href": "Interactive/10s.html#download",
+    "title": "10 Second Challenge",
+    "section": "Download",
+    "text": "Download\nYou can download the app directly using the link below. This should open as a standalone app that can open on any device. You can also wrap this around a =html code chunk in your Quarto document to achieve a similar effect to what is seen above.\n\n\n\n 10-Second Challenge",
+    "crumbs": [
+      "Interactive Hooks",
+      "10 Second Challenge"
+    ]
+  },
+  {
+    "objectID": "Interactive/10s.html#general-questions",
+    "href": "Interactive/10s.html#general-questions",
+    "title": "10 Second Challenge",
+    "section": "General questions",
+    "text": "General questions\n\nAfter several attempts, were your errors mostly positive, mostly negative, or a mix of both? What would that pattern suggest about your internal sense of timing?\nWhat’s the difference between having a mean error far from zero versus having a large standard deviation of your times? Which one describes “consistently wrong,” and which describes “unpredictable”?\nIf your very first attempt happened to be exact (0.00s error), would that tell you much about how good you are at this task? Why or why not?\nAs a class, pool everyone’s errors together and look at the shape of the distribution. Does it look roughly symmetric and bell-shaped around zero, or is it skewed one way?\nIn a regression model, a “residual” is the gap between what a model predicts and what actually happened. How is your error on this task similar to a residual? How is it different?\nIf someone was consistently early by about 0.5 seconds on every attempt, would practicing more make them more accurate, more precise, both, or neither? What would actually need to change?\nWhere else in real life do we see this same distinction between a biased measurement process and a noisy one (e.g. a scale that’s always off by the same amount, versus one that gives a different reading every time you step on it)?",
+    "crumbs": [
+      "Interactive Hooks",
+      "10 Second Challenge"
+    ]
+  },
+  {
+    "objectID": "Interactive/Colour.html",
+    "href": "Interactive/Colour.html",
+    "title": "Colour Game",
+    "section": "",
+    "text": "Permutation Test Bootstrap Between-Subjects Design Resampling",
+    "crumbs": [
+      "Interactive Hooks",
+      "Colour Game"
+    ]
+  },
+  {
+    "objectID": "Interactive/Colour.html#about",
+    "href": "Interactive/Colour.html#about",
+    "title": "Colour Game",
+    "section": "About",
+    "text": "About\nThis app is a fast-paced colour-matching game, structurally similar to the Stack Game but with a different task and a different outcome measure. As before, are assigned to one of two conditions before playing: Control, the standard game with no interruptions, or Distraction, where notification-style pop-ups appear periodically during play. Note: if following on from the Stack game, you could switch groups.\nEveryone plays the same underlying game, only the presence of distractions differs between groups, making this another clean between-subjects comparison - this time used to introduce resampling-based hypothesis testing rather than the standard t-test. Instead of relying on the t-distribution, students use the class’s own data to build a permutation test (repeatedly shuffling group labels to see how extreme the observed group difference really is) and a bootstrap (resampling within each group to build a confidence interval for the difference in means). Both methods let students see hypothesis testing as a simulation problem rather than a formula lookup, useful groundwork before moving to more complex parametric tests.",
+    "crumbs": [
+      "Interactive Hooks",
+      "Colour Game"
+    ]
+  },
+  {
+    "objectID": "Interactive/Colour.html#app",
+    "href": "Interactive/Colour.html#app",
+    "title": "Colour Game",
+    "section": "App",
+    "text": "App\nBelow is an example of what the app looks like when embeded into a Quarto document.",
+    "crumbs": [
+      "Interactive Hooks",
+      "Colour Game"
+    ]
+  },
+  {
+    "objectID": "Interactive/Colour.html#download",
+    "href": "Interactive/Colour.html#download",
+    "title": "Colour Game",
+    "section": "Download",
+    "text": "Download\nYou can download the app directly using the link below. This should open as a standalone app that can open on any device. You can also wrap this around a =html code chunk in your Quarto document to achieve a similar effect to what is seen above.\n\n\n\n Colour Game",
+    "crumbs": [
+      "Interactive Hooks",
+      "Colour Game"
+    ]
+  },
+  {
+    "objectID": "Interactive/Colour.html#permutation-test",
+    "href": "Interactive/Colour.html#permutation-test",
+    "title": "Colour Game",
+    "section": "Permutation Test",
+    "text": "Permutation Test\nOnce the class’s scores are compiled into two groups (Control, Distraction), calculate the observed difference in means:\n\\[\n\\hat{\\Delta} = \\bar{x}_{\\text{control}} - \\bar{x}_{\\text{distraction}}\n\\]\nA permutation test asks: if group membership had no real effect, how often would a difference this large (or larger) show up just from randomly relabelling who was in which group?\n\nscores &lt;- c(control_scores, distraction_scores)\ngroup  &lt;- c(rep(\"control\", length(control_scores)), rep(\"distraction\", length(distraction_scores)))\n\nobserved_diff &lt;- mean(control_scores) - mean(distraction_scores)\n\nn_perm &lt;- 10000\nperm_diffs &lt;- numeric(n_perm)\n\nset.seed(1)\nfor (i in 1:n_perm) {\n  shuffled &lt;- sample(group)\n  perm_diffs[i] &lt;- mean(scores[shuffled == \"control\"]) - mean(scores[shuffled == \"distraction\"])\n}\n\np_value &lt;- mean(abs(perm_diffs) &gt;= abs(observed_diff))\n\nPlot a histogram of perm_diffs with a vertical line at observed_diff — this is a highly visual way for students to see exactly what a p-value represents: the proportion of the shuffled world that looks at least as extreme as what was actually observed.",
+    "crumbs": [
+      "Interactive Hooks",
+      "Colour Game"
+    ]
+  },
+  {
+    "objectID": "Interactive/Colour.html#bootstrap-confidence-interval",
+    "href": "Interactive/Colour.html#bootstrap-confidence-interval",
+    "title": "Colour Game",
+    "section": "Bootstrap Confidence Interval",
+    "text": "Bootstrap Confidence Interval\nRather than testing a hypothesis, the bootstrap estimates a range of plausible values for the true difference in means, by resampling within each group (with replacement) many times.\n\nn_boot &lt;- 10000\nboot_diffs &lt;- numeric(n_boot)\n\nset.seed(1)\nfor (i in 1:n_boot) {\n  boot_control     &lt;- sample(control_scores, replace = TRUE)\n  boot_distraction &lt;- sample(distraction_scores, replace = TRUE)\n  boot_diffs[i] &lt;- mean(boot_control) - mean(boot_distraction)\n}\n\nci &lt;- quantile(boot_diffs, c(0.025, 0.975))\n\nCompare this bootstrap confidence interval to the observed difference from the permutation test — do they tell a consistent story? Ask the class: does the interval include zero? What would that mean if it did?",
+    "crumbs": [
+      "Interactive Hooks",
+      "Colour Game"
+    ]
+  },
+  {
+    "objectID": "Interactive/Colour.html#general-questions",
+    "href": "Interactive/Colour.html#general-questions",
+    "title": "Colour Game",
+    "section": "General questions",
+    "text": "General questions\n\nWhy do we shuffle the group labels rather than the scores themselves in a permutation test? What would happen if we shuffled something else?\nThe permutation test and the bootstrap both involve “resampling,” but they answer different questions. Can you describe, in your own words, what each one is actually trying to tell you?\nIf the permutation test’s p-value came out just above or just below 0.05, how confident should the class be in that conclusion? What would you want to know before trusting it?\nWhy might resampling-based methods like these be more intuitive (or more trustworthy) to a beginner than a formula-based t-test, even though they’re often testing a similar hypothesis?\nIf you ran the permutation test again with a different random seed, would you expect the p-value to change? By how much, roughly?\nAs with the Stack Game, students weren’t randomly assigned to Control vs. Distraction. How might that affect how much we can trust either the permutation test or bootstrap result here?",
+    "crumbs": [
+      "Interactive Hooks",
+      "Colour Game"
+    ]
+  },
+  {
+    "objectID": "Interactive/MontyHall.html",
+    "href": "Interactive/MontyHall.html",
+    "title": "MontyHall",
+    "section": "",
+    "text": "Probability Conditional Probability Simulation Bayesian Reasoning",
+    "crumbs": [
+      "Interactive Hooks",
+      "MontyHall"
+    ]
+  },
+  {
+    "objectID": "Interactive/MontyHall.html#about",
+    "href": "Interactive/MontyHall.html#about",
+    "title": "MontyHall",
+    "section": "About",
+    "text": "About\nThe Monty Hall problem is one of the most famous (and most argued-about) puzzles in probability. Students are almost always confident that staying or switching makes no difference — after all, with two doors left, isn’t it 50/50? This interactive app lets students test that intuition directly: they play the game themselves, repeatedly, and watch a live crosstab build up showing how often “stay” wins versus how often “switch” wins. The gap between intuition and the empirical result is what makes this activity land — no lecture is as convincing as students’ own accumulating data.",
+    "crumbs": [
+      "Interactive Hooks",
+      "MontyHall"
+    ]
+  },
+  {
+    "objectID": "Interactive/MontyHall.html#app",
+    "href": "Interactive/MontyHall.html#app",
+    "title": "MontyHall",
+    "section": "App",
+    "text": "App\nBelow is an example of what the app looks like when embeded into a Quarto document.",
+    "crumbs": [
+      "Interactive Hooks",
+      "MontyHall"
+    ]
+  },
+  {
+    "objectID": "Interactive/MontyHall.html#download",
+    "href": "Interactive/MontyHall.html#download",
+    "title": "MontyHall",
+    "section": "Download",
+    "text": "Download\nYou can download the app directly using the link below. This should open as a standalone app that can open on any device. You can also wrap this around a =html code chunk in your Quarto document to achieve a similar effect to what is seen above.\n\n\n\n Monty Hall",
+    "crumbs": [
+      "Interactive Hooks",
+      "MontyHall"
+    ]
+  },
+  {
+    "objectID": "Interactive/RPS.html",
+    "href": "Interactive/RPS.html",
+    "title": "RockPaperScissors",
+    "section": "",
+    "text": "Sampling Law of Large Numbers Randomness Small Samples",
+    "crumbs": [
+      "Interactive Hooks",
+      "RockPaperScissors"
+    ]
+  },
+  {
+    "objectID": "Interactive/RPS.html#about",
+    "href": "Interactive/RPS.html#about",
+    "title": "RockPaperScissors",
+    "section": "About",
+    "text": "About\nStudents play 10 rounds of Rock Paper Scissors against the computer, watching their running score plotted live as they go. With only 10 games, results swing wildly — a player can be up 4 points after 5 games and end up losing, purely from the small sample size. This is a great hook for discussing why small samples are noisy and unreliable estimators of a “true” underlying rate, and why the Law of Large Numbers only kicks in once you play many, many more rounds. As a twist, the computer opponent isn’t purely random — it quietly adapts based on the outcome of the previous round — which opens up a second discussion thread on detecting non-randomness and pattern-seeking behaviour once students start noticing (or suspecting) a pattern in the computer’s choices.",
+    "crumbs": [
+      "Interactive Hooks",
+      "RockPaperScissors"
+    ]
+  },
+  {
+    "objectID": "Interactive/RPS.html#app",
+    "href": "Interactive/RPS.html#app",
+    "title": "RockPaperScissors",
+    "section": "App",
+    "text": "App\nBelow is an example of what the app looks like when embeded into a Quarto document.",
+    "crumbs": [
+      "Interactive Hooks",
+      "RockPaperScissors"
+    ]
+  },
+  {
+    "objectID": "Interactive/RPS.html#download",
+    "href": "Interactive/RPS.html#download",
+    "title": "RockPaperScissors",
+    "section": "Download",
+    "text": "Download\nYou can download the app directly using the link below. This should open as a standalone app that can open on any device. You can also wrap this around a =html code chunk in your Quarto document to achieve a similar effect to what is seen above.\n\n\n\n Rock Paper Scissors",
+    "crumbs": [
+      "Interactive Hooks",
+      "RockPaperScissors"
+    ]
+  },
+  {
+    "objectID": "Interactive/RPS.html#general-questions",
+    "href": "Interactive/RPS.html#general-questions",
+    "title": "RockPaperScissors",
+    "section": "General questions",
+    "text": "General questions\n\nAfter 10 games, did your final score feel like a fair reflection of your actual skill against the computer, or could it easily have gone the other way with a bit of luck?\nIf you played another 10 games right now, would you expect a similar result, a completely different one, or something in between? Why?\nHow many games do you think you’d need to play before your win rate started to “settle down” and reliably reflect the true probabilities involved?\nDid you notice any pattern in the computer’s choices as you played? If you suspected a pattern, how would you go about testing whether it was real or just your imagination?\nIf a friend told you they’d won 8 out of 10 games against the computer and concluded “I’m just better at reading the computer,” what would you want to know before you believed them?\nAs a class, compare everyone’s final scores. Do they all cluster around a similar result, or is there a wide spread? What does that spread tell you about how much weight to put on any one person’s 10-game outcome?\nWhere else in everyday life do people draw big conclusions from a small number of outcomes (a few good trades, a short winning streak, a handful of “lucky” days) that might really just be normal randomness?",
+    "crumbs": [
+      "Interactive Hooks",
+      "RockPaperScissors"
+    ]
+  },
+  {
+    "objectID": "Interactive/Stack.html",
+    "href": "Interactive/Stack.html",
+    "title": "Stack Game",
+    "section": "",
+    "text": "Hypothesis Testing Between-Subjects Design Independent Samples t-Test Attention",
+    "crumbs": [
+      "Interactive Hooks",
+      "Stack Game"
+    ]
+  },
+  {
+    "objectID": "Interactive/Stack.html#about",
+    "href": "Interactive/Stack.html#about",
+    "title": "Stack Game",
+    "section": "About",
+    "text": "About\nThis app is a fast-paced block-stacking game with a hidden research design baked in. Before playing, the instructor will allocate students into one of trwo conditions: Control, the standard game with no interruptions, or Distraction, where a new notification-style pop-up (a text, a low battery warning, a calling gem) appears after every successful stack. Everyone plays the same game with the same mechanics — the only thing that differs between groups is whether they’re being pulled away from the task with simulated phone notifications. This is a clean, self-contained between-subjects design: students self-select (or are randomly assigned by the instructor) into one of two independent groups, and their final scores become the outcome variable for a live hypothesis test comparing means.",
+    "crumbs": [
+      "Interactive Hooks",
+      "Stack Game"
+    ]
+  },
+  {
+    "objectID": "Interactive/Stack.html#app",
+    "href": "Interactive/Stack.html#app",
+    "title": "Stack Game",
+    "section": "App",
+    "text": "App\nBelow is an example of what the app looks like when embeded into a Quarto document.",
+    "crumbs": [
+      "Interactive Hooks",
+      "Stack Game"
+    ]
+  },
+  {
+    "objectID": "Interactive/Stack.html#download",
+    "href": "Interactive/Stack.html#download",
+    "title": "Stack Game",
+    "section": "Download",
+    "text": "Download\nYou can download the app directly using the link below. This should open as a standalone app that can open on any device. You can also wrap this around a =html code chunk in your Quarto document to achieve a similar effect to what is seen above.\n\n\n\n Stack Game",
+    "crumbs": [
+      "Interactive Hooks",
+      "Stack Game"
+    ]
+  },
+  {
+    "objectID": "Interactive/Stack.html#general-questions",
+    "href": "Interactive/Stack.html#general-questions",
+    "title": "Stack Game",
+    "section": "General questions",
+    "text": "General questions\n\nBefore playing, did you expect the distraction messages to affect your score much? Did the actual experience match that expectation?\nIf the instructor let students freely choose which group (Control or Distraction) to join, could that cause a problem when comparing the two groups afterward? What would you suggest instead?\nWhy is it important that both groups play the exact same game, with only the distractions differing? What would go wrong if the Distraction group also had a different game mechanic?\nAs a class, compare the average scores of the Control group and the Distraction group. Does there appear to be a difference? How confident are you that this difference (if any) reflects a real effect, rather than just random variation between two groups of different people?\nSome students might get distracted by a notification and actually play better out of a spike in adrenaline or focus. How would that possibility affect how we interpret the results?\nOutside of this game, where else does a “distraction condition vs. control condition” comparison show up in real research or everyday life (e.g. studying with music on vs. off, driving while texting)?\nIf this experiment were repeated with a much larger class, would you expect the difference between groups to become clearer, or would it stay just as uncertain? Why?",
+    "crumbs": [
+      "Interactive Hooks",
+      "Stack Game"
+    ]
+  },
+  {
+    "objectID": "Interactive/Surveyor.html",
+    "href": "Interactive/Surveyor.html",
+    "title": "Surveyor Builder",
+    "section": "",
+    "text": "Estimation Sampling Bias Survey Design Standard Error",
+    "crumbs": [
+      "Interactive Hooks",
+      "Surveyor Builder"
+    ]
+  },
+  {
+    "objectID": "Interactive/Surveyor.html#about",
+    "href": "Interactive/Surveyor.html#about",
+    "title": "Surveyor Builder",
+    "section": "About",
+    "text": "About\nIn this app, students build their own field surveyor by allocating skill points across five traits: Charm, Intelligence, Efficiency, Local Knowledge, and Persistence, before sending them out to estimate the average weekly household income of a 10,000-household town. Only the instructor knows the true population mean ($1,250); students never see it directly, only the single sample estimate their surveyor comes back with. Because each trait trades off differently (e.g. Charm boosts response rate, Intelligence reduces measurement error, Local Knowledge reduces coverage bias), different point allocations produce systematically different, and sometimes very wrong, estimates, even though every student is sampling from the exact same town. This makes for a great class-wide comparison: once everyone reveals their estimate, the spread across the room becomes the lesson itself, showing how response bias, coverage bias, and measurement error can each quietly drag an estimate away from the truth, even without anyone doing anything “wrong.”",
+    "crumbs": [
+      "Interactive Hooks",
+      "Surveyor Builder"
+    ]
+  },
+  {
+    "objectID": "Interactive/Surveyor.html#app",
+    "href": "Interactive/Surveyor.html#app",
+    "title": "Surveyor Builder",
+    "section": "App",
+    "text": "App\nBelow is an example of what the app looks like when embeded into a Quarto document.",
+    "crumbs": [
+      "Interactive Hooks",
+      "Surveyor Builder"
+    ]
+  },
+  {
+    "objectID": "Interactive/Surveyor.html#download",
+    "href": "Interactive/Surveyor.html#download",
+    "title": "Surveyor Builder",
+    "section": "Download",
+    "text": "Download\nYou can download the app directly using the link below. This should open as a standalone app that can open on any device. You can also wrap this around a =html code chunk in your Quarto document to achieve a similar effect to what is seen above.\n\n\n\n Surveyor Builder",
+    "crumbs": [
+      "Interactive Hooks",
+      "Surveyor Builder"
+    ]
+  },
+  {
+    "objectID": "Interactive/Surveyor.html#general-questions",
+    "href": "Interactive/Surveyor.html#general-questions",
+    "title": "Surveyor Builder",
+    "section": "General questions",
+    "text": "General questions\n\nWhy might two students with the exact same total number of skill points end up with very different estimates, just from allocating those points differently?\nIf you had to guess blind, which single trait do you think matters most for getting an accurate estimate — and why?\nWhat’s the difference between a surveyor who gets a high response rate but poor coverage, versus one who gets low response rate but excellent coverage? Which sounds worse to you, and why?\nOnce the true mean is revealed, was your estimate too high or too low? Can you explain why, based on the trait choices you made?\nIf you could only pick one trait to max out and ignore the rest, which would you choose, and what would you expect to go wrong as a result?\nAs a class, look at everyone’s final estimates together. Do they cluster around the true value, or are they scattered all over the place? What does that tell you about how much you should trust any one person’s single estimate in real life?\nReal government surveys (like the Census) spend enormous amounts of money trying to maximise coverage and response rate. Based on what you just experienced, why might that expense be worth it?",
+    "crumbs": [
+      "Interactive Hooks",
+      "Surveyor Builder"
+    ]
+  },
+  {
+    "objectID": "research.html",
+    "href": "research.html",
+    "title": "Research",
+    "section": "",
+    "text": "Beyond the hooks and activities on this site, I’m also genuinely interested in the broader question of what makes statistics education actually work, e.g.\n\nwhy some explanations land and others don’t?\nwhy a well-timed demonstration can shift how a whole cohort engages with a topic?\nhow we might measure that more rigorously than just “the class seemed to enjoy it.”\n\nIf any of that sparks your curiosity, there’s a good chance there’s a research project in it.\nStatistics education is a surprisingly under-explored space, especially compared to how much energy goes into the statistics itself. There’s real scope for projects looking at engagement and retention, the effectiveness of interactive versus demonstration-based teaching, how students’ confidence in a topic shifts before and after a hook-style activity, or even building and evaluating new hooks of your own from the ground up. Some of this could be quite data-driven, running one of the apps on this site across a few cohorts and analysing what actually happened , while other angles might be more qualitative, digging into student reflections and classroom observations.\nI’d particularly love to hear from students looking for an honours, minor thesis, or postgraduate research project, but honestly, I’m happy to chat with anyone who has a genuine interest in this space, regardless of where you’re at. You don’t need a fully-formed proposal to reach out. A rough idea, or even just “I liked this website and want to do something related to it,” is more than enough of a starting point. Some of the best projects start as loose ideas that get shaped properly once we sit down and talk them through.\nIf this all sounds interesting, drop me an email at minh.huynh1@monash.edu and we can set up a time to discuss. I’m happy to talk through possible directions, how a project might be scoped, and what it would actually look like day to day.",
+    "crumbs": [
+      "Research"
+    ]
+  }
+]

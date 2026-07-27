@@ -1,0 +1,50 @@
+---
+title: "Box Office Model Builder"
+format: html
+---
+::: tag-list
+[Multiple Regression]{.tag} [Variable Selection]{.tag} [Omitted Variable Bias]{.tag} [Model Fit]{.tag}
+:::
+
+## About
+
+This app puts students in the seat of a data analyst pitching a box office model. Students first choose exactly 3 predictors — from a pool of 23 candidate variables, roughly half genuinely related to box office and half mostly noise — and fit a real OLS regression on 200 synthetic past films, complete with coefficients, standard errors, t-statistics, p-values, R², adjusted R², and RMSE. Then the twist: an "executive" insists on adding 3 more variables, and students must allocate a fixed £100m budget across all 6 fields before the true (previously hidden) box office outcome is revealed. The gap between the student's 3-variable prediction and the revealed truth is a direct, visual lesson in **omitted variable bias** — a model can look statistically solid and still be badly wrong if it's missing the variables that actually matter. The budget stage adds a second layer: since real investment is modelled to genuinely shift outcomes (with diminishing returns), students also see the consequence of spreading money across variables that don't actually move the needle versus committing to the ones that do.
+
+## App
+
+Below is an example of what the app looks like when embeded into a Quarto document.
+
+```{=html}
+<iframe
+  src="Apps/box_office.html"
+  width="100%"
+  height="640"
+  style="border: none;"
+></iframe>
+```
+
+## Download
+
+You can download the app directly using the link below. This should open as a standalone app that can open on any device. You can also wrap this around a `=html` code chunk in your Quarto document to achieve a similar effect to what is seen above.
+
+<center>
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(downloadthis)
+download_file(
+  path = "Apps/box_office.html",
+  button_label = "Box Office Model Builder",
+  button_type = 'success'
+)
+```
+</center>
+
+## General questions
+
+- Before seeing the regression output, how did you decide which 3 variables to pick? Did your reasoning match what the p-values and R² ended up showing?
+- Two students could pick 3 completely different variables and both get a "significant" model (low p-values). Does statistical significance alone tell you whether a model is actually good? What else would you want to check?
+- Your R² was well below 1, even with genuinely strong predictors. Why would a regression using real, meaningful variables still leave a lot of variation unexplained?
+- When the executive added 3 more variables, did you already suspect what kind of variables they might be? How did seeing them change your view of your original model?
+- If your final prediction was way off from the true outcome, was that because your original 3 variables were poorly chosen, or because *any* 3-variable model was always going to miss something? How would you tell the difference?
+- In the budget stage, did you spread your £100m evenly, or concentrate it on a few fields? Looking back, would a different allocation have changed the final outcome much?
+- If you allocated a large chunk of budget to one of the executive's added variables and it barely moved the outcome, what does that tell you about the difference between a variable being *included* in a budget decision versus a variable actually *driving* the result?
+- In the real film industry, studios spend heavily on data and market research before greenlighting a movie. Based on this activity, what's the risk of trusting a model that only includes 3 or 4 variables, even if it looks statistically strong?

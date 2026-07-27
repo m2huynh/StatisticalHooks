@@ -1,0 +1,14 @@
+---
+title: "Secondary School Teachers"
+format: html
+---
+
+These resources aren't just for university classrooms. You're more than welcome to bring them into your own secondary school teaching. Most of the hooks and activities on this site come with self-guided instructions, so you can pick one up, adapt it to your year level, and run it with minimal preparation. If you'd like a bit more support getting started, though, I'm happy to run a training session or professional development day for your staff, whether that's a hands-on walkthrough of specific activities, or a broader conversation about building this kind of engagement-first approach into your own teaching.
+
+I also offer free live talks in schools, mainly around the Melbourne (Australia) area. These sessions cover why maths, statistics, and data science actually matter, not in an abstract "it's important" sense, but through real activities, real jobs, and honest conversations about where the field is heading, including AI (and why I'm not particularly worried about it). I run students through some of the same kinds of hooks featured on this site, talk about the career paths these skills open up, and try to leave them with a genuinely different picture of what statistics and data science look like in practice. Talks are fully customisable to different year levels, from junior secondary through to senior students starting to think about post-school options.
+
+This is something I offer freely, as part of my role as Deputy Director of Engagement. I think engaging with schools and the wider community is one of the most valuable things a university can do, not just as outreach, but as a genuine two-way relationship. Students get exposure to ideas and pathways they might not otherwise encounter, and in turn, it keeps me grounded in what actually resonates with a room full of teenagers, which shapes how I think about teaching more broadly.
+
+If a training session, PD day, or school talk sounds like something your school would be interested in, please get in touch at [minh.huynh1@monash.edu](mailto:minh.huynh1@monash.edu). Let me know your year level, group size, and what you're hoping to get out of it, and we can figure out the right format together.
+
+

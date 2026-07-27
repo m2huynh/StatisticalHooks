@@ -1,0 +1,49 @@
+---
+title: "10 Second Challenge"
+format: html
+---
+::: tag-list
+[Residuals]{.tag} [Normal Distribution]{.tag} [Measurement Error]{.tag} [Bias vs. Variance]{.tag}
+:::
+
+## About
+
+Students try to stop a timer as close as possible to exactly 10.00 seconds. Each attempt records a signed error (observed time minus target time), and after several attempts, the app summarises the mean error, best absolute error, and standard deviation of times. This is a simple but effective hook for **residuals**: every attempt's error is exactly analogous to a residual in a regression model — the gap between an observed value and a "true" target. With enough attempts pooled across the class, the errors tend to scatter in a roughly bell-shaped pattern around zero, giving a hands-on way to introduce the normal distribution of errors, and to separate two very different kinds of "being wrong": a **biased** timer (consistently early or late — a non-zero mean error) versus a **noisy** one (highly variable, but centred correctly — a large standard deviation with a mean error near zero).
+
+## App
+
+Below is an example of what the app looks like when embeded into a Quarto document.
+
+```{=html}
+<iframe
+  src="Apps/ten_second_challenge.html"
+  width="100%"
+  height="700"
+  style="border: none;"
+></iframe>
+```
+
+## Download
+
+You can download the app directly using the link below. This should open as a standalone app that can open on any device. You can also wrap this around a `=html` code chunk in your Quarto document to achieve a similar effect to what is seen above.
+
+<center>
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(downloadthis)
+download_file(
+  path = "Apps/ten_second_challenge.html",
+  button_label = "10-Second Challenge",
+  button_type = 'success'
+)
+```
+</center>
+
+## General questions
+
+- After several attempts, were your errors mostly positive, mostly negative, or a mix of both? What would that pattern suggest about your internal sense of timing?
+- What's the difference between having a *mean error* far from zero versus having a large *standard deviation* of your times? Which one describes "consistently wrong," and which describes "unpredictable"?
+- If your very first attempt happened to be exact (0.00s error), would that tell you much about how good you are at this task? Why or why not?
+- As a class, pool everyone's errors together and look at the shape of the distribution. Does it look roughly symmetric and bell-shaped around zero, or is it skewed one way?
+- In a regression model, a "residual" is the gap between what a model predicts and what actually happened. How is your error on this task similar to a residual? How is it different?
+- If someone was consistently early by about 0.5 seconds on every attempt, would practicing more make them more *accurate*, more *precise*, both, or neither? What would actually need to change?
+- Where else in real life do we see this same distinction between a **biased** measurement process and a **noisy** one (e.g. a scale that's always off by the same amount, versus one that gives a different reading every time you step on it)?

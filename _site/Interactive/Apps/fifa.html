@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026 World Cup Bracket Simulator</title>
+<style>
+:root{
+  --bg:#f5f6f8;--panel:#fff;--ink:#111827;--muted:#6b7280;--line:#9aa3af;--soft:#eef2f7;
+  --win:#28b63f;--win-bg:#e9f9ef;--lose:#d64545;--lose-bg:#fff0f0;--active:#f59e0b;--blue:#2457c5;
+}
+*{box-sizing:border-box}
+html,body{margin:0;overflow-x:hidden;background:var(--bg);font-family:Inter,Arial,sans-serif;color:var(--ink)}
+.app{width:100%;max-width:none;margin:0 auto;padding:4px;background:#fff;min-height:100vh}
+.topbar{display:flex;align-items:center;justify-content:space-between;background:#050505;color:#fff;padding:7px 12px;border-radius:8px 8px 0 0}
+.title{font-weight:1000;letter-spacing:.05em;font-size:clamp(18px,3vw,34px);text-align:center;flex:1;line-height:1}
+.badge{background:#fff;color:#000;border-radius:6px;padding:6px 9px;font-weight:1000;margin-left:8px;font-size:12px}
+.tabs{display:flex;gap:6px;margin:6px 0}.tab{border:1px solid #cdd3dd;background:#fff;border-radius:999px;padding:6px 10px;font-weight:900;color:#445064;cursor:pointer;font-size:12px}.tab.active{background:#111827;color:#fff;border-color:#111827}
+.controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px}.btn{border:0;border-radius:9px;padding:7px 11px;background:#111827;color:#fff;font-weight:1000;cursor:pointer;font-size:12px}.btn.blue{background:var(--blue)}.btn.secondary{background:#fff;color:#111827;border:1px solid #cdd3dd}.btn:disabled{opacity:.45;cursor:not-allowed}.status{font-size:12px;color:var(--muted);font-weight:700}.panel{display:none}.panel.active{display:block}
+.strength-area{display:grid;grid-template-columns:minmax(280px,390px) 1fr;gap:10px;align-items:start}.strength-card,.results-card{border:1px solid #cdd3dd;border-radius:10px;background:#fff;padding:8px;max-height:620px;overflow:auto}.results-card{max-height:620px}.strength-title{font-weight:1000;font-size:13px;margin-bottom:4px}.strength-note{font-size:11px;color:var(--muted);line-height:1.25;margin-bottom:6px}.team-strength{display:grid;grid-template-columns:1fr 58px 64px;gap:5px;align-items:center;border-bottom:1px solid #eef2f7;padding:3px 0;font-size:11px}.team-name{display:flex;align-items:center;gap:6px}.team-strength input[type=number]{width:58px;border:1px solid #cbd5e1;border-radius:6px;padding:3px;font-size:11px;text-align:center}.team-strength label{display:flex;align-items:center;gap:3px;color:#475569;font-size:10px}.sim-table-wrap{margin-top:8px;border:1px solid #e5e7eb;border-radius:8px;overflow:auto;max-height:545px}.sim-table{width:100%;border-collapse:collapse;font-size:10px}.sim-table th{position:sticky;top:0;background:#111827;color:#fff;text-align:right;padding:5px}.sim-table th:first-child,.sim-table td:first-child{text-align:left}.sim-table td{border-top:1px solid #e5e7eb;padding:4px;text-align:right}.sim-table tr:nth-child(even){background:#f8fafc}.mini-select{border:1px solid #cbd5e1;border-radius:8px;padding:6px 8px;font-size:12px;font-weight:800;background:#fff}
+@media(max-width:1050px){.strength-area{grid-template-columns:1fr}.strength-card{max-height:300px}.results-card{max-height:420px}.sim-table-wrap{max-height:350px}}
+.bracket-wrap{position:relative;border:1px solid #cdd3dd;border-radius:10px;background:linear-gradient(#fafafa,#fff);padding:4px;overflow:hidden;width:100%}
+.bracket{width:100%;min-width:0;height:620px;display:grid;grid-template-columns:9.9% 9.3% 9.3% 9.3% 16.4% 9.3% 9.3% 9.3% 9.9%;grid-template-rows:24px repeat(32,17px);column-gap:6px;position:relative}
+.lines-svg{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:1;overflow:visible}.bracket-line{fill:none;stroke:var(--line);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.bracket-line.green{stroke:var(--win);stroke-width:3.5;filter:drop-shadow(0 0 1px rgba(40,182,63,.45))}
+.col-head{font-size:9px;text-transform:uppercase;font-weight:1000;text-align:center;color:#374151;align-self:center;line-height:1;z-index:3}.col-head small{display:block;font-size:7px;color:#6b7280;font-weight:800;margin-top:1px}
+.match-slot{position:relative;z-index:3;align-self:center}.match.active .match-label{color:var(--active)}.match-label{text-align:center;font-size:8px;font-weight:1000;margin-bottom:1px;color:#111827}.team{height:21px;border:1.7px solid #7d8794;border-radius:5px;background:#fff;padding:3px 4px;font-size:clamp(7.5px,.82vw,10.2px);line-height:1;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.team span{overflow:hidden;text-overflow:ellipsis}.team + .team{margin-top:2px}.team.empty{color:#9ca3af;background:#fafafa;border-style:dashed}.team.win{background:var(--win-bg);border-color:var(--win);color:#064e2b;font-weight:1000}.team.lose{background:var(--lose-bg);border-color:var(--lose);color:#8a1f1f;text-decoration:line-through}.team.pending{background:#fff7ed;border-color:var(--active)}.bracket.final-complete .team:not(.champion-team){background:#f1f5f9!important;border-color:#cbd5e1!important;color:#94a3b8!important;text-decoration:none!important;opacity:.58}.bracket.final-complete .team.champion-team{background:var(--win-bg)!important;border-color:var(--win)!important;color:#064e2b!important;font-weight:1000;box-shadow:0 0 0 2px rgba(40,182,63,.16)}.prob{width:38px;border:1px solid #cbd5e1;border-radius:5px;font-size:9px;padding:1px;text-align:center;margin-left:3px;background:#fff;flex:0 0 auto}.finalbox{grid-column:5;grid-row:9 / span 16;align-self:center;text-align:center;padding:3px;z-index:3}.cup{font-size:clamp(42px,6vw,70px);line-height:1}.final-title{font-size:clamp(18px,2.6vw,28px);font-weight:1000;margin:1px 0}.champion-card{border:2px solid #111827;border-radius:8px;background:#fff;padding:6px;margin:6px auto 0;min-height:48px;max-width:210px}.champion-name{font-size:clamp(15px,2vw,22px);font-weight:1000;color:#92400e}.path-card{border:1px solid #e5e7eb;border-radius:9px;background:#fff;margin:6px auto 0;padding:6px;max-width:260px}.path-title{font-weight:1000;font-size:11px;margin-bottom:3px}.pill{display:inline-block;border:1px solid #d6dbe4;background:#f9fafb;border-radius:999px;padding:2px 6px;margin:1px;font-size:10px;font-weight:800}.pill.win{background:var(--win-bg);border-color:var(--win);color:#064e2b}.legend{display:flex;gap:7px;align-items:center;font-size:10px;color:#6b7280;flex-wrap:wrap}.swatch{width:12px;height:9px;border-radius:3px;display:inline-block;border:1px solid #999}.swatch.g{background:var(--win-bg);border-color:var(--win)}.swatch.r{background:var(--lose-bg);border-color:var(--lose)}.swatch.o{background:#fff7ed;border-color:var(--active)}
+@media(max-width:900px){.bracket{height:590px;grid-template-rows:22px repeat(32,16px);column-gap:4px}.team{height:19px;padding:2px 3px}.match-label{font-size:7px}.path-card{display:none}.controls{gap:5px}.status{font-size:11px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar"><div class="title">2026 MEN'S FIFA WORLD CUP</div><div class="badge">SIM</div></div>
+  <div class="tabs"><button class="tab active" data-tab="equal">50/50 bracket</button><button class="tab" data-tab="custom">Custom probabilities</button><button class="tab" data-tab="strength">Team strengths</button></div>
+
+  <section id="equal" class="panel active">
+    <div class="controls">
+      <button class="btn blue" id="eqNext">Simulate next round</button>
+      <button class="btn secondary" id="eqReset">Reset</button>
+      <span class="status" id="eqStatus">Ready: Round of 32. Every match is 50/50.</span>
+      <span class="legend"><span class="swatch o"></span> active round <span class="swatch g"></span> winner <span class="swatch r"></span> loser</span>
+    </div>
+    <div class="bracket-wrap"><div id="eqBracket" class="bracket"></div></div>
+  </section>
+
+  <section id="custom" class="panel">
+    <div class="controls">
+      <button class="btn blue" id="cuNext">Simulate next round</button>
+      <button class="btn secondary" id="cuReset">Reset</button>
+      <span class="status" id="cuStatus">Ready: set probabilities for the active matches. Input is probability that the top team wins.</span>
+      <span class="legend"><span class="swatch o"></span> active round <span class="swatch g"></span> winner <span class="swatch r"></span> loser</span>
+    </div>
+    <div class="bracket-wrap"><div id="cuBracket" class="bracket"></div></div>
+  </section>
+
+  <section id="strength" class="panel">
+    <div class="controls">
+      <button class="btn blue" id="stRun">Simulate tournament</button>
+      <label class="status" for="stNSim">Number of simulations</label>
+      <select id="stNSim" class="mini-select">
+        <option value="1">1</option>
+        <option value="10">10</option>
+        <option value="100">100</option>
+        <option value="1000">1000</option>
+      </select>
+      <button class="btn secondary" id="stReset">Reset results</button>
+      <span class="status" id="stStatus">Default strengths are pre-filled. Edit values or mark teams as Unsure, then simulate.</span>
+    </div>
+    <div class="strength-area">
+      <div class="strength-card">
+        <div class="strength-title">Team strength inputs</div>
+        <div class="strength-note">Default strengths are rough teaching values. Edit any value from 0 to 100. If you choose Unsure, the app treats that team as strength 50.</div>
+        <button class="btn secondary" id="sortStrengths" style="width:100%;margin:0 0 6px 0;padding:6px 8px;font-size:11px;">Sort alphabetically</button>
+        <div id="strengthInputs"></div>
+      </div>
+      <div class="results-card">
+        <div class="strength-title">Simulation summary</div>
+        <div class="strength-note">The table shows how often each team finished at each stage across your chosen number of simulations. Results accumulate each time you simulate. Click reset to return counts to zero.</div>
+        <div class="sim-table-wrap"><table class="sim-table" id="simTable"><thead><tr><th>Team</th><th>Champion</th><th>Runner-up</th><th>Semi-finalist</th><th>Quarterfinalist</th><th>Round of 16</th><th>Round of 32</th></tr></thead><tbody><tr><td colspan="7">Run simulations to see results.</td></tr></tbody></table></div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+const initialR32 = [
+  ['Germany','Paraguay'], ['France','Sweden'], ['South Africa','Canada'], ['Netherlands','Morocco'],
+  ['Portugal','Croatia'], ['Spain','Austria'], ['United States','Bosnia & Herzegovina'], ['Belgium','Senegal'],
+  ['Brazil','Japan'], ['Ivory Coast','Norway'], ['Mexico','Ecuador'], ['England','Congo DR'],
+  ['Argentina','Cabo Verde'], ['Australia','Egypt'], ['Switzerland','Algeria'], ['Colombia','Ghana']
+];
+const roundNames = ['Round of 32','Round of 16','Quarterfinals','Semifinals','Final'];
+const matchNums = {r32:[74,77,73,75,83,84,81,82,76,78,79,80,86,88,85,87],r16:[89,90,93,94,91,92,95,96],qf:[97,98,99,100],sf:[101,102],final:[103]};
+const pos = {r32L:[2,6,10,14,20,24,28,32], r16L:[4,12,22,30], qfL:[8,26], sfL:[17], r32R:[2,6,10,14,20,24,28,32], r16R:[4,12,22,30], qfR:[8,26], sfR:[17]};
+function blankState(){return {step:0, champion:null, matches:{r32:initialR32.map(x=>({teams:[...x],winner:null,loser:null,p:null})), r16:[], qf:[], sf:[], final:[]}, paths:{}};}
+let eq=blankState(), cu=blankState();
+function flip(p=.5){return Math.random()<p?0:1}
+function keyForStep(step){return ['r32','r16','qf','sf','final'][step]}
+function nextKey(key){return {r32:'r16',r16:'qf',qf:'sf',sf:'final',final:null}[key]}
+function buildNext(state,key,winners){const nk=nextKey(key); if(!nk) return; state.matches[nk]=[]; for(let i=0;i<winners.length;i+=2){state.matches[nk].push({teams:[winners[i],winners[i+1]],winner:null,loser:null,p:null});}}
+function simulateRound(state,custom=false,rootId=''){
+  const key=keyForStep(state.step); if(!key || state.champion) return;
+  const winners=[];
+  state.matches[key].forEach((m,i)=>{
+    let p=.5;
+    if(custom){const inp=document.querySelector(`#${rootId} input[data-key='${key}'][data-i='${i}']`); p=Math.min(99,Math.max(1,Number(inp?.value||50)))/100;}
+    const idx=flip(p); const winner=m.teams[idx], loser=m.teams[1-idx];
+    m.winner=winner; m.loser=loser; m.p=p; winners.push(winner);
+    const oldPath=state.paths[winner]||[]; state.paths[winner]=[...oldPath, `beat ${loser}`];
+  });
+  if(key==='final'){state.champion=winners[0];} else {buildNext(state,key,winners); state.step++;}
+}
+function teamRow(t,m,slot,active,custom,key,i,champion=null){
+  let cls='team'; if(!t) cls+=' empty';
+  if(champion && t===champion) cls+=' champion-team win';
+  else if(m?.winner===t) cls+=' win'; else if(m?.loser===t) cls+=' lose'; else if(active&&t) cls+=' pending';
+  let prob='';
+  if(custom&&active&&slot===0&&m?.teams?.[0]&&m?.teams?.[1]&&!champion) prob=`<input class="prob" type="number" min="1" max="99" value="50" data-key="${key}" data-i="${i}" title="Probability top team wins">`;
+  return `<div class="${cls}" data-slot="${slot}" title="${t||''}"><span>${t||'TBD'}</span>${prob}</div>`;
+}
+function matchHtml(m,label,active,custom,key,i,right=false,champion=null){return `<div class="match ${active?'active':''} ${right?'right':''}"><div class="match-label">MATCH ${label}</div>${teamRow(m?.teams?.[0],m,0,active,custom,key,i,champion)}${teamRow(m?.teams?.[1],m,1,active,custom,key,i,champion)}</div>`;}
+function addMatch(html,col,row,m,label,active,custom,key,i,right=false,champion=null){html.push(`<div class="match-slot" data-key="${key}" data-i="${i}" data-side="${right?'R':'L'}" style="grid-column:${col};grid-row:${row} / span 2">${matchHtml(m,label,active,custom,key,i,right,champion)}</div>`);}
+function render(state,rootId,custom=false){
+  let html=[`<svg class="lines-svg" aria-hidden="true"></svg>`];
+  const heads=[['Round of 32','June 28-July 3'],['Round of 16','July 4-7'],['Quarterfinals','July 9-11'],['Semifinals','July 14-15'],['Final','July 19'],['Semifinals','July 14-15'],['Quarterfinals','July 9-11'],['Round of 16','July 4-7'],['Round of 32','June 28-July 3']];
+  heads.forEach((h,idx)=>html.push(`<div class="col-head" style="grid-column:${idx+1};grid-row:1">${h[0]}<small>${h[1]}</small></div>`));
+  const active=keyForStep(state.step);
+  const r32L=state.matches.r32.slice(0,8), r32R=state.matches.r32.slice(8);
+  r32L.forEach((m,i)=>addMatch(html,1,pos.r32L[i],m,matchNums.r32[i],active==='r32',custom,'r32',i,false,state.champion));
+  r32R.forEach((m,i)=>addMatch(html,9,pos.r32R[i],m,matchNums.r32[i+8],active==='r32',custom,'r32',i+8,true,state.champion));
+  state.matches.r16.slice(0,4).forEach((m,i)=>addMatch(html,2,pos.r16L[i],m,matchNums.r16[i],active==='r16',custom,'r16',i,false,state.champion));
+  state.matches.r16.slice(4).forEach((m,i)=>addMatch(html,8,pos.r16R[i],m,matchNums.r16[i+4],active==='r16',custom,'r16',i+4,true,state.champion));
+  state.matches.qf.slice(0,2).forEach((m,i)=>addMatch(html,3,pos.qfL[i],m,matchNums.qf[i],active==='qf',custom,'qf',i,false,state.champion));
+  state.matches.qf.slice(2).forEach((m,i)=>addMatch(html,7,pos.qfR[i],m,matchNums.qf[i+2],active==='qf',custom,'qf',i+2,true,state.champion));
+  state.matches.sf.slice(0,1).forEach((m,i)=>addMatch(html,4,pos.sfL[i],m,matchNums.sf[i],active==='sf',custom,'sf',i,false,state.champion));
+  state.matches.sf.slice(1).forEach((m,i)=>addMatch(html,6,pos.sfR[i],m,matchNums.sf[i+1],active==='sf',custom,'sf',i+1,true,state.champion));
+  const f=state.matches.final[0]||{teams:[null,null]};
+  html.push(`<div class="finalbox"><div class="cup">🏆</div><div class="final-title">FINAL</div><div class="match-slot" data-key="final" data-i="0" data-side="C">${matchHtml(f,103,active==='final',custom,'final',0,false,state.champion)}</div><div class="champion-card"><div class="path-title">Champion</div><div class="champion-name">${state.champion||'—'}</div></div>${pathHtml(state)}</div>`);
+  const root=document.getElementById(rootId); root.classList.toggle('final-complete', !!state.champion); root.innerHTML=html.join('');
+  requestAnimationFrame(()=>drawLines(rootId,state));
+}
+function pathHtml(state){if(!state.champion) return `<div class="path-card"><div class="path-title">Winner path</div><span class="pill">Simulate rounds to reveal the path</span></div>`; const path=state.paths[state.champion]||[]; return `<div class="path-card"><div class="path-title">${state.champion}'s path</div>${path.map(p=>`<span class="pill win">${p}</span>`).join('')}</div>`;}
+function center(el,root){const r=el.getBoundingClientRect(), b=root.getBoundingClientRect(); return {x:r.left-b.left+r.width/2,y:r.top-b.top+r.height/2,left:r.left-b.left,right:r.right-b.left,top:r.top-b.top,bottom:r.bottom-b.top,width:r.width,height:r.height};}
+function pathBetween(a,b,dir){const pad=Math.max(12,Math.abs(b.x-a.x)*0.42); const x1=dir==='R'?a.left:a.right; const y1=a.y; const x2=dir==='R'?b.right:b.left; const y2=b.y; const xm=dir==='R'?Math.min(x1-10,x2+pad):Math.max(x1+10,x2-pad); return `M ${x1} ${y1} H ${xm} V ${y2} H ${x2}`;}
+function pathLeft(a,b){const x1=a.right,y1=a.y,x2=b.left,y2=b.y,xm=(x1+x2)/2; return `M ${x1} ${y1} H ${xm} V ${y2} H ${x2}`;}
+function pathRight(a,b){const x1=a.left,y1=a.y,x2=b.right,y2=b.y,xm=(x1+x2)/2; return `M ${x1} ${y1} H ${xm} V ${y2} H ${x2}`;}
+function slot(root,key,i){return root.querySelector(`.match-slot[data-key="${key}"][data-i="${i}"]`)}
+function targetTeam(root,key,i,slotNum){const s=slot(root,key,i); return s?.querySelector(`.team[data-slot="${slotNum}"]`)}
+function sourcePoint(root,key,i,teamIndex=null){const s=slot(root,key,i); if(!s)return null; if(teamIndex!==null){return s.querySelector(`.team[data-slot="${teamIndex}"]`)} return s.querySelector('.match')||s;}
+function addSvgPath(svg,d,cls){const p=document.createElementNS('http://www.w3.org/2000/svg','path'); p.setAttribute('d',d); p.setAttribute('class',cls); svg.appendChild(p);}
+function drawLines(rootId,state){
+  const root=document.getElementById(rootId); if(!root) return; const svg=root.querySelector('.lines-svg'); if(!svg) return; svg.innerHTML='';
+  svg.setAttribute('viewBox',`0 0 ${root.clientWidth} ${root.clientHeight}`);
+  const pairs=[];
+  const addPairs=(key,next,total,leftCount)=>{for(let i=0;i<total;i++){pairs.push({key,next,i,ti:Math.floor(i/2),ts:i%2,side:i<leftCount?'L':'R'});}}
+  addPairs('r32','r16',16,8); addPairs('r16','qf',8,4); addPairs('qf','sf',4,2); addPairs('sf','final',2,1);
+  // grey bracket lines for all existing/possible slots
+  pairs.forEach(p=>{
+    const srcEl=sourcePoint(root,p.key,p.i), tgtEl=targetTeam(root,p.next,p.ti,p.ts); if(!srcEl||!tgtEl) return;
+    const a=center(srcEl,root), b=center(tgtEl,root); addSvgPath(svg,p.side==='L'?pathLeft(a,b):pathRight(a,b),'bracket-line');
+  });
+  // green winner paths. During the tournament show each round winner; once complete, show only champion path.
+  pairs.forEach(p=>{
+    const m=state.matches[p.key]?.[p.i]; if(!m||!m.winner) return;
+    if(state.champion && m.winner !== state.champion) return;
+    const winIdx=m.teams[0]===m.winner?0:1;
+    const srcEl=sourcePoint(root,p.key,p.i,winIdx), tgtEl=targetTeam(root,p.next,p.ti,p.ts); if(!srcEl||!tgtEl) return;
+    const a=center(srcEl,root), b=center(tgtEl,root); addSvgPath(svg,p.side==='L'?pathLeft(a,b):pathRight(a,b),'bracket-line green');
+  });
+}
+function updateStatus(state,id){const el=document.getElementById(id); if(state.champion){el.textContent=`Champion: ${state.champion}. Reset to simulate a new tournament.`;return;} el.textContent=`Next: ${roundNames[state.step]}. ${state.step===0?'Initial bracket is ready.':'Winners have advanced to the next round.'}`;}
+
+const allTeams = initialR32.flat();
+let st = blankState();
+const defaultStrengthValues = {
+  'Spain': 92,
+  'France': 90,
+  'Argentina': 88,
+  'England': 87,
+  'Brazil': 84,
+  'Germany': 81,
+  'Portugal': 80,
+  'Colombia': 77,
+  'Netherlands': 76,
+  'Belgium': 73,
+  'Morocco': 71,
+  'Croatia': 68,
+  'Norway': 65,
+  'Switzerland': 64,
+  'Senegal': 61,
+  'United States': 58,
+  'Japan': 57,
+  'Mexico': 55,
+  // Bottom 14 teams are intentionally below 50 for the teaching simulation.
+  'Ecuador': 49,
+  'Austria': 47,
+  'Sweden': 45,
+  'Egypt': 43,
+  'Ivory Coast': 41,
+  'Algeria': 39,
+  'Ghana': 36,
+  // Bottom 7 teams are intentionally below 25.
+  'Australia': 24,
+  'Canada': 23,
+  'Paraguay': 22,
+  'Bosnia & Herzegovina': 21,
+  'South Africa': 20,
+  'Congo DR': 18,
+  'Cabo Verde': 16
+};
+let strengthValues = Object.fromEntries(allTeams.map(t=>[t,defaultStrengthValues[t] ?? 50]));
+let unsureValues = Object.fromEntries(allTeams.map(t=>[t,false]));
+let strengthSortMode = 'rating';
+let accumulatedCounts = emptyCounts();
+let totalStrengthSimulations = 0;
+function emptyCounts(){
+  return Object.fromEntries(allTeams.map(t=>[t,{Champion:0,RunnerUp:0,SemiFinalist:0,QuarterFinalist:0,Round16:0,Round32:0}]));
+}
+function addCounts(target, source){
+  allTeams.forEach(t=>{
+    Object.keys(target[t]).forEach(k=>{ target[t][k] += source[t][k]; });
+  });
+}
+function renderStrengthInputs(){
+  const root=document.getElementById('strengthInputs');
+  const teams=[...allTeams].sort((a,b)=>{
+    if(strengthSortMode === 'rating'){
+      return getStrength(b) - getStrength(a) || a.localeCompare(b);
+    }
+    return a.localeCompare(b);
+  });
+  const btn=document.getElementById('sortStrengths');
+  if(btn) btn.textContent = strengthSortMode === 'rating' ? 'Sort alphabetically' : 'Sort by rating';
+  root.innerHTML=teams.map(t=>`<div class="team-strength"><div class="team-name"><strong>${t}</strong></div><input type="number" min="0" max="100" value="${strengthValues[t]}" data-team="${t}" ${unsureValues[t]?'disabled':''}><label><input type="checkbox" data-unsure="${t}" ${unsureValues[t]?'checked':''}> Unsure</label></div>`).join('');
+  root.querySelectorAll('input[type=number]').forEach(inp=>inp.addEventListener('input',()=>{strengthValues[inp.dataset.team]=Math.min(100,Math.max(0,Number(inp.value||0))); if(strengthSortMode==='rating') renderStrengthInputs();}));
+  root.querySelectorAll('input[data-unsure]').forEach(ch=>ch.addEventListener('change',()=>{unsureValues[ch.dataset.unsure]=ch.checked; renderStrengthInputs();}));
+}
+function getStrength(team){return unsureValues[team] ? 50 : Math.min(100,Math.max(0,Number(strengthValues[team] ?? 50)));}
+function strengthWinProb(a,b){
+  const sa=getStrength(a), sb=getStrength(b);
+  if(sa+sb===0) return .5;
+  return sa/(sa+sb);
+}
+function simulateFullStrengthTournament(){
+  const state=blankState();
+  while(!state.champion){
+    const key=keyForStep(state.step);
+    const winners=[];
+    state.matches[key].forEach(m=>{
+      const p=strengthWinProb(m.teams[0],m.teams[1]);
+      const idx=flip(p); const winner=m.teams[idx], loser=m.teams[1-idx];
+      m.winner=winner; m.loser=loser; m.p=p; winners.push(winner);
+      const oldPath=state.paths[winner]||[]; state.paths[winner]=[...oldPath, `beat ${loser}`];
+    });
+    if(key==='final') state.champion=winners[0]; else {buildNext(state,key,winners); state.step++;}
+  }
+  return state;
+}
+function positionCounts(n){
+  const counts=emptyCounts();
+  let last=null;
+  for(let r=0;r<n;r++){
+    const s=simulateFullStrengthTournament(); last=s;
+    const final=s.matches.final[0];
+    counts[final.winner].Champion++;
+    counts[final.loser].RunnerUp++;
+    s.matches.sf.forEach(m=>{ if(m.loser) counts[m.loser].SemiFinalist++; });
+    s.matches.qf.forEach(m=>{ if(m.loser) counts[m.loser].QuarterFinalist++; });
+    s.matches.r16.forEach(m=>{ if(m.loser) counts[m.loser].Round16++; });
+    s.matches.r32.forEach(m=>{ if(m.loser) counts[m.loser].Round32++; });
+  }
+  return {counts,last};
+}
+function renderSimTable(counts){
+  const rows=allTeams.map(t=>({team:t,...counts[t]})).sort((a,b)=>b.Champion-a.Champion || b.RunnerUp-a.RunnerUp || a.team.localeCompare(b.team));
+  const tbody=document.querySelector('#simTable tbody');
+  tbody.innerHTML=rows.map(r=>`<tr><td><span class="team-name"><strong>${r.team}</strong></span></td><td>${r.Champion}</td><td>${r.RunnerUp}</td><td>${r.SemiFinalist}</td><td>${r.QuarterFinalist}</td><td>${r.Round16}</td><td>${r.Round32}</td></tr>`).join('');
+}
+function resetStrengths(){
+  accumulatedCounts = emptyCounts();
+  totalStrengthSimulations = 0;
+  renderSimTable(accumulatedCounts);
+  document.getElementById('stStatus').textContent='Simulation results reset to 0. Strength inputs have been kept.';
+}
+
+function init(){render(eq,'eqBracket',false); render(cu,'cuBracket',true); renderStrengthInputs(); renderSimTable(accumulatedCounts); updateStatus(eq,'eqStatus'); updateStatus(cu,'cuStatus');}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.tab).classList.add('active');setTimeout(()=>{drawLines('eqBracket',eq);drawLines('cuBracket',cu)},50)}));
+document.getElementById('eqNext').addEventListener('click',()=>{simulateRound(eq,false,'eqBracket');render(eq,'eqBracket',false);updateStatus(eq,'eqStatus');if(eq.champion)document.getElementById('eqNext').disabled=true;});
+document.getElementById('eqReset').addEventListener('click',()=>{eq=blankState();document.getElementById('eqNext').disabled=false;init();});
+document.getElementById('cuNext').addEventListener('click',()=>{simulateRound(cu,true,'cuBracket');render(cu,'cuBracket',true);updateStatus(cu,'cuStatus');if(cu.champion)document.getElementById('cuNext').disabled=true;});
+document.getElementById('cuReset').addEventListener('click',()=>{cu=blankState();document.getElementById('cuNext').disabled=false;init();});
+document.getElementById('sortStrengths').addEventListener('click',()=>{strengthSortMode = strengthSortMode === 'rating' ? 'alphabetical' : 'rating'; renderStrengthInputs();});
+document.getElementById('stRun').addEventListener('click',()=>{
+  const n=Number(document.getElementById('stNSim').value);
+  document.getElementById('stStatus').textContent=`Running ${n} simulation${n>1?'s':''}...`;
+  setTimeout(()=>{
+    const res=positionCounts(n);
+    st=res.last;
+    addCounts(accumulatedCounts, res.counts);
+    totalStrengthSimulations += n;
+    renderSimTable(accumulatedCounts);
+    document.getElementById('stStatus').textContent=`Added ${n} simulation${n>1?'s':''}. Total simulations: ${totalStrengthSimulations}. Last simulated champion: ${st.champion}.`;
+  },20);
+});
+document.getElementById('stReset').addEventListener('click',resetStrengths);
+window.addEventListener('resize',()=>{drawLines('eqBracket',eq);drawLines('cuBracket',cu)});
+init();
+</script>
+</body>
+</html>

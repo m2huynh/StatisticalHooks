@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Stolen Laptop</title>
+<style>
+:root{--bg:#f7efe4;--panel:#ffffff;--panel2:#fff8ef;--ink:#172033;--muted:#5f6f85;--line:#ead9c2;--accent:#315d9d;--accent2:#d97706;--guilt:#b91c1c;--innocence:#047857;--soft:#f6f8fb}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}
+.screen{display:none;height:100vh;max-height:640px;padding:8px;overflow:hidden}.screen.active{display:block}
+.intro{height:100%;display:flex;align-items:center;justify-content:center}.intro-card{max-width:860px;background:linear-gradient(180deg,#fffdf9,#fff4e4);border:1px solid var(--line);border-radius:20px;padding:22px 28px;box-shadow:0 14px 36px rgba(92,64,36,.13)}
+h1{margin:0 0 6px;font-size:clamp(1.8rem,3.6vw,3.1rem);line-height:1;letter-spacing:-.06em;color:#111827}h2{margin:0 0 8px;font-size:1rem;letter-spacing:-.03em}h3{margin:0 0 5px;font-size:.84rem;color:#111827}p,li{color:var(--muted);line-height:1.25;font-size:.82rem}.big-copy{font-size:.95rem;max-width:760px}.intro-card ul{margin:6px 0 12px;padding-left:20px}
+.btn{border:0;border-radius:11px;padding:9px 13px;font-size:.82rem;font-weight:850;cursor:pointer;color:white;background:var(--accent);transition:transform .08s ease,opacity .2s ease}.btn:hover{transform:translateY(-1px)}.btn:disabled{opacity:.42;cursor:not-allowed;transform:none}.btn-secondary{background:#f8fafc;color:#1f2937;border:1px solid #334155}
+.trial-layout{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:8px;max-width:1060px;margin:0 auto;height:calc(100vh - 16px);max-height:624px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:10px;overflow:hidden;box-shadow:0 8px 22px rgba(92,64,36,.08)}
+.topline{display:flex;justify-content:space-between;align-items:center;gap:6px;margin-bottom:7px}.pill{display:inline-flex;align-items:center;gap:5px;background:#f8fafc;border:1px solid #d6dee8;padding:5px 8px;border-radius:999px;font-weight:850;font-size:.68rem;color:#334155}.pill.prosecution{color:#991b1b;border-color:#fecaca;background:#fff1f2}.pill.defence{color:#065f46;border-color:#bbf7d0;background:#ecfdf5}
+.evidence-card{background:var(--panel2);border:1px solid var(--line);border-radius:15px;padding:10px;margin-bottom:8px}.evidence-heading{display:flex;align-items:center;gap:8px;margin-bottom:4px}.evidence-icon{width:34px;height:34px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;background:#fff;border:1px solid var(--line)}.evidence-title{font-size:1.03rem;font-weight:950;letter-spacing:-.04em;margin-bottom:0;color:#111827}
+.judge-box{background:#fff;border:1px solid var(--line);border-radius:15px;padding:10px;margin-top:8px}.slider-wrap{margin:8px 0 4px}.slider-labels{display:flex;justify-content:space-between;color:var(--muted);font-size:.62rem;margin-top:3px}.slider-value{font-size:1.12rem;font-weight:950;letter-spacing:-.05em;text-align:center;margin:3px 0;color:#111827}.slider-value .green{color:var(--guilt)}.slider-value .red{color:var(--innocence)}input[type=range]{width:100%;accent-color:var(--accent2);cursor:pointer}.actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.formula-lite{display:grid;grid-template-columns:1fr 22px 1fr;gap:6px;align-items:center;margin-top:8px}.mini-stat{background:var(--soft);border:1px solid #e2e8f0;border-radius:11px;padding:7px;text-align:center}.mini-stat .label{color:var(--muted);font-size:.62rem}.mini-stat .value{font-weight:950;font-size:.86rem;margin-top:1px}.plus{font-weight:900;color:var(--accent2);text-align:center}.right-scroll{height:100%;overflow:hidden;padding-right:0}
+.plot-card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:8px;margin-bottom:7px}.plot-card canvas{width:100%;height:104px;display:block;background:#fffdf8;border-radius:11px;border:1px solid #eee1cf}.plot-header{display:flex;justify-content:space-between;align-items:baseline;gap:6px;margin-bottom:4px}.plot-header span{color:var(--muted);font-size:.66rem}.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:7px}.stat{background:var(--soft);border:1px solid #e2e8f0;border-radius:11px;padding:6px}.stat .label{color:var(--muted);font-size:.58rem}.stat .value{font-weight:950;font-size:.82rem;margin-top:1px;color:#111827}.history{width:100%;border-collapse:collapse;font-size:.60rem}.history th,.history td{border-bottom:1px solid #e2e8f0;padding:3px 3px;text-align:left;vertical-align:top}.history th{color:#334155;font-size:.53rem;text-transform:uppercase;letter-spacing:.04em}.history td{color:var(--muted)}.history .num{text-align:right;color:#111827}.muted{color:var(--muted)}.hidden{display:none!important}.final-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:13px;padding:8px;margin-top:8px}.footer-note{color:#7c8798;font-size:.68rem;margin-top:5px}
+.final-layout{display:grid;grid-template-columns:minmax(0,1.48fr) minmax(230px,.52fr);gap:7px;max-width:1060px;margin:0 auto;height:calc(100vh - 16px);max-height:624px}.final-panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:8px;overflow:hidden;box-shadow:0 8px 22px rgba(92,64,36,.08)}.final-panel h1{font-size:clamp(1.35rem,2.45vw,2.15rem)!important;margin-bottom:3px!important;line-height:.98}.final-panel h2{font-size:.82rem;margin-bottom:6px}.final-panel h3{font-size:.70rem;margin-bottom:4px}.final-panel p{font-size:.68rem;line-height:1.16}.final-panel .big-copy{font-size:.72rem;line-height:1.14;max-width:520px}.ridge-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:7px}.ridge-card canvas{width:100%;height:386px;display:block;background:#fffdf8;border-radius:10px;border:1px solid #eee1cf}.final-summary{background:#fff7ed;border:1px solid #fed7aa;border-radius:14px;padding:8px;margin-bottom:7px}.final-summary .big{font-size:1.12rem;font-weight:950;letter-spacing:-.05em;color:#b45309;margin-top:1px}.dist-list{display:flex;flex-direction:column;gap:4px;max-height:395px;overflow:hidden}.dist-item{display:grid;grid-template-columns:1fr auto;gap:5px;align-items:center;background:var(--soft);border:1px solid #e2e8f0;border-radius:10px;padding:5px}.dist-item.final{border-color:#f59e0b;background:#fffbeb}.dist-title{font-weight:900;font-size:.62rem;line-height:1.03}.dist-meta{color:var(--muted);font-size:.50rem;margin-top:0}.mean-pill{font-weight:950;color:#111827;background:#fff;border:1px solid #d6dee8;border-radius:999px;padding:3px 5px;font-size:.54rem}.final-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+@media(max-width:700px){html,body{overflow:auto}.screen{height:auto;max-height:none;overflow:visible}.trial-layout,.final-layout{grid-template-columns:1fr;height:auto;max-height:none}.right-scroll{height:auto}.ridge-card canvas{height:380px}.plot-card canvas{height:130px}.stats-grid{grid-template-columns:1fr}.formula-lite{grid-template-columns:1fr}.plus{display:none}}
+</style>
+</head>
+<body>
+<section id="introScreen" class="screen active">
+  <div class="intro">
+    <div class="intro-card">
+      <h1>The Stolen Laptop</h1>
+      <p class="big-copy">You are the judge in a Bayesian courtroom. Minh is on trial for stealing a laptop from a university study room.</p>
+      <p>Before hearing any evidence, you start with a flat prior:</p>
+      <p><strong>Beta(1, 1)</strong></p>
+      <p>Across eight rounds, the prosecution and defence take turns presenting evidence. Your job is to rate how strongly each piece of evidence points toward guilt.</p>
+      <ul>
+        <li>Move the slider from 0 to 10.</li>
+        <li>0 means the evidence strongly favours innocence.</li>
+        <li>5 means the evidence is neutral.</li>
+        <li>10 means the evidence strongly favours guilt.</li>
+      </ul>
+      <p>The app treats your rating as binomial-style evidence and updates the posterior distribution. The posterior then becomes the prior for the next round.</p>
+      <button class="btn" id="startBtn">Start trial</button>
+    </div>
+  </div>
+</section>
+
+<section id="trialScreen" class="screen">
+  <div class="trial-layout">
+    <div class="panel">
+      <div class="topline">
+        <div class="pill" id="roundPill">Round 1 - Prosecution</div>
+        <div class="pill prosecution" id="sidePill">Prosecution</div>
+      </div>
+      <div class="evidence-card">
+        <div class="evidence-heading">
+          <div class="evidence-icon" id="evidenceIcon" aria-hidden="true">👁️</div>
+          <div class="evidence-title" id="evidenceTitle">Evidence title</div>
+        </div>
+        <p id="evidenceText">Evidence text.</p>
+        <p class="footer-note" id="evidencePrompt">Rate the strength and direction of this evidence.</p>
+      </div>
+      <div class="judge-box">
+        <h2>Your judgement</h2>
+        <p>After hearing this evidence, how strongly does it point toward guilt?</p>
+        <div class="slider-wrap">
+          <input id="evidenceSlider" type="range" min="0" max="10" step="1" value="5" />
+          <div class="slider-labels"><span>strongly favours innocence</span><span>neutral</span><span>strongly favours guilt</span></div>
+        </div>
+        <div class="slider-value">Evidence score: <span class="green" id="evidenceScore">5</span>/10</div>
+        <p class="footer-note" id="scoreInterpretation">Neutral evidence.</p>
+        <div class="formula-lite">
+          <div class="mini-stat"><div class="label">Current prior</div><div class="value" id="priorFormula">Beta(1, 1)</div></div>
+          <div class="plus">+</div>
+          <div class="mini-stat"><div class="label">Your rating</div><div class="value" id="dataFormula">5/10 toward guilt</div></div>
+        </div>
+        <div class="actions">
+          <button class="btn" id="updateBtn">Update belief</button>
+          <button class="btn btn-secondary" id="nextBtn" disabled>Next evidence</button>
+          <button class="btn btn-secondary" id="resetBtn">Restart</button>
+        </div>
+      </div>
+      <div class="final-box hidden" id="finalBox">
+        <h2>Trial complete</h2>
+        <p id="finalText">Final posterior shown on the right.</p>
+      </div>
+    </div>
+
+    <div class="panel right-scroll">
+      <div class="stats-grid">
+        <div class="stat"><div class="label">Prior mean</div><div class="value" id="priorMean">0.500</div></div>
+        <div class="stat"><div class="label">Posterior mean</div><div class="value" id="posteriorMean">-</div></div>
+        <div class="stat"><div class="label">Current posterior</div><div class="value" id="posteriorFormula">-</div></div>
+      </div>
+      <div class="plot-card">
+        <div class="plot-header"><h3>Prior distribution</h3><span id="priorPlotLabel">Beta(1, 1)</span></div>
+        <canvas id="priorCanvas" width="720" height="300"></canvas>
+      </div>
+      <div class="plot-card">
+        <div class="plot-header"><h3>Posterior distribution</h3><span id="posteriorPlotLabel">Update not yet made</span></div>
+        <canvas id="posteriorCanvas" width="720" height="300"></canvas>
+      </div>
+      <div class="plot-card">
+        <div class="plot-header"><h3>Update history</h3><span>posterior becomes next prior</span></div>
+        <table class="history">
+          <thead><tr><th>Round</th><th>Side</th><th>Evidence</th><th class="num">Rating</th><th class="num">Posterior</th><th class="num">Mean</th></tr></thead>
+          <tbody id="historyBody"><tr><td colspan="6" class="muted">No evidence has been updated yet.</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="finalScreen" class="screen">
+  <div class="final-layout">
+    <div class="final-panel">
+      <div class="topline">
+        <div>
+          <h1>Final judgement</h1>
+          <p class="big-copy">The ridge plot shows how the distribution for Minh's probability of guilt changed after each piece of evidence. The final posterior is shown at the front.</p>
+        </div>
+        <div class="pill" id="finalBetaPill">Beta(-, -)</div>
+      </div>
+      <div class="ridge-card">
+        <div class="plot-header"><h3>Prior to posterior: distribution changes</h3><span>final posterior at the front</span></div>
+        <canvas id="ridgeCanvas" width="980" height="720"></canvas>
+      </div>
+      <div class="final-actions">
+        <button class="btn" id="playAgainBtn">Play again</button>
+        <button class="btn btn-secondary" id="backToTrialBtn">Back to trial screen</button>
+      </div>
+    </div>
+    <div class="final-panel">
+      <div class="final-summary">
+        <div class="muted">Final posterior mean</div>
+        <div class="big" id="finalMeanBig">-</div>
+        <p id="finalSummaryText">-</p>
+      </div>
+      <h2>Distribution summary</h2>
+      <p>Each row follows the same order as the ridge plot: initial prior through to final posterior.</p>
+      <div class="dist-list" id="distributionList"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+const rounds = [
+  {
+    side:'Prosecution',
+    icon:'👁️',
+    title:'Witness identification',
+    text:'A witness says they saw someone who looked like Minh near the study room around the time the laptop disappeared.'
+  },
+  {
+    side:'Defence',
+    icon:'🌫️',
+    title:'Crowded hallway',
+    text:'The defence argues that the hallway was crowded and poorly lit, so the witness identification may be unreliable.'
+  },
+  {
+    side:'Prosecution',
+    icon:'💻',
+    title:'University account activity',
+    text:'Computer logs show activity from Minh\'s university account close to the time the laptop disappeared.'
+  },
+  {
+    side:'Defence',
+    icon:'🖥️',
+    title:'Shared computer',
+    text:'The defence argues that the computer was shared and account records may not reliably identify who was actually using it.'
+  },
+  {
+    side:'Prosecution',
+    icon:'💬',
+    title:'Message to a friend',
+    text:'The prosecution shows a message Minh sent to a friend saying, “I know where the laptop is.”'
+  },
+  {
+    side:'Defence',
+    icon:'🤐',
+    title:'No comment',
+    text:'The defence has no comment on this evidence.'
+  },
+  {
+    side:'Prosecution',
+    icon:'🧬',
+    title:'Fingerprint evidence',
+    text:'Finally, forensic investigators report that Minh\'s fingerprints were found on several parts of the stolen laptop.'
+  },
+  {
+    side:'Defence',
+    icon:'🎒',
+    title:'Common access explanation',
+    text:'The defence argues that this is a laptop students could access all semester. It is not surprising that Minh\'s fingerprints are on it.'
+  }
+];
+
+let alpha = 1, beta = 1, roundIndex = 0, updatedThisRound = false, history = [];
+const startBtn = document.getElementById('startBtn');
+const introScreen = document.getElementById('introScreen');
+const trialScreen = document.getElementById('trialScreen');
+const finalScreen = document.getElementById('finalScreen');
+const slider = document.getElementById('evidenceSlider');
+const updateBtn = document.getElementById('updateBtn');
+const nextBtn = document.getElementById('nextBtn');
+const resetBtn = document.getElementById('resetBtn');
+const playAgainBtn = document.getElementById('playAgainBtn');
+const backToTrialBtn = document.getElementById('backToTrialBtn');
+
+function betaMean(a,b){ return a/(a+b); }
+function logGamma(z){
+  const g = 7;
+  const p = [0.99999999999980993,676.5203681218851,-1259.1392167224028,771.32342877765313,-176.61502916214059,12.507343278686905,-0.13857109526572012,9.9843695780195716e-6,1.5056327351493116e-7];
+  if(z < 0.5) return Math.log(Math.PI) - Math.log(Math.sin(Math.PI*z)) - logGamma(1-z);
+  z -= 1;
+  let x = p[0];
+  for(let i=1;i<g+2;i++) x += p[i]/(z+i);
+  let t = z + g + 0.5;
+  return 0.5*Math.log(2*Math.PI) + (z+0.5)*Math.log(t) - t + Math.log(x);
+}
+function betaPdf(x,a,b){
+  if(x <= 0 || x >= 1) {
+    if(a === 1 && b === 1) return 1;
+    return 0;
+  }
+  const logB = logGamma(a) + logGamma(b) - logGamma(a+b);
+  return Math.exp((a-1)*Math.log(x) + (b-1)*Math.log(1-x) - logB);
+}
+function drawBeta(canvasId,a,b,highlightMean=true){
+  const canvas = document.getElementById(canvasId);
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle = '#fffdf8'; ctx.fillRect(0,0,W,H);
+  const padL=48,padR=18,padT=22,padB=42;
+  const xs = Array.from({length:250},(_,i)=>0.001 + i*(0.998/249));
+  const ys = xs.map(x=>betaPdf(x,a,b));
+  const yMax = Math.max(1.05, ...ys)*1.08;
+  ctx.strokeStyle = '#e7dccb'; ctx.lineWidth = 1;
+  for(let i=0;i<=5;i++){
+    const x = padL + i*(W-padL-padR)/5;
+    ctx.beginPath(); ctx.moveTo(x,padT); ctx.lineTo(x,H-padB); ctx.stroke();
+    ctx.fillStyle='#64748b'; ctx.font='13px system-ui'; ctx.textAlign='center';
+    ctx.fillText((i/5).toFixed(1),x,H-16);
+  }
+  for(let i=0;i<=3;i++){
+    const y = padT + i*(H-padT-padB)/3;
+    ctx.beginPath(); ctx.moveTo(padL,y); ctx.lineTo(W-padR,y); ctx.stroke();
+  }
+  ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 3;
+  ctx.beginPath();
+  xs.forEach((x,i)=>{
+    const px = padL + x*(W-padL-padR);
+    const py = H-padB - (ys[i]/yMax)*(H-padT-padB);
+    if(i===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+  });
+  ctx.stroke();
+  ctx.fillStyle='#334155'; ctx.font='13px system-ui'; ctx.textAlign='center';
+  ctx.fillText('probability Minh is guilty', W/2, H-2);
+  ctx.save(); ctx.translate(14,H/2); ctx.rotate(-Math.PI/2); ctx.fillText('density',0,0); ctx.restore();
+  if(highlightMean){
+    const m = betaMean(a,b);
+    const mx = padL + m*(W-padL-padR);
+    ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 2; ctx.setLineDash([6,6]);
+    ctx.beginPath(); ctx.moveTo(mx,padT); ctx.lineTo(mx,H-padB); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle='#f59e0b'; ctx.font='bold 13px system-ui'; ctx.textAlign='left';
+    ctx.fillText('mean = '+m.toFixed(3), Math.min(mx+8,W-110), padT+18);
+  }
+}
+function clearCanvas(canvasId, message){
+  const c=document.getElementById(canvasId), ctx=c.getContext('2d');
+  ctx.clearRect(0,0,c.width,c.height); ctx.fillStyle='#fffdf8'; ctx.fillRect(0,0,c.width,c.height);
+  ctx.fillStyle='#64748b'; ctx.font='18px system-ui'; ctx.textAlign='center'; ctx.fillText(message,c.width/2,c.height/2);
+}
+function evidenceLabel(x){
+  if(x <= 1) return 'Strongly favours innocence.';
+  if(x <= 4) return 'Slightly favours innocence.';
+  if(x === 5) return 'Neutral evidence.';
+  if(x <= 8) return 'Favours guilt.';
+  return 'Strongly favours guilt.';
+}
+function updateChecks(){
+  const x = Number(slider.value);
+  document.getElementById('evidenceScore').textContent=x;
+  document.getElementById('dataFormula').textContent=`${x}/10 toward guilt`;
+  document.getElementById('scoreInterpretation').textContent=evidenceLabel(x);
+}
+function renderRound(){
+  const r=rounds[roundIndex];
+  document.getElementById('roundPill').textContent=`Round ${Math.floor(roundIndex / 2) + 1} - ${r.side}`;
+  const sidePill=document.getElementById('sidePill'); sidePill.textContent=r.side; sidePill.className='pill '+(r.side==='Prosecution'?'prosecution':'defence');
+  document.getElementById('evidenceIcon').textContent=r.icon || '⚖️';
+  document.getElementById('evidenceTitle').textContent=r.title;
+  document.getElementById('evidenceText').textContent=r.text;
+  document.getElementById('priorFormula').textContent=`Beta(${alpha}, ${beta})`;
+  document.getElementById('priorMean').textContent=betaMean(alpha,beta).toFixed(3);
+  document.getElementById('posteriorMean').textContent='-';
+  document.getElementById('posteriorFormula').textContent='-';
+  document.getElementById('priorPlotLabel').textContent=`Beta(${alpha}, ${beta})`;
+  document.getElementById('posteriorPlotLabel').textContent='Update not yet made';
+  slider.value=5; updatedThisRound=false; updateChecks();
+  updateBtn.disabled=false; nextBtn.disabled=true;
+  drawBeta('priorCanvas',alpha,beta,true); clearCanvas('posteriorCanvas','Posterior appears after you update');
+}
+function renderHistory(){
+  const body=document.getElementById('historyBody'); body.innerHTML='';
+  if(history.length===0){ body.innerHTML='<tr><td colspan="6" class="muted">No evidence has been updated yet.</td></tr>'; return; }
+  history.forEach(h=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${h.round}</td><td>${h.side}</td><td>${h.title}</td><td class="num">${h.x}/10</td><td class="num">Beta(${h.postA}, ${h.postB})</td><td class="num">${h.mean.toFixed(3)}</td>`;
+    body.appendChild(tr);
+  });
+}
+function updateBelief(){
+  if(updatedThisRound) return;
+  const x=Number(slider.value); const priorA=alpha, priorB=beta;
+  const postA=alpha+x; const postB=beta+(10-x);
+  alpha=postA; beta=postB; updatedThisRound=true;
+  history.push({round:`Round ${Math.floor(roundIndex / 2) + 1}`,side:rounds[roundIndex].side,title:rounds[roundIndex].title,x,priorA,priorB,postA,postB,mean:betaMean(postA,postB)});
+  document.getElementById('posteriorMean').textContent=betaMean(postA,postB).toFixed(3);
+  document.getElementById('posteriorFormula').textContent=`Beta(${postA}, ${postB})`;
+  document.getElementById('posteriorPlotLabel').textContent=`Beta(${postA}, ${postB})`;
+  drawBeta('posteriorCanvas',postA,postB,true); renderHistory();
+  updateBtn.disabled=true; nextBtn.disabled=false;
+  if(roundIndex===rounds.length-1){ nextBtn.textContent='Finish trial'; }
+}
+
+function getDistributionHistory(){
+  const out = [{label:'Initial prior', shortLabel:'Prior', a:1, b:1, mean:betaMean(1,1), isFinal:false}];
+  history.forEach(h=>{
+    out.push({
+      label:`${h.round} - ${h.side}`,
+      shortLabel:`${h.round.replace('Round ','R')} ${h.side[0]}`,
+      a:h.postA,
+      b:h.postB,
+      mean:h.mean,
+      isFinal:false
+    });
+  });
+  if(out.length>0) out[out.length-1].isFinal = true;
+  return out;
+}
+function drawRidgePlot(){
+  const canvas = document.getElementById('ridgeCanvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle = '#fffdf8'; ctx.fillRect(0,0,W,H);
+  const padL=78,padR=26,padT=36,padB=56;
+  const distributions = getDistributionHistory(); // chronological: prior at top, final posterior at front/bottom
+  const xs = Array.from({length:260},(_,i)=>0.001 + i*(0.998/259));
+  let globalMax = 1;
+  const curves = distributions.map((d)=>{
+    const ys = xs.map(x=>betaPdf(x,d.a,d.b));
+    globalMax = Math.max(globalMax, ...ys);
+    return {...d, ys};
+  });
+  // axes/grid
+  ctx.strokeStyle='#e7dccb'; ctx.lineWidth=1;
+  for(let i=0;i<=5;i++){
+    const x=padL+i*(W-padL-padR)/5;
+    ctx.beginPath();ctx.moveTo(x,padT);ctx.lineTo(x,H-padB);ctx.stroke();
+    ctx.fillStyle='#64748b';ctx.font='14px system-ui';ctx.textAlign='center';
+    ctx.fillText((i/5).toFixed(1),x,H-22);
+  }
+  ctx.fillStyle='#334155';ctx.font='14px system-ui';ctx.textAlign='center';
+  ctx.fillText('probability Minh is guilty', W/2, H-4);
+  const n = curves.length;
+  const usableH = H-padT-padB;
+  const gap = usableH / Math.max(n, 1);
+  const amp = Math.min(gap*1.55, 95);
+  const fills = ['rgba(245,158,11,.82)','rgba(37,99,235,.28)','rgba(5,150,105,.25)','rgba(100,116,139,.20)','rgba(124,58,237,.22)','rgba(219,39,119,.20)','rgba(234,88,12,.20)','rgba(59,130,246,.18)','rgba(148,163,184,.18)'];
+  curves.forEach((d,idx)=>{
+    const baseline = padT + gap*(idx+0.82);
+    // baseline
+    ctx.strokeStyle='rgba(100,116,139,.22)'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(padL,baseline); ctx.lineTo(W-padR,baseline); ctx.stroke();
+    // filled ridge polygon
+    ctx.beginPath();
+    ctx.moveTo(padL, baseline);
+    xs.forEach((x,i)=>{
+      const px = padL + x*(W-padL-padR);
+      const py = baseline - (d.ys[i]/globalMax)*amp;
+      ctx.lineTo(px,py);
+    });
+    ctx.lineTo(W-padR, baseline);
+    ctx.closePath();
+    ctx.fillStyle = d.isFinal ? 'rgba(245,158,11,.82)' : fills[(idx + 1) % fills.length];
+    ctx.fill();
+    ctx.strokeStyle = d.isFinal ? '#f59e0b' : 'rgba(51,65,85,.72)';
+    ctx.lineWidth = d.isFinal ? 3 : 1.8;
+    ctx.beginPath();
+    xs.forEach((x,i)=>{
+      const px = padL + x*(W-padL-padR);
+      const py = baseline - (d.ys[i]/globalMax)*amp;
+      if(i===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+    });
+    ctx.stroke();
+    // mean line for each ridge
+    const mx = padL + d.mean*(W-padL-padR);
+    ctx.strokeStyle = d.isFinal ? '#f59e0b' : 'rgba(245,158,11,.55)';
+    ctx.lineWidth = d.isFinal ? 2 : 1;
+    ctx.setLineDash([4,5]);
+    ctx.beginPath(); ctx.moveTo(mx,baseline-amp*.9); ctx.lineTo(mx,baseline+4); ctx.stroke(); ctx.setLineDash([]);
+    // label
+    ctx.fillStyle = d.isFinal ? '#f59e0b' : '#334155';
+    ctx.font = d.isFinal ? 'bold 14px system-ui' : '13px system-ui';
+    ctx.textAlign='right';
+    ctx.fillText(d.shortLabel, padL-10, baseline-4);
+  });
+  ctx.fillStyle='#64748b';ctx.font='13px system-ui';ctx.textAlign='left';
+  ctx.fillText('prior at top, final posterior at front', padL, padT-12);
+}
+function renderFinalScreen(){
+  const dist = getDistributionHistory();
+  const finalD = dist[dist.length-1];
+  document.getElementById('finalBetaPill').textContent = `Final: Beta(${finalD.a}, ${finalD.b})`;
+  document.getElementById('finalMeanBig').textContent = finalD.mean.toFixed(3);
+  document.getElementById('finalSummaryText').textContent = `After all evidence, the posterior is Beta(${finalD.a}, ${finalD.b}). This means the posterior mean probability of guilt is ${finalD.mean.toFixed(3)}.`;
+  const list = document.getElementById('distributionList');
+  list.innerHTML = '';
+  dist.forEach(d=>{
+    const item = document.createElement('div');
+    item.className = 'dist-item' + (d.isFinal ? ' final' : '');
+    item.innerHTML = `<div><div class="dist-title">${d.isFinal ? 'Final posterior' : d.label}</div><div class="dist-meta">Beta(${d.a}, ${d.b})</div></div><div class="mean-pill">mean ${d.mean.toFixed(3)}</div>`;
+    list.appendChild(item);
+  });
+  drawRidgePlot();
+}
+function showFinalScreen(){
+  trialScreen.classList.remove('active');
+  finalScreen.classList.add('active');
+  renderFinalScreen();
+}
+
+function nextRound(){
+  if(!updatedThisRound) return;
+  if(roundIndex < rounds.length-1){
+    roundIndex++; nextBtn.textContent='Next evidence'; renderRound(); renderHistory();
+  } else {
+    document.getElementById('finalBox').classList.remove('hidden');
+    document.getElementById('finalText').textContent=`The final posterior is Beta(${alpha}, ${beta}), with posterior mean ${betaMean(alpha,beta).toFixed(3)}.`;
+    updateBtn.disabled=true; nextBtn.disabled=true; slider.disabled=true;
+    showFinalScreen();
+  }
+}
+function reset(){ alpha=1; beta=1; roundIndex=0; updatedThisRound=false; history=[]; slider.disabled=false; document.getElementById('finalBox').classList.add('hidden'); nextBtn.textContent='Next evidence'; finalScreen.classList.remove('active'); trialScreen.classList.add('active'); renderRound(); renderHistory(); }
+
+startBtn.addEventListener('click',()=>{introScreen.classList.remove('active'); trialScreen.classList.add('active'); reset();});
+slider.addEventListener('input',updateChecks);
+updateBtn.addEventListener('click',updateBelief);
+nextBtn.addEventListener('click',nextRound);
+resetBtn.addEventListener('click',reset);
+playAgainBtn.addEventListener('click',()=>{ finalScreen.classList.remove('active'); trialScreen.classList.add('active'); reset(); });
+backToTrialBtn.addEventListener('click',()=>{ finalScreen.classList.remove('active'); trialScreen.classList.add('active'); });
+renderHistory();
+</script>
+</body>
+</html>

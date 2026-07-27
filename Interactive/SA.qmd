@@ -1,0 +1,51 @@
+---
+title: "The Life Ledger"
+format: html
+---
+::: tag-list
+[Survival Analysis]{.tag} [Hazard Function]{.tag} [Survival Curve]{.tag} [Competing Risks]{.tag}
+:::
+
+## About
+
+This app turns survival analysis into a life-simulation game. Students first choose between two difficulty settings — **Standard Mode**, representing a well-resourced setting with strong healthcare, education, and social safety nets, or **Hard Mode**, representing a low-resource setting where the same choices carry far more risk — before allocating a fixed budget of points across five life traits: Health, Fitness, Intelligence, Discipline, and Social. These shape three emergent traits (Vitality, Happiness, Risk) that students don't control directly. From there, students simulate their character year by year, watching age-appropriate life events unfold — school, then work or study, with a chance of marriage and kids along the way (weighted by Social and Happiness) — while a hazard function recalculates their odds of death every year from natural ageing risk, accident risk, and freak-chance risk. Every decade guarantees two positive events (shown in green) and two negative events (shown in red), with negative events escalating to hospitalizations or mental-health crises if Health or Social drop too low — and those, in turn, substantially raise the character's ongoing risk of death. 
+
+At the end of each life, students get a comparable **Life Score** and a short written summary of how that life went. The two modes are calibrated very differently: in Standard Mode, dying before 60 is engineered to be extremely rare (under a 1-in-1000 chance for a typically-played character), while in Hard Mode it's far more common and much more sensitive to neglecting Health and Fitness early on — making the two modes a natural pair to compare side by side.
+
+## App
+
+Below is an example of what the app looks like when embeded into a Quarto document.
+
+```{=html}
+<iframe
+  src="Apps/Life.html"
+  width="100%"
+  height="640"
+  style="border: none;"
+></iframe>
+```
+
+## Download
+
+You can download the app directly using the link below. This should open as a standalone app that can open on any device. You can also wrap this around a `=html` code chunk in your Quarto document to achieve a similar effect to what is seen above.
+
+<center>
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(downloadthis)
+download_file(
+  path = "Apps/Life.html",
+  button_label = "The Life Ledger",
+  button_type = 'success'
+)
+```
+</center>
+
+## General questions
+
+- Before playing, which mode did you expect to feel harder — and once you played both, was the *actual* difference bigger or smaller than you expected?
+- In Standard Mode, dying before 60 is supposed to happen in fewer than 1 in 1000 playthroughs. Did that match your experience — and if you did die young in Standard Mode, what led to it?
+- Two students could allocate their points identically in Hard Mode and still end up with very different outcomes — one dies at 40, one lives to 90. What does that tell you about the difference between a *probability* of survival and a *guarantee* of survival?
+- Marriage and kids are random events weighted by Social and Happiness, not guaranteed outcomes. Did your character marry or have kids? If not, what do you think held that back?
+- Look at your final Life Score. What does it actually reward — longevity, well-rounded stats, life events, or some mix? Do you think it's measuring the "right" things, or would you weight it differently?
+- If you ran the *same* trait allocation through Hard Mode ten times, would you expect wildly different outcomes each time, or fairly similar ones? What does that suggest about how much of a life's length is "luck" versus "choices" in this model?
+- Compare your Standard Mode life summary to your Hard Mode one side by side. Beyond just the age at death, what else changed about the *shape* of the two lives?

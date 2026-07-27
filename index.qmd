@@ -1,0 +1,152 @@
+---
+title: "About"
+---
+
+## Welcome to Statistical Hooks
+
+This site is a collection of statistical **hooks** - quick, memorable ways to open a topic, grab attention, and make an abstract concept feel concrete before you dive into the technical details. The idea is simple: 
+
+- if you can hook students' curiosity early, you can hold their attention longer once the harder explanations start.
+- They also work well as a reset: a way to re-energise the room after wrapping up a dense topic, before moving on to the next.
+
+The resource is currently split into two main sections, with a third on the way.
+
+**Demonstration Hooks** are designed for larger classes, like lectures, where the instructor leads the activity (think a card trick, a rigged coin flip, or a jar of lollies passed around the room). These work well as a live, front-of-room demonstration: you're doing the trick, and the class is watching, guessing, and reacting together. They're a great way to open a lecture or transition between topics without needing every student to have a device in hand.
+
+**Interactive Hooks** flip the above dynamic. Students engage directly with an app or activity themselves, often game-like in nature. These can still work in a lecture setting, but I've mostly used them in smaller classes, like tutorials, where everyone can get hands-on. Many include a built-in scoring system, and students genuinely respond to that competitive edge — it's a small addition that adds a surprising amount of engagement.
+
+A third section, **Stories**, is coming soon — a collection of interesting real-world stories you can bring into class to illustrate statistical ideas in action.
+
+Below is quick summary table of the hooks and the area (topic) where they could be used:
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+library(gt)
+library(dplyr)
+library(stringr)
+library(purrr)
+
+tbl <- data.frame(
+  Type = c(
+    rep("Demonstration", 14),
+    rep("Interactive", 12)
+  ),
+  
+  Hook = c(
+    "Jar of Lollies",
+    "Bad Graphs Gallery",
+    "Class Polls",
+    "Lady Tasting Tea",
+    "Four Aces",
+    "Loaded Dices",
+    "Stacked Deck",
+    "Heads every time",
+    "Psychopath Test",
+    "Heart Rates",
+    "Contagious Yawns",
+    "Skittle Science",
+    "Movie Posters",
+    "Find your cluster",
+    
+    "The Witness Test",
+    "Monty Hall",
+    "Rock Paper Scissors",
+    "10 Second Challenge",
+    "Surveyor Builder",
+    "Stack Game",
+    "Color Game",
+    "World Cup Simulator",
+    "The Stolen Laptop",
+    "Should We Launch It?",
+    "The Life Ledger",
+    "Box Office Model Builder"
+  ),
+  
+  Topics = c(
+    "Descriptive Statistics, Sampling, Estimation, Wisdom-of-Crowds",
+    "Data Visualisation, Misleading Graphs, Critical Thinking",
+    "Confidence Intervals, Sampling, Proportions, Live Data",
+    "Hypothesis Testing, Combinatorics, Experimental Design, p-values",
+    "Probability, Sampling, Conditional Probability, Multiplication Rule",
+    "Central Limit Theorem, Simulation, Discrete Probability, Sampling Distributions",
+    "Hypothesis Testing, Null Hypothesis, Type I Error, Probability",
+    "Binomial Distribution, Probability, Expected Value",
+    "Between-subjects, Independent samples t-test, Group comparisons",
+    "Within-subjects, Paired t-test, Repeated Measures ANOVA",
+    "Correlation, Linear Regression, Data Collection",
+    "Chi Square Test, Goodness of Fit, Categorical Data, Expected vs Observed",
+    "Inter-rater reliability, Cohen's Kappa, Agreement, Categorical Data",
+    "K-means clustering, Unsupervised learning, Multivariate Data, Standardisation",
+    
+    "Eyewitness memory, Uncertainty",
+    "Probability, Conditional Probability, Simulation, Bayesian",
+    "Sampling, Law of large numbers, Randomness, Sampling",
+    "Residuals, Normal Distribution, Measurement Error",
+    "Estimation, Sampling Bias, Survey Design, Standard Error",
+    "Hypothesis Testing, Between-subjects, Independent samples t-test",
+    "Permutation Tests, Bootstrap, Between-subjects, Resampling",
+    "Likelihood, Simulation, Monte Carlo, Probability Models",
+    "Bayesian, Prior & Posterior, Sequential Updating",
+    "Bayesian, Prior & Posterior, Beta-binomial Distribution, Sequential Updating",
+    "Survival Analysis, Hazard Function, Competing Risks",
+    "Multiple Regression, Variable Selection, Model Fit"
+  ),
+  stringsAsFactors = FALSE
+)
+
+# Build a consistent topic -> colour lookup
+all_topics <- tbl$Topics |>
+  str_split(",\\s*") |>
+  unlist() |>
+  str_trim() |>
+  unique() |>
+  sort()
+
+palette <- c(
+  "#2E5C8A", "#B8862E", "#1E5B33", "#B3423A",
+  "#6B4C9A", "#1F8A8A", "#8A4B2E", "#4B6B8A",
+  "#2E7D6B", "#8A2E5C"
+)
+
+topic_colors <- setNames(
+  rep(palette, length.out = length(all_topics)),
+  all_topics
+)
+
+make_badges <- function(topics_str) {
+  topics <- str_trim(str_split(as.character(topics_str), ",\\s*")[[1]])
+  
+  badges <- map_chr(topics, function(t) {
+    col <- unname(topic_colors[t])
+    if (is.na(col) || length(col) == 0 || col == "") {
+      col <- "#666666"
+    }
+    
+    paste0(
+      "<span style='background:", col, 
+      "; color:white; padding:3px 10px; border-radius:999px; ",
+      "font-size:11px; font-weight:600; margin:2px; display:inline-block;'>",
+      t,
+      "</span>"
+    )
+  })
+  
+  paste(badges, collapse = " ")
+}
+
+gt(tbl) |>
+  text_transform(
+    locations = cells_body(columns = Topics),
+    fn = function(x) map(x, ~ html(make_badges(.x)))
+  ) |>
+  cols_label(Topics = "Topics") |>
+  cols_width(Topics ~ px(400))
+```
+
+
+
+
+
+
+
+

@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mini Stack Game</title>
+  <style>
+    :root {
+      --bg1: #141e30;
+      --bg2: #243b55;
+      --panel: rgba(255,255,255,.12);
+      --text: #fff;
+      --muted: rgba(255,255,255,.75);
+      --accent: #ffd166;
+      --danger: #ff6b6b;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      overflow: hidden;
+      user-select: none;
+    }
+
+    #game {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+      cursor: pointer;
+    }
+
+    .hud {
+      position: fixed;
+      top: 18px;
+      left: 18px;
+      right: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .card {
+      background: var(--panel);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 18px;
+      padding: 14px 16px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.22);
+    }
+
+    .score {
+      font-size: 34px;
+      line-height: 1;
+      font-weight: 800;
+    }
+
+    .label {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .instructions {
+      max-width: 300px;
+      text-align: right;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: rgba(0,0,0,.28);
+      z-index: 4;
+      padding: 24px;
+    }
+
+    .modal {
+      width: min(440px, 100%);
+      background: rgba(20, 28, 44, .88);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 24px;
+      padding: 26px;
+      text-align: center;
+      box-shadow: 0 28px 70px rgba(0,0,0,.42);
+      backdrop-filter: blur(14px);
+    }
+
+    .modal h1 {
+      margin: 0 0 10px;
+      font-size: 34px;
+    }
+
+    .modal p {
+      color: var(--muted);
+      margin: 8px 0;
+      line-height: 1.45;
+    }
+
+    button {
+      margin-top: 18px;
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 22px;
+      font-size: 16px;
+      font-weight: 800;
+      color: #172033;
+      background: var(--accent);
+      cursor: pointer;
+      box-shadow: 0 12px 24px rgba(0,0,0,.24);
+    }
+
+    button:hover { transform: translateY(-1px); }
+    button:active { transform: translateY(1px); }
+
+    .choice-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 18px 0 4px;
+    }
+
+    .choice-btn {
+      margin: 0;
+      border: 2px solid rgba(255,255,255,.28);
+      border-radius: 16px;
+      padding: 16px 12px;
+      color: var(--text);
+      background: rgba(255,255,255,.08);
+      box-shadow: none;
+    }
+
+    .choice-btn.selected {
+      border-color: var(--accent);
+      background: rgba(255,209,102,.2);
+      color: var(--accent);
+    }
+
+    #startBtn:disabled {
+      opacity: .45;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .distraction-panel {
+      position: fixed;
+      top: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(520px, calc(100vw - 36px));
+      min-height: 86px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 16px 22px;
+      border: 3px solid #22c55e;
+      border-radius: 16px;
+      background: rgba(0,0,0,.38);
+      color: #42f57b;
+      font-weight: 900;
+      letter-spacing: .02em;
+      box-shadow: 0 18px 42px rgba(0,0,0,.28);
+      z-index: 3;
+      pointer-events: none;
+      transition: top .08s linear;
+    }
+
+    .hud.shifted { top: 18px; }
+
+    .hidden { display: none; }
+
+    @media (max-width: 700px) {
+      .instructions { display: none; }
+      .score { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="game"></canvas>
+  <div class="distraction-panel hidden" id="distractionPanel">Distractions appear here</div>
+
+  <div class="hud hidden" id="hud">
+    <div class="card">
+      <div class="score" id="score">0</div>
+      <div class="label" id="streak">Perfect streak: 0</div>
+      <div class="label" id="gems">Gems: 0</div>
+    </div>
+    <div class="card instructions">
+      Click, tap, or press Space to place the moving block. Match the block below as closely as possible.
+    </div>
+  </div>
+
+  <div class="overlay" id="startScreen">
+    <div class="modal">
+      <h1>Stack Game</h1>
+      <p>Choose a group, then press Start.</p>
+      <div class="choice-row" aria-label="Choose group">
+        <button class="choice-btn" id="controlBtn" type="button">Control</button>
+        <button class="choice-btn" id="distractionBtn" type="button">Distraction</button>
+      </div>
+      <p id="groupHint">Control is the standard game. Distraction shows a new message after every stack.</p>
+      <button id="startBtn" disabled>Start</button>
+    </div>
+  </div>
+
+  <div class="overlay hidden" id="gameOverScreen">
+    <div class="modal">
+      <h1>Well done!</h1>
+      <p id="finalScore">Your score is: 0</p>
+      <button id="restartBtn">Return to beginning</button>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('game');
+    const ctx = canvas.getContext('2d');
+    const scoreEl = document.getElementById('score');
+    const streakEl = document.getElementById('streak');
+    const gemsEl = document.getElementById('gems');
+    const hud = document.getElementById('hud');
+    const startScreen = document.getElementById('startScreen');
+    const gameOverScreen = document.getElementById('gameOverScreen');
+    const finalScore = document.getElementById('finalScore');
+    const controlBtn = document.getElementById('controlBtn');
+    const distractionBtn = document.getElementById('distractionBtn');
+    const startBtn = document.getElementById('startBtn');
+    const distractionPanel = document.getElementById('distractionPanel');
+
+    const BLOCK_H = 26;
+    const PERFECT_TOLERANCE = 7;
+    const GROW_AFTER_STREAK = 5;
+    const MAX_BLOCK_WIDTH = 230;
+    const BASE_SPEED = 440;
+    const SPEED_UP_EVERY_STACKS = 5;
+    const SPEED_INCREASE_PER_LEVEL = 0.08;
+    const MAX_SPEED = 1400;
+
+    let dpr = window.devicePixelRatio || 1;
+    let w = 0;
+    let h = 0;
+    let blocks = [];
+    let active = null;
+    let cameraY = 0;
+    let targetCameraY = 0;
+    let score = 0;
+    let gems = 0;
+    let perfectStreak = 0;
+    let playing = false;
+    let ended = false;
+    let lastTime = 0;
+    let selectedCondition = null;
+    let unusedDistractions = [];
+
+    const distractionMessages = [
+      "Someone just liked your photo on Instagram!",
+      "Hey, are you free tonight?",
+      "Minh just leaked all of the exam questions.",
+      "Your phone buzzed on the desk.",
+      "New message: What are you doing?",
+      "You have 7 unread notifications.",
+      "A group chat is exploding right now.",
+      "Your battery is at 3%.",
+      "Someone tagged you in a story.",
+      "Your favourite song just started playing.",
+      "There is a new email from your lecturer.",
+      "A calendar reminder just popped up.",
+      "Your food delivery is nearby.",
+      "Someone is calling you.",
+      "A laptop fan suddenly gets louder.",
+      "Your watch just vibrated.",
+      "A new meme dropped in the chat.",
+      "Your friend sent three voice notes.",
+      "The Wi-Fi signal just disappeared.",
+      "A notification says: Urgent update available.",
+      "You remembered an assignment due tonight.",
+      "Someone just asked for your notes.",
+      "Your browser has 23 tabs open.",
+      "A video starts autoplaying somewhere.",
+      "Someone nearby is tapping a pen.",
+      "A chair squeaks behind you.",
+      "You suddenly wonder what time it is.",
+      "Your phone screen lights up.",
+      "A message preview says: We need to talk.",
+      "Your favourite team just scored.",
+      "A sale ends in 10 minutes.",
+      "Someone mentioned your name nearby.",
+      "You smell fresh coffee.",
+      "Your stomach just rumbled.",
+      "A playlist ad starts playing.",
+      "A delivery driver needs directions.",
+      "A pop-up asks you to accept cookies.",
+      "Your laptop says storage is almost full.",
+      "A friend sends: Guess what happened.",
+      "Someone just reacted to your message.",
+      "You remember you forgot to reply.",
+      "An unread DM is waiting.",
+      "A notification says: Low storage.",
+      "Your screen brightness suddenly changes.",
+      "Someone laughs loudly nearby.",
+      "A door slams in the hallway.",
+      "A ringtone plays across the room.",
+      "Your water bottle falls over.",
+      "A new tab asks for your attention.",
+      "You receive a package tracking update.",
+      "A friend asks for last-minute help.",
+      "A news alert flashes on screen.",
+      "The room suddenly feels too hot.",
+      "Your sleeve catches on the desk.",
+      "A pen rolls off the table.",
+      "Someone sends a photo with no context.",
+      "A message says: Open this now.",
+      "A reminder says: Meeting in 5 minutes.",
+      "You hear footsteps behind you.",
+      "A keyboard nearby gets very loud.",
+      "A printer starts making noise.",
+      "Your headphones disconnect.",
+      "A video thumbnail looks interesting.",
+      "Someone asks: Did you study this?",
+      "A new poll appears in the group chat.",
+      "Your phone asks for Face ID again.",
+      "A browser update is ready to install.",
+      "A message says: Are you still awake?",
+      "Your calendar says: Tutorial starts soon.",
+      "A friend sends: I found the answers.",
+      "Someone shares a dramatic screenshot.",
+      "A notification says: You have memories today.",
+      "Your mouse cursor disappears for a moment.",
+      "A desk light starts flickering.",
+      "A loud truck passes outside.",
+      "A dog barks nearby.",
+      "Someone coughs repeatedly.",
+      "A group chat changes its name.",
+      "Your phone suggests a software update.",
+      "A new comment appears on your post.",
+      "Someone starts eating crunchy chips.",
+      "A message says: Call me ASAP.",
+      "An app badge turns red.",
+      "A friend sends a laughing emoji chain.",
+      "You remember a bill is due today.",
+      "A website asks you to enable notifications.",
+      "Someone sends: This will be on the exam.",
+      "A timer starts beeping somewhere.",
+      "The air conditioner turns on loudly.",
+      "A notification says: Your order has shipped.",
+      "Someone walks past your screen.",
+      "A classmate asks for the Zoom link.",
+      "A message says: Check Moodle now.",
+      "Your phone says: Screen Time report ready.",
+      "A friend asks: Want bubble tea?",
+      "You spot a typo in your last message.",
+      "A random thought interrupts your focus.",
+      "A social app says: New friend suggestion.",
+      "Someone says your name from across the room.",
+      "A notification says: Trending near you."
+];
+
+    function chooseCondition(condition) {
+      selectedCondition = condition;
+      controlBtn.classList.toggle('selected', condition === 'control');
+      distractionBtn.classList.toggle('selected', condition === 'distraction');
+      startBtn.disabled = false;
+    }
+
+    function shuffleMessages() {
+      unusedDistractions = [...distractionMessages];
+      for (let i = unusedDistractions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [unusedDistractions[i], unusedDistractions[j]] = [unusedDistractions[j], unusedDistractions[i]];
+      }
+    }
+
+    function showNextDistraction() {
+      if (selectedCondition !== 'distraction') return;
+      if (unusedDistractions.length === 0) {
+        distractionPanel.textContent = 'No distraction messages left. Keep stacking!';
+        return;
+      }
+      distractionPanel.textContent = unusedDistractions.pop();
+    }
+
+    function resize() {
+      dpr = window.devicePixelRatio || 1;
+      w = window.innerWidth;
+      h = window.innerHeight;
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function blockColor(i) {
+      const hue = (205 + i * 19) % 360;
+      return `hsl(${hue} 76% 58%)`;
+    }
+
+    function resetGame() {
+      score = 0;
+      gems = 0;
+      perfectStreak = 0;
+      ended = false;
+      playing = true;
+      cameraY = 0;
+      targetCameraY = 0;
+      shuffleMessages();
+      hud.classList.remove('hidden');
+
+      if (selectedCondition === 'distraction') {
+        distractionPanel.classList.remove('hidden');
+        distractionPanel.textContent = 'Distractions appear here after each stack';
+      } else {
+        distractionPanel.classList.add('hidden');
+      }
+
+      const baseWidth = Math.min(MAX_BLOCK_WIDTH, w * 0.58);
+      const baseY = h - 95;
+      blocks = [{ x: w / 2 - baseWidth / 2, y: baseY, width: baseWidth, color: blockColor(0) }];
+      createActiveBlock();
+      updateHud();
+    }
+
+    function createActiveBlock() {
+      const top = blocks[blocks.length - 1];
+      const width = top.width;
+      const direction = Math.random() > 0.5 ? 1 : -1;
+      const startX = direction === 1 ? -width - 30 : w + 30;
+      const y = top.y - BLOCK_H;
+      const speedLevel = Math.floor(score / SPEED_UP_EVERY_STACKS);
+      const speed = Math.min(MAX_SPEED, BASE_SPEED * (1 + speedLevel * SPEED_INCREASE_PER_LEVEL));
+
+      active = {
+        x: startX,
+        y,
+        width,
+        dir: direction,
+        speed,
+        color: blockColor(blocks.length)
+      };
+
+      targetCameraY = Math.max(0, (blocks.length - 7) * BLOCK_H);
+    }
+
+    function placeBlock() {
+      if (!playing || ended || !active) return;
+
+      const previous = blocks[blocks.length - 1];
+      const left = Math.max(active.x, previous.x);
+      const right = Math.min(active.x + active.width, previous.x + previous.width);
+      let overlap = right - left;
+      const offset = Math.abs(active.x - previous.x);
+      let newX = left;
+
+      if (overlap <= 0) {
+        endGame();
+        return;
+      }
+
+      if (offset <= PERFECT_TOLERANCE) {
+        perfectStreak += 1;
+        newX = previous.x;
+        overlap = previous.width;
+
+        if (perfectStreak >= GROW_AFTER_STREAK) {
+          const growth = Math.min(12, MAX_BLOCK_WIDTH - overlap);
+          overlap += growth;
+          newX -= growth / 2;
+        }
+
+        if (perfectStreak >= 3) gems += 1;
+        flashText('Perfect!');
+      } else {
+        perfectStreak = 0;
+      }
+
+      blocks.push({ x: newX, y: active.y, width: overlap, color: active.color });
+      score += 1;
+      showNextDistraction();
+      updateHud();
+      createActiveBlock();
+    }
+
+    let floatingText = null;
+    function flashText(text) {
+      floatingText = { text, life: 0.75 };
+    }
+
+    function endGame() {
+      playing = false;
+      ended = true;
+      active = null;
+      finalScore.textContent = `Your score is: ${score}`;
+      distractionPanel.classList.add('hidden');
+      hud.classList.add('hidden');
+      gameOverScreen.classList.remove('hidden');
+    }
+
+    function returnToStartScreen() {
+      gameOverScreen.classList.add('hidden');
+      distractionPanel.classList.add('hidden');
+      hud.classList.add('hidden');
+      startScreen.classList.remove('hidden');
+      selectedCondition = null;
+      controlBtn.classList.remove('selected');
+      distractionBtn.classList.remove('selected');
+      startBtn.disabled = true;
+      distractionPanel.textContent = 'Distractions appear here';
+    }
+
+    function updateHud() {
+      scoreEl.textContent = score;
+      streakEl.textContent = `Perfect streak: ${perfectStreak}`;
+      gemsEl.textContent = `Gems: ${gems}`;
+    }
+
+    function drawBlock(b, shadow = true) {
+      const y = b.y + cameraY;
+      const radius = 6;
+      ctx.save();
+      if (shadow) {
+        ctx.shadowColor = 'rgba(0,0,0,.25)';
+        ctx.shadowBlur = 12;
+        ctx.shadowOffsetY = 7;
+      }
+      ctx.fillStyle = b.color;
+      roundRect(ctx, b.x, y, b.width, BLOCK_H, radius);
+      ctx.fill();
+      ctx.fillStyle = 'rgba(255,255,255,.16)';
+      roundRect(ctx, b.x + 4, y + 4, Math.max(0, b.width - 8), 6, 3);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function roundRect(ctx, x, y, width, height, radius) {
+      const r = Math.min(radius, width / 2, height / 2);
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + width, y, x + width, y + height, r);
+      ctx.arcTo(x + width, y + height, x, y + height, r);
+      ctx.arcTo(x, y + height, x, y, r);
+      ctx.arcTo(x, y, x + width, y, r);
+      ctx.closePath();
+    }
+
+    function drawBackground() {
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = 'rgba(255,255,255,.055)';
+      for (let i = 0; i < 26; i++) {
+        const x = (i * 97 + (performance.now() * 0.012)) % (w + 120) - 60;
+        const y = (i * 151) % h;
+        ctx.beginPath();
+        ctx.arc(x, y, 2 + (i % 4), 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function drawFloatingText(dt) {
+      if (!floatingText) return;
+      floatingText.life -= dt;
+      if (floatingText.life <= 0) {
+        floatingText = null;
+        return;
+      }
+      const alpha = Math.max(0, floatingText.life / 0.75);
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.font = '800 28px system-ui, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#ffd166';
+      ctx.fillText(floatingText.text, w / 2, h * 0.26 - (1 - alpha) * 35);
+      ctx.restore();
+    }
+
+    function updateDistractionPanelPosition() {
+      if (selectedCondition !== 'distraction' || distractionPanel.classList.contains('hidden')) return;
+      const topBlock = blocks[blocks.length - 1];
+      if (!topBlock) return;
+      const towerTopScreenY = topBlock.y + cameraY;
+      const desired = towerTopScreenY + BLOCK_H + 16;
+      const clamped = Math.max(90, Math.min(h - 130, desired));
+      distractionPanel.style.top = clamped + 'px';
+    }
+
+    function loop(time) {
+      const dt = Math.min(0.033, (time - lastTime) / 1000 || 0);
+      lastTime = time;
+
+      if (playing && active) {
+        active.x += active.dir * active.speed * dt;
+        if (active.dir === 1 && active.x > w + 40) active.x = -active.width - 40;
+        if (active.dir === -1 && active.x + active.width < -40) active.x = w + 40;
+      }
+
+      cameraY += (targetCameraY - cameraY) * 0.1;
+      drawBackground();
+
+      for (const block of blocks) drawBlock(block);
+      if (active) drawBlock(active);
+
+      updateDistractionPanelPosition();
+      drawFloatingText(dt);
+      requestAnimationFrame(loop);
+    }
+
+    function handleAction(e) {
+      if (e) e.preventDefault();
+      if (startScreen && !startScreen.classList.contains('hidden')) return;
+      if (gameOverScreen && !gameOverScreen.classList.contains('hidden')) return;
+      placeBlock();
+    }
+
+    controlBtn.addEventListener('click', () => chooseCondition('control'));
+    distractionBtn.addEventListener('click', () => chooseCondition('distraction'));
+
+    startBtn.addEventListener('click', () => {
+      if (!selectedCondition) return;
+      startScreen.classList.add('hidden');
+      resetGame();
+    });
+
+    document.getElementById('restartBtn').addEventListener('click', returnToStartScreen);
+
+    window.addEventListener('resize', resize);
+    canvas.addEventListener('pointerdown', handleAction);
+    window.addEventListener('keydown', (e) => {
+      if (!startScreen.classList.contains('hidden')) {
+        if (e.key === '1' || e.key.toLowerCase() === 'c') chooseCondition('control');
+        if (e.key === '2' || e.key.toLowerCase() === 'd') chooseCondition('distraction');
+      }
+
+      if (e.code === 'Space' || e.code === 'Enter') {
+        if (!startScreen.classList.contains('hidden')) {
+          if (!selectedCondition) return;
+          startScreen.classList.add('hidden');
+          resetGame();
+        } else if (!gameOverScreen.classList.contains('hidden')) {
+          returnToStartScreen();
+        } else {
+          placeBlock();
+        }
+      }
+    });
+
+    resize();
+    requestAnimationFrame(loop);
+  </script>
+</body>
+</html>

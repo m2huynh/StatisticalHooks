@@ -1,0 +1,96 @@
+---
+title: "Colour Game"
+format: html
+---
+::: tag-list
+[Permutation Test]{.tag} [Bootstrap]{.tag} [Between-Subjects Design]{.tag} [Resampling]{.tag}
+:::
+
+## About
+
+This app is a fast-paced colour-matching game, structurally similar to the Stack Game but with a different task and a different outcome measure. As before, are assigned to one of two conditions before playing: **Control**, the standard game with no interruptions, or **Distraction**, where notification-style pop-ups appear periodically during play. Note: if following on from the Stack game, you could switch groups.
+
+Everyone plays the same underlying game, only the presence of distractions differs between groups, making this another clean between-subjects comparison - this time used to introduce **resampling-based** hypothesis testing rather than the standard t-test. Instead of relying on the t-distribution, students use the class's own data to build a **permutation test** (repeatedly shuffling group labels to see how extreme the observed group difference really is) and a **bootstrap** (resampling within each group to build a confidence interval for the difference in means). Both methods let students see hypothesis testing as a simulation problem rather than a formula lookup, useful groundwork before moving to more complex parametric tests.
+
+## App
+Below is an example of what the app looks like when embeded into a Quarto document.
+```{=html}
+<iframe
+  src="Apps/color.html"
+  width="100%"
+  height="640"
+  style="border: none;"
+></iframe>
+```
+
+## Download
+You can download the app directly using the link below. This should open as a standalone app that can open on any device. You can also wrap this around a `=html` code chunk in your Quarto document to achieve a similar effect to what is seen above.
+<center>
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(downloadthis)
+download_file(
+  path = "Apps/color.html",
+  button_label = "Colour Game",
+  button_type = 'success'
+)
+```
+</center>
+
+## Permutation Test
+
+Once the class's scores are compiled into two groups (Control, Distraction), calculate the observed difference in means:
+
+$$
+\hat{\Delta} = \bar{x}_{\text{control}} - \bar{x}_{\text{distraction}}
+$$
+
+A permutation test asks: if group membership had no real effect, how often would a difference this large (or larger) show up just from randomly relabelling who was in which group?
+
+```{r, eval=FALSE}
+scores <- c(control_scores, distraction_scores)
+group  <- c(rep("control", length(control_scores)), rep("distraction", length(distraction_scores)))
+
+observed_diff <- mean(control_scores) - mean(distraction_scores)
+
+n_perm <- 10000
+perm_diffs <- numeric(n_perm)
+
+set.seed(1)
+for (i in 1:n_perm) {
+  shuffled <- sample(group)
+  perm_diffs[i] <- mean(scores[shuffled == "control"]) - mean(scores[shuffled == "distraction"])
+}
+
+p_value <- mean(abs(perm_diffs) >= abs(observed_diff))
+```
+
+Plot a histogram of `perm_diffs` with a vertical line at `observed_diff` — this is a highly visual way for students to see exactly what a p-value represents: the proportion of the shuffled world that looks at least as extreme as what was actually observed.
+
+## Bootstrap Confidence Interval
+
+Rather than testing a hypothesis, the bootstrap estimates a **range of plausible values** for the true difference in means, by resampling *within* each group (with replacement) many times.
+
+```{r, eval=FALSE}
+n_boot <- 10000
+boot_diffs <- numeric(n_boot)
+
+set.seed(1)
+for (i in 1:n_boot) {
+  boot_control     <- sample(control_scores, replace = TRUE)
+  boot_distraction <- sample(distraction_scores, replace = TRUE)
+  boot_diffs[i] <- mean(boot_control) - mean(boot_distraction)
+}
+
+ci <- quantile(boot_diffs, c(0.025, 0.975))
+```
+
+Compare this bootstrap confidence interval to the observed difference from the permutation test — do they tell a consistent story? Ask the class: does the interval include zero? What would that mean if it did?
+
+## General questions
+
+- Why do we shuffle the *group labels* rather than the scores themselves in a permutation test? What would happen if we shuffled something else?
+- The permutation test and the bootstrap both involve "resampling," but they answer different questions. Can you describe, in your own words, what each one is actually trying to tell you?
+- If the permutation test's p-value came out just above or just below 0.05, how confident should the class be in that conclusion? What would you want to know before trusting it?
+- Why might resampling-based methods like these be more intuitive (or more trustworthy) to a beginner than a formula-based t-test, even though they're often testing a similar hypothesis?
+- If you ran the permutation test again with a different random seed, would you expect the p-value to change? By how much, roughly?
+- As with the Stack Game, students weren't randomly assigned to Control vs. Distraction. How might that affect how much we can trust either the permutation test or bootstrap result here?

@@ -1,0 +1,50 @@
+---
+title: "Should We Launch It?"
+format: html
+---
+::: tag-list
+[Bayesian Inference]{.tag} [Beta-Binomial Model]{.tag} [Conjugate Priors]{.tag} [Sequential Updating]{.tag}
+:::
+
+## About
+
+This app is a companion piece to *The Stolen Laptop*, but framed around a business decision instead of a courtroom: should a café launch a new product, based on customer feedback? Students start with a flat **Beta(1, 1)** prior on the true proportion of customers who genuinely support the launch. Over 6 simulated days, a fresh batch of customer comments arrives each day, and students read through them, checking off which ones they judge as genuine support. That count (say, 6 out of 10 comments) is treated as binomial data and combined with the current prior using the **conjugate beta-binomial update**: $\alpha \to \alpha + x$, $\beta \to \beta + (n - x)$. Because the update rule is just simple addition, this is a great follow-up to the courtroom app for showing students *why* the beta distribution is used as a prior for proportions in the first place — the math is transparent enough to do by hand, while the app's ridge plot makes the accumulating evidence visually obvious. The app also lets students copy the day-by-day data directly into R, to double-check the same result using `dbeta()` or a package like `bayesrules`.
+
+## App
+
+Below is an example of what the app looks like when embeded into a Quarto document.
+
+```{=html}
+<iframe
+  src="Apps/Cafe.html"
+  width="100%"
+  height="640"
+  style="border: none;"
+></iframe>
+```
+
+## Download
+
+You can download the app directly using the link below. This should open as a standalone app that can open on any device. You can also wrap this around a `=html` code chunk in your Quarto document to achieve a similar effect to what is seen above.
+
+<center>
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(downloadthis)
+download_file(
+  path = "Apps/Cafe.html",
+  button_label = "Should We Launch It?",
+  button_type = 'success'
+)
+```
+</center>
+
+## General questions
+
+- Why is Beta(1, 1) a sensible "starting point" if you genuinely have no idea whether customers support the launch? What would it mean to start with a different prior instead, like Beta(10, 10) or Beta(2, 8)?
+- The update rule is just $\alpha \to \alpha + x$ and $\beta \to \beta + (n - x)$. Why does adding the count of "genuine support" comments to $\alpha$, and the count of the rest to $\beta$, make sense conceptually?
+- Does the order in which the 6 days of feedback arrive change the final posterior? Try to reason through this without running the app again — would summing everything at once give the same answer as updating day by day?
+- After 6 days, is the posterior distribution narrower or wider than the Day 1 posterior? What does that tell you about how confident you should be by the end?
+- If Day 1 had unusually strong support (say, 9 out of 10 comments) purely by chance, how much does that early result continue to influence the final posterior after 5 more days of data? Does its influence shrink over time?
+- How is this beta-binomial setup similar to the courtroom app's evidence-rating process? How is it different — specifically, which one relies on a subjective 0–10 rating, and which one relies on a countable, objective tally?
+- If you were the café owner, at what posterior mean (or what width of posterior distribution) would you feel comfortable actually launching the product? Is there a "right" threshold, or is that a business judgement call layered on top of the statistics?
+- The app lets you copy the daily counts into R. Why might it be useful to double-check an app's calculations independently, rather than just trusting the visual output?

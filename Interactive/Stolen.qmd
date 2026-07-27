@@ -1,0 +1,50 @@
+---
+title: "The Stolen Laptop"
+format: html
+---
+::: tag-list
+[Bayesian Inference]{.tag} [Prior & Posterior]{.tag} [Beta Distribution]{.tag} [Sequential Updating]{.tag}
+:::
+
+## About
+
+This app puts students in the role of a judge in a Bayesian courtroom. Minh is on trial for stealing a laptop, and students start with a completely uninformative prior — a flat **Beta(1, 1)** distribution over the probability of guilt. Across 8 rounds, the prosecution and defence alternate presenting pieces of evidence, and after each one, students rate how strongly it points toward guilt or innocence on a 0–10 slider. That rating is converted into binomial-style evidence and used to update the posterior distribution — which then becomes the *prior* for the next round. By the end, students can see the full sequence of distributions stacked as a ridge plot, watching the belief about Minh's guilt sharpen (or shift) with every new piece of evidence. This is a concrete, visual way to teach Bayesian updating as an iterative process rather than a single formula — and a good opportunity to discuss how much any one juror's subjective rating of "how strong is this evidence" ends up steering the entire final verdict.
+
+## App
+
+Below is an example of what the app looks like when embeded into a Quarto document.
+
+```{=html}
+<iframe
+  src="Apps/Bayes.html"
+  width="100%"
+  height="640"
+  style="border: none;"
+></iframe>
+```
+
+## Download
+
+You can download the app directly using the link below. This should open as a standalone app that can open on any device. You can also wrap this around a `=html` code chunk in your Quarto document to achieve a similar effect to what is seen above.
+
+<center>
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(downloadthis)
+download_file(
+  path = "Apps/Bayes.html",
+  button_label = "The Stolen Laptop",
+  button_type = 'success'
+)
+```
+</center>
+
+## General questions
+
+- Why does the app start with a Beta(1, 1) prior instead of, say, assuming Minh is 50% likely to be guilty from the outset? What does a "flat" prior actually represent?
+- After the very first piece of evidence, how much did the posterior mean shift? Did it feel proportional to how strongly you rated that evidence?
+- The posterior from one round becomes the prior for the next. Why does this sequential updating process make sense, rather than treating each piece of evidence completely independently?
+- If two different students rated the exact same piece of evidence very differently on the slider, would they end up with different final verdicts? What does that tell you about the role of subjective judgement in this model?
+- Look at the ridge plot at the end. Does the distribution get narrower (more confident) or wider (less confident) as more evidence comes in? Why would that happen either way?
+- If the very last piece of evidence were extremely strong, would it "erase" everything the earlier evidence suggested, or does it just nudge the existing posterior? Why?
+- Real juries don't use sliders and formal posterior distributions, but arguably do something similar in their heads. What are the risks of that being done informally rather than explicitly, the way this app forces you to?
+- If the order of evidence presentation were shuffled (defence evidence first, prosecution last, etc.), would you expect the final posterior to end up the same? Why or why not?

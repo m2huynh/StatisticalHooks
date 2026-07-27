@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Six Micro-Tests Score App</title>
+  <style>
+    :root{
+      --bg:#f5f7fb;
+      --card:#ffffff;
+      --ink:#1f2937;
+      --muted:#6b7280;
+      --line:#e5e7eb;
+      --accent:#4f46e5;
+      --accent2:#0ea5e9;
+      --shadow:0 10px 30px rgba(31,41,55,.08);
+      --radius:20px;
+    }
+    *{box-sizing:border-box}
+    html, body { height: 100%; }
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--ink);
+      background:linear-gradient(180deg,#f8fbff 0%,#eef2ff 100%);
+    }
+    body.maximized {
+      background: #f5f7fb;
+    }
+    .wrap{
+      max-width:1180px;
+      margin:0 auto;
+      padding:22px;
+      transition: max-width .2s ease, padding .2s ease;
+    }
+    body.maximized .wrap{
+      max-width:none;
+      width:100%;
+      padding:14px;
+    }
+    .hero,.card{
+      background:rgba(255,255,255,.96);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+    .hero{
+      padding:22px;
+      margin-bottom:18px;
+      position:relative;
+      overflow:hidden;
+    }
+    h1{margin:0 0 8px;font-size:30px}
+    .lead{margin:0;color:var(--muted);line-height:1.55;max-width:900px}
+    .hero-tools{
+      position:absolute;
+      top:14px;
+      right:14px;
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .iconbtn{
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:#fff;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 6px 16px rgba(31,41,55,.06);
+      font-size:18px;
+    }
+    .iconbtn:hover{background:#f8fafc}
+    .card{padding:18px;margin-bottom:18px}
+    h2{margin:0 0 10px;font-size:20px}
+    .sub{color:var(--muted);font-size:14px;line-height:1.5}
+    .overview{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+      margin-top:14px;
+    }
+    .ovbox{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px;
+      background:#fcfdff;
+    }
+    .ovtitle{font-weight:800;margin-bottom:4px}
+    .test{
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:#fcfdff;
+      padding:14px;
+      margin-top:12px;
+    }
+    .testhead{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start}
+    .test h3{margin:0;font-size:16px}
+    .small{font-size:13px;color:var(--muted)}
+    .q{
+      margin-top:12px;
+      border-top:1px dashed #e5e7eb;
+      padding-top:12px;
+    }
+    .q:first-of-type{border-top:none;padding-top:0}
+    .qtext{font-weight:600;margin-bottom:8px;line-height:1.45}
+    .opts{display:flex;flex-wrap:wrap;gap:8px}
+    .opt{
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:999px;
+      padding:8px 10px;
+      font-size:13px;
+      cursor:pointer;
+      user-select:none;
+      transition:.15s ease;
+    }
+    .opt:hover{border-color:#c7d2fe;background:#f8faff}
+    .opt.sel{border-color:var(--accent);background:#eef2ff;color:#312e81;font-weight:700}
+    .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;align-items:center}
+    button,select{
+      border-radius:12px;
+      border:1px solid var(--line);
+      padding:10px 12px;
+      font:inherit;
+      background:#fff;
+      color:var(--ink);
+    }
+    button{cursor:pointer;font-weight:600}
+    button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+    button.primary:hover{background:#4338ca}
+    button.ghost:hover{background:#f8fafc}
+    .status{margin-top:12px;color:var(--muted);font-size:14px}
+    .scoregrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .scorebox{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px;
+      background:#fff;
+    }
+    .scorebox .lab{font-size:13px;color:var(--muted)}
+    .scorebox .val{font-size:24px;font-weight:800;margin-top:4px}
+    .tablewrap{overflow-x:auto}
+    table{width:100%;border-collapse:collapse;font-size:14px}
+    th,td{border-bottom:1px solid var(--line);padding:9px 8px;text-align:left;vertical-align:top}
+    th{background:#fafafa;position:sticky;top:0}
+    .resultbox{
+      margin-top:12px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:#fff;
+      padding:14px;
+    }
+    .resulttitle{font-size:18px;font-weight:800;margin:0 0 6px}
+    .mini{font-size:13px;color:var(--muted);line-height:1.5}
+    textarea{
+      width:100%;
+      min-height:160px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px;
+      font:inherit;
+      resize:vertical;
+      background:#fff;
+      color:var(--ink);
+    }
+    .pill{
+      display:inline-flex;align-items:center;gap:7px;
+      border:1px solid var(--line);border-radius:999px;
+      padding:7px 10px;background:#fff;font-size:13px;font-weight:700;
+      margin-right:8px;
+      margin-top:8px;
+    }
+    .dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
+    code{background:#f3f4f6;padding:2px 6px;border-radius:6px}
+    .hidden{display:none}
+    @media (max-width:980px){
+      .overview,.scoregrid{grid-template-columns:1fr}
+      .hero-tools{position:static;justify-content:flex-end;margin-bottom:10px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap" id="wrap">
+    <div class="hero">
+      <div class="hero-tools">
+        <button class="iconbtn" id="toggleBtn" title="Maximise / minimise" aria-label="Maximise / minimise">⤢</button>
+      </div>
+      <h1>Six Micro-Tests Score App</h1>
+      <p class="lead">
+        Students answer six very short tests. Each test contains five quick questions on a 1–5 scale.
+        At the end, the app gives one overall score for each of the six items, ready to copy into a dataframe for the next step.
+      </p>
+      <div class="overview">
+        <div class="ovbox"><div class="ovtitle">Speed</div><div class="mini">Quick vs careful decision-making.</div></div>
+        <div class="ovbox"><div class="ovtitle">Risk</div><div class="mini">Cautious vs risk-seeking responses.</div></div>
+        <div class="ovbox"><div class="ovtitle">Structure</div><div class="mini">Preference for clear instructions and rules.</div></div>
+        <div class="ovbox"><div class="ovtitle">Ambiguity</div><div class="mini">Comfort with unclear situations.</div></div>
+        <div class="ovbox"><div class="ovtitle">Social</div><div class="mini">Independent vs collaborative style.</div></div>
+        <div class="ovbox"><div class="ovtitle">Pattern</div><div class="mini">Rule-based vs intuitive thinking.</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>1) The six short tests</h2>
+      <div class="sub">Each question uses a 1–5 scale: <strong>1 = not like me</strong>, <strong>5 = very like me</strong>. Reverse-scored items are marked in the text.</div>
+      <div id="tests"></div>
+      <div class="btns">
+        <button class="primary" id="scoreBtn">Calculate scores</button>
+        <button class="ghost" id="demoBtn">Load demo answers</button>
+        <button class="ghost" id="resetBtn">Reset</button>
+        <button class="ghost" id="csvBtn">Copy CSV</button>
+      </div>
+      <div class="status" id="status">Answer the questions, then click Calculate scores.</div>
+    </div>
+
+    <div class="card">
+      <h2>2) Your six scores</h2>
+      <div class="scoregrid" id="scoreGrid"></div>
+      <div class="resultbox">
+        <div class="resulttitle" id="summaryTitle">No scores yet</div>
+        <div class="mini" id="summaryText">Your final output will show one score for each of the six items.</div>
+      </div>
+      <div style="margin-top:8px;">
+        <span class="pill"><span class="dot"></span> Max score per test: 25</span>
+        <span class="pill"><span class="dot" style="background:var(--accent2)"></span> Mean score per test: 1 to 5</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3) Dataframe-ready output</h2>
+      <div class="sub">This is the format students can copy into R or Python later.</div>
+      <textarea id="csvBox" readonly></textarea>
+    </div>
+
+    <div class="card">
+      <h2>4) Scoring rules</h2>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Test</th>
+              <th>What it measures</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody id="rulesBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Optional interpretation</h2>
+      <div class="mini" style="margin-bottom:10px;">
+        The goal is not to rank students as better or worse, but to create a profile vector that can be used later for clustering, visualisation, or comparison.
+      </div>
+      <ul class="mini" style="margin:0;padding-left:18px;line-height:1.65;">
+        <li><strong>Speed</strong>: quick vs careful decision-making</li>
+        <li><strong>Risk</strong>: cautious vs risk-seeking responses</li>
+        <li><strong>Structure</strong>: preference for clear instructions and rules</li>
+        <li><strong>Ambiguity</strong>: comfort with unclear situations</li>
+        <li><strong>Social</strong>: independent vs collaborative style</li>
+        <li><strong>Pattern</strong>: rule-based vs intuitive thinking</li>
+      </ul>
+    </div>
+  </div>
+
+<script>
+  const TESTS = [
+    {
+      id: 'speed',
+      title: '1. Speed vs accuracy',
+      dim: 'Speed',
+      desc: 'How quickly do you prefer to act when a task is simple?',
+      items: [
+        ['I usually answer quickly rather than overthink.', false],
+        ['I prefer to double-check before I respond.', true],
+        ['I feel comfortable making fast decisions.', false],
+        ['I would rather be accurate than fast.', true],
+        ['I can move quickly when the task is routine.', false]
+      ]
+    },
+    {
+      id: 'risk',
+      title: '2. Risk preference',
+      dim: 'Risk',
+      desc: 'How comfortable are you with uncertain outcomes?',
+      items: [
+        ['I prefer a safe option over a risky one.', true],
+        ['I am okay taking a chance if the reward is bigger.', false],
+        ['I avoid choices that could fail badly.', true],
+        ['I like trying uncertain options sometimes.', false],
+        ['I would choose certainty when possible.', true]
+      ]
+    },
+    {
+      id: 'structure',
+      title: '3. Structure preference',
+      dim: 'Structure',
+      desc: 'How much do you like clear instructions and rules?',
+      items: [
+        ['I like clear step-by-step instructions.', false],
+        ['I enjoy tasks with a lot of freedom.', true],
+        ['I prefer having a checklist to follow.', false],
+        ['Open-ended tasks are my favourite.', true],
+        ['I work best when the expectations are clear.', false]
+      ]
+    },
+    {
+      id: 'ambiguity',
+      title: '4. Ambiguity response',
+      dim: 'Ambiguity',
+      desc: 'How do you react when something is not fully defined?',
+      items: [
+        ['I am comfortable starting even when things are unclear.', false],
+        ['I would rather wait for clarification first.', true],
+        ['I can make a reasonable assumption and continue.', false],
+        ['I dislike situations where the task is vague.', true],
+        ['I can cope with incomplete information.', false]
+      ]
+    },
+    {
+      id: 'social',
+      title: '5. Group-work style',
+      dim: 'Social',
+      desc: 'How do you usually behave in a team?',
+      items: [
+        ['I like helping organise the group.', false],
+        ['I prefer to work quietly on my own.', true],
+        ['I am comfortable sharing ideas in a group.', false],
+        ['I would rather not take a visible role.', true],
+        ['I enjoy collaborating with others.', false]
+      ]
+    },
+    {
+      id: 'pattern',
+      title: '6. Pattern thinking',
+      dim: 'Pattern',
+      desc: 'How do you approach a new problem?',
+      items: [
+        ['I look for a rule or pattern first.', false],
+        ['I usually go with my intuition.', true],
+        ['I like to test a few possibilities.', false],
+        ['I prefer a gut feeling over analysis.', true],
+        ['I try to spot similarities with earlier problems.', false]
+      ]
+    }
+  ];
+
+  const elTests = document.getElementById('tests');
+  const elRules = document.getElementById('rulesBody');
+  const elScoreGrid = document.getElementById('scoreGrid');
+  const elStatus = document.getElementById('status');
+  const elSummaryTitle = document.getElementById('summaryTitle');
+  const elSummaryText = document.getElementById('summaryText');
+  const elCsvBox = document.getElementById('csvBox');
+  const toggleBtn = document.getElementById('toggleBtn');
+
+  const responses = {};
+  let isMax = false;
+
+  function renderTests() {
+    elTests.innerHTML = '';
+    TESTS.forEach(test => {
+      const section = document.createElement('div');
+      section.className = 'test';
+      section.innerHTML = `
+        <div class="testhead">
+          <div>
+            <h3>${test.title}</h3>
+            <div class="small">${test.desc}</div>
+          </div>
+          <div class="small"><strong>${test.dim}</strong> score: sum of 5 items (range 5–25)</div>
+        </div>
+        <div id="questions-${test.id}"></div>
+      `;
+      elTests.appendChild(section);
+
+      const qWrap = section.querySelector(`#questions-${test.id}`);
+      responses[test.id] = Array(5).fill(null);
+
+      test.items.forEach((item, idx) => {
+        const [text, reverse] = item;
+        const q = document.createElement('div');
+        q.className = 'q';
+        q.innerHTML = `
+          <div class="qtext">${idx + 1}. ${text}${reverse ? ' <span class="small">(reverse-scored)</span>' : ''}</div>
+          <div class="opts" id="opts-${test.id}-${idx}"></div>
+        `;
+        qWrap.appendChild(q);
+
+        const opts = q.querySelector(`#opts-${test.id}-${idx}`);
+        for (let v = 1; v <= 5; v++) {
+          const pill = document.createElement('div');
+          pill.className = 'opt';
+          pill.textContent = v;
+          pill.dataset.value = v;
+          pill.addEventListener('click', () => {
+            responses[test.id][idx] = v;
+            [...opts.querySelectorAll('.opt')].forEach(o => o.classList.remove('sel'));
+            pill.classList.add('sel');
+          });
+          opts.appendChild(pill);
+        }
+      });
+    });
+  }
+
+  function renderRules() {
+    elRules.innerHTML = TESTS.map(test => `
+      <tr>
+        <td>${test.title.replace(/^\d+\.\s*/, '')}</td>
+        <td>${test.dim}</td>
+        <td>Sum of 5 questions; reverse items are recoded as 6 - response.</td>
+      </tr>
+    `).join('');
+  }
+
+  function computeScore(testId) {
+    const test = TESTS.find(t => t.id === testId);
+    const vals = responses[testId];
+    if (!vals || vals.some(v => v === null)) return null;
+    let total = 0;
+    vals.forEach((v, i) => {
+      const reverse = test.items[i][1];
+      total += reverse ? (6 - v) : v;
+    });
+    return total;
+  }
+
+  function computeAll() {
+    const totals = {};
+    let missing = false;
+    TESTS.forEach(test => {
+      const sc = computeScore(test.id);
+      if (sc === null) missing = true;
+      totals[test.id] = sc;
+    });
+    return { totals, missing };
+  }
+
+  function renderScores(totals) {
+    elScoreGrid.innerHTML = TESTS.map(test => {
+      const score = totals[test.id];
+      const mean = score == null ? '—' : (score / 5).toFixed(1);
+      return `
+        <div class="scorebox">
+          <div class="lab">${test.dim}</div>
+          <div class="val">${score == null ? '—' : score}</div>
+          <div class="small">Mean item score: ${mean}</div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function buildCsv(totals) {
+    const header = ['student_id', ...TESTS.map(t => t.dim.toLowerCase())].join(',');
+    const row = ['student_01', ...TESTS.map(t => totals[t.id] == null ? '' : totals[t.id])].join(',');
+    return header + '\n' + row + '\n';
+  }
+
+  function scoreNow() {
+    const { totals, missing } = computeAll();
+    renderScores(totals);
+    elCsvBox.value = buildCsv(totals);
+    if (missing) {
+      elStatus.textContent = 'Some questions are still unanswered. The blank scores will update once all items are completed.';
+      elSummaryTitle.textContent = 'Incomplete';
+      elSummaryText.textContent = 'Please answer every question to get a final score for each of the six tests.';
+      return;
+    }
+
+    const labels = TESTS.map(t => `${t.dim}: ${totals[t.id]} / 25`).join(' | ');
+    elStatus.textContent = 'All six scores calculated.';
+    elSummaryTitle.textContent = 'Final six-item score profile';
+    elSummaryText.textContent = labels;
+  }
+
+  function fillDemo() {
+    const demo = {
+      speed: [4, 2, 4, 2, 4],
+      risk: [2, 4, 2, 4, 2],
+      structure: [5, 1, 5, 1, 5],
+      ambiguity: [4, 2, 4, 2, 4],
+      social: [4, 2, 4, 2, 4],
+      pattern: [5, 1, 4, 2, 5]
+    };
+
+    TESTS.forEach(test => {
+      demo[test.id].forEach((v, idx) => {
+        responses[test.id][idx] = v;
+        const opts = document.getElementById(`opts-${test.id}-${idx}`);
+        [...opts.querySelectorAll('.opt')].forEach(o => o.classList.toggle('sel', Number(o.dataset.value) === v));
+      });
+    });
+    elStatus.textContent = 'Demo answers loaded. Click Calculate scores.';
+  }
+
+  function resetAll() {
+    Object.keys(responses).forEach(k => responses[k] = Array(5).fill(null));
+    document.querySelectorAll('.opt').forEach(o => o.classList.remove('sel'));
+    elScoreGrid.innerHTML = '';
+    elSummaryTitle.textContent = 'No scores yet';
+    elSummaryText.textContent = 'Your final output will show one score for each of the six items.';
+    elStatus.textContent = 'Answer the questions, then click Calculate scores.';
+    elCsvBox.value = '';
+  }
+
+  async function copyCsv() {
+    const { totals } = computeAll();
+    const csv = buildCsv(totals);
+    try {
+      await navigator.clipboard.writeText(csv);
+      elStatus.textContent = 'CSV copied to clipboard.';
+    } catch (e) {
+      elStatus.textContent = 'Could not copy automatically. You can still select and copy the text from the output box.';
+      elCsvBox.value = csv;
+    }
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    isMax = !isMax;
+    document.body.classList.toggle('maximized', isMax);
+    toggleBtn.textContent = isMax ? '⤡' : '⤢';
+    toggleBtn.title = isMax ? 'Minimise' : 'Maximise';
+    toggleBtn.setAttribute('aria-label', isMax ? 'Minimise' : 'Maximise');
+  });
+
+  document.getElementById('scoreBtn').addEventListener('click', scoreNow);
+  document.getElementById('demoBtn').addEventListener('click', fillDemo);
+  document.getElementById('resetBtn').addEventListener('click', resetAll);
+  document.getElementById('csvBtn').addEventListener('click', copyCsv);
+
+  renderTests();
+  renderRules();
+  elCsvBox.value = 'student_id,speed,risk,structure,ambiguity,social,pattern\nstudent_01,,,,,,\n';
+</script>
+</body>
+</html>

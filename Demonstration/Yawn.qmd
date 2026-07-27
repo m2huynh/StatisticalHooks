@@ -1,0 +1,133 @@
+---
+title: "Contagious Yawns"
+format: html
+---
+
+::: {.tag-list}
+[Correlation]{.tag}
+[Linear Regression]{.tag}
+[Data Collection]{.tag}
+[Psychology of Empathy]{.tag}
+:::
+
+## About
+
+Contagious yawning has long been studied as a possible marker of empathy — the idea being that people who are more attuned to others' emotional and physical states are more likely to "catch" a yawn. This activity turns that idea into a live regression exercise: students watch a short yawning video and record the exact moment (if any) they yawned, then complete a short empathy questionnaire. The two measurements: time-to-yawn and empathy score become the dataset for a hands-on correlation and regression analysis.
+
+## Demonstration
+
+## Materials
+
+- A short video of people yawning, with a visible on-screen counter/timer (see Step 2)
+- Access to an online empathy questionnaire (see Step 3)
+- A tool for students to submit their data in real time (e.g. Google Forms)
+- A stats package (Excel, R, or similar) to run the correlation and regression live
+
+## Step-by-Step Plan
+
+### 0 (Pre-tasks)
+
+- Preview the yawning video yourself and confirm the on-screen counter is clearly visible throughout
+- Set up a short online form with three fields: (1) Name/ID, (2) Time (in seconds) at which they yawned, or "Did not yawn," and (3) their empathy score from the questionnaire
+- Test the empathy questionnaire link yourself and note roughly how long it takes to complete (so you can budget class time)
+
+### 1 (Setup)
+
+In class, explain the activity without revealing the hypothesis in too much detail up front:
+
+> "I'm going to play a short video. Just watch it naturally. There's a counter in the corner — if you yawn at any point, note down the number on the counter at that exact moment. If you don't yawn at all, that's fine too, just note that down."
+
+### 2 (Watch and Record — Predictor Variable)
+
+Play the yawning video. You may want to stop the video earlier if your class time is short.
+
+https://www.youtube.com/watch?v=AJXX4vF6Zh0
+
+Immediately afterward, have students record:
+
+- The counter value at the moment they yawned, **or**
+- "Did not yawn" if they didn't
+
+This is your **predictor variable ($X$)** — time-to-yawn (or a large/undefined value for non-yawners, discussed further in the Bonus section).
+
+### 3 (Empathy Questionnaire — Outcome Variable)
+
+Direct students to complete the [empathy questionnaire](https://www.psychologytoday.com/au/tests/personality/empathy-test) and record their score. This is your **outcome variable ($Y$)**.
+
+Have students submit both values through your form.
+
+### 4 (Explore the Data)
+
+Download the combined dataset and start with a scatterplot of empathy score (y-axis) against time-to-yawn (x-axis), restricted to students who yawned.
+
+::: {.panel-tabset}
+
+## Scatterplot (concept)
+
+Plot empathy score against yawn time. Ask the class: does there seem to be a pattern? Do earlier yawners cluster toward higher or lower empathy scores?
+
+## What to look for
+
+- **Direction:** Does empathy tend to go up or down as yawn-time increases?
+- **Strength:** Are the points tightly clustered around a line, or scattered widely?
+- **Outliers:** Any students who yawned very early or very late with an unexpected empathy score?
+
+:::
+
+### 5 (Correlation)
+
+Calculate the correlation coefficient between yawn time and empathy score. I usually use software, but you can do it manually as well:
+
+::: {.callout-note collapse="false"}
+## Formula: Pearson Correlation Coefficient
+
+$$
+r = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \sum (y_i - \bar{y})^2}}
+$$
+
+where $x_i$ is each student's yawn time and $y_i$ is their empathy score.
+
+$r$ ranges from $-1$ to $1$. A negative $r$ here would suggest that **earlier** yawning is associated with **higher** empathy — consistent with the contagious-yawning-as-empathy hypothesis.
+:::
+
+### 6 (Simple Linear Regression)
+
+Fit a regression line predicting empathy score from yawn time. Again, software is a huge time saver.
+
+::: {.callout-note collapse="false"}
+## Formula: Simple Linear Regression
+
+$$
+\hat{Y} = b_0 + b_1 X
+$$
+
+$$
+b_1 = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}
+\qquad
+b_0 = \bar{y} - b_1 \bar{x}
+$$
+
+where:
+
+- $b_1$ = the estimated change in empathy score for each additional second before yawning
+- $b_0$ = the predicted empathy score for a (hypothetical) yawn time of zero seconds
+:::
+
+Plot the fitted line over the scatterplot from Step 4 and discuss what the slope means in plain terms: for every extra second before a student yawns, how much does their predicted empathy score change?
+
+### 7 (Interpret and Critique)
+
+Discuss as a class:
+
+- How strong was the correlation, really? Is it statistically meaningful given the sample size (your class)?
+- What does $R^2$ tell us about how much of the variation in empathy scores is "explained" by yawn time?
+- What are the limitations of this design? (Small sample, self-reported yawning, single time-point, potential confounders like tiredness or attention)
+
+## Bonus / Optional:
+
+- Can relate this activity to confounding variables and the difference between correlation and causation
+- A few extensions to try:
+    - **Handling non-yawners:** Discuss how to treat students who didn't yawn at all — should they be excluded, or coded as a large value/right-censored? This is a nice, gentle introduction to the idea of censored data.
+    - **Multiple regression:** If you collect additional variables (e.g. hours of sleep, whether they watched a screen recently), extend the model to multiple predictors and discuss how each new variable changes the interpretation of the others.
+    - **Correlation ≠ causation:** Ask the class to brainstorm alternative explanations for any observed relationship — e.g. more attentive/empathetic students may simply have been watching the video more closely, rather than empathy directly causing yawning.
+    - **Residual analysis:** Plot the residuals from the regression model and discuss what a "good" residual plot should look like (no clear pattern) versus a problematic one (funnel shape, curve).

@@ -1,0 +1,114 @@
+---
+title: "Heads Every Time"
+format: html
+---
+
+::: {.tag-list}
+[Binomial Distribution]{.tag}
+[Probability]{.tag}
+[Independent Trials]{.tag}
+[Expected Value]{.tag}
+:::
+
+## About
+
+This activity uses a coin-flipping trick as a hook into the binomial distribution. Students first calculate the probability of an instructor "getting lucky" with heads a few times in a row, and are suitably unimpressed when it happens once or twice. But as the run of heads keeps going, the class starts to realise the odds of pure chance are shrinking fast, setting up a discussion of the binomial distribution, independent trials, and how we decide when a result is too surprising to be random.
+
+## Demonstration
+
+## Materials
+
+- A coin (a slightly weighted or grippy coin can make the technique in Step 0 easier, but a standard coin works fine with practice)
+- A whiteboard or slide to record probabilities as you go
+- A table or document camera so the class can see each flip clearly
+
+## Step-by-Step Plan
+
+### 0 (Pre-tasks)
+
+Before class, practice the coin-control technique below until it looks like a natural, casual flip, the trick relies on it not looking rehearsed.
+
+{{< video https://www.youtube.com/watch?v=A-L7KOjyDrE width="100%" height="450px" >}}
+
+The technique relies on a controlled flip rather than a true toss. With practice, the coin can be made to land on the same face almost every time while still looking like a normal flip to onlookers.
+
+### 1 (Setup)
+
+Hold up the coin and say:
+
+> "I'm going to flip this coin several times in a row. Before each flip, I want you to tell me: what's the probability that it lands heads?"
+
+### 2 (First Flip)
+
+Ask the class:
+
+> "What's the probability this coin lands heads?"
+
+Write the answer on the board:
+
+$$
+P(\text{Heads}) = \frac{1}{2} = 0.5
+$$
+
+Flip the coin using your practiced technique. It lands heads. Let the class shrug it off — one heads is nothing special.
+
+### 3 (Repeated Flips)
+
+Flip again, and again, each time asking the class to update the *cumulative* probability of seeing this many heads in a row, assuming a fair coin:
+
+$$
+P(\text{2 heads in a row}) = \left(\frac{1}{2}\right)^2 = \frac{1}{4}
+$$
+
+$$
+P(\text{3 heads in a row}) = \left(\frac{1}{2}\right)^3 = \frac{1}{8}
+$$
+
+$$
+P(\text{4 heads in a row}) = \left(\frac{1}{2}\right)^4 = \frac{1}{16}
+$$
+
+Keep going for 6–8 flips, writing the shrinking probability on the board each time. By flip 6 or 7, the class should be visibly suspicious.
+
+### 4 (The Reveal)
+
+Ask the class:
+
+> "If this were really a fair coin, what's the probability of seeing 8 heads in a row?"
+
+$$
+P(\text{8 heads in a row}) = \left(\frac{1}{2}\right)^8 = \frac{1}{256} \approx 0.0039
+$$
+
+Reveal the technique from Step 0. Tie it back to the earlier activities: a result this improbable under a "fair" process is exactly the kind of evidence that should make us question whether the process really was fair — the same logic used in the card trick and cup-tasting demonstrations.
+
+### 5 (Formalise the Binomial Distribution)
+
+Introduce the general binomial formula, using the coin flips as a running example:
+
+$$
+P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}
+$$
+
+where:
+
+- $n$ = number of flips
+- $k$ = number of heads
+- $p$ = probability of heads on a single flip (0.5 for a fair coin)
+
+Work through an example as a class: what's the probability of getting *exactly* 5 heads out of 8 flips (not necessarily in a row) with a fair coin?
+
+$$
+P(X = 5) = \binom{8}{5} (0.5)^5 (0.5)^3 = 56 \times 0.03125 \times 0.125 \approx 0.219
+$$
+
+Contrast this with the probability of 8 heads *in a row*, calculated earlier — this is a good moment to highlight the difference between "exactly k successes in any order" versus "k successes in a specific sequence."
+
+## Bonus / Optional:
+
+- Can relate this activity to expected value and variance
+- A few extensions to try:
+    - **Expected value:** Ask how many heads students would *expect* out of 8 fair flips on average, introducing $E(X) = np$.
+    - **Live simulation:** Have the whole class flip real coins simultaneously (8 flips each) and tally how many people got runs of 5+ heads in a row, comparing the empirical rate to the theoretical $1/32$ probability.
+    - **Vary p:** Discuss how the binomial formula changes for a biased coin (e.g. $p = 0.7$), and how much more likely a run of heads becomes.
+    - **Link to hypothesis testing:** Introduce the idea of a significance threshold — at what point (5 heads? 6? 8?) would the class have been justified in calling out "that's not a fair coin" before the reveal?

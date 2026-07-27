@@ -1,0 +1,45 @@
+---
+title: "The Witness Test"
+format: html
+---
+::: tag-list
+[Eyewitness Memory]{.tag} [Overconfidence]{.tag} [Calibration]{.tag} [Uncertainty]{.tag}
+:::
+
+## About
+This app puts students in the position of an eyewitness. They watch a short 15-second animated crime scene, then answer 10 multiple-choice questions about what they saw — rating their confidence alongside each answer. The gap between confidence and accuracy is the whole point: students are almost always more sure of themselves than their actual scores justify, mirroring a well-documented finding in eyewitness testimony research. This is a great entry point for discussing calibration (does 80% confidence really mean 80% correct?), the reliability of eyewitness evidence in legal contexts, and how overconfidence can quietly distort real-world decision-making even when someone feels certain.
+
+## App
+Below is an example of what the app looks like when embeded into a Quarto document.
+```{=html}
+<iframe
+  src="Apps/witness.html"
+  width="100%"
+  height="640"
+  style="border: none;"
+></iframe>
+```
+
+## Download
+You can download the app directly using the link below. This should open as a standalone app that can open on any device. You can also wrap this around a `=html` code chunk in your Quarto document to achieve a similar effect to what is seen above.
+<center>
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(downloadthis)
+download_file(
+  path = "Apps/witness.html",
+  button_label = "The Witness Test",
+  button_type = 'success'
+)
+```
+</center>
+
+## General questions
+
+- Before seeing your score, how confident were you overall that you'd remembered the scene accurately? Did your actual score match that feeling?
+- Were there any specific questions where you felt *very* confident but got the answer wrong? What might explain that gap?
+- Does higher confidence always mean higher accuracy? Based on your own results, what would you say the relationship actually looks like?
+- If a real eyewitness tells police "I'm 100% sure that's the person I saw," should that statement alone be treated as strong evidence? Why or why not?
+- What factors do you think affect how well someone remembers a brief, stressful event — and were any of those factors present (or missing) in this 15-second clip?
+- As a class, compare everyone's confidence-vs-accuracy patterns. Does everyone show the same overconfidence pattern, or do some people seem better calibrated than others?
+- Courts often rely heavily on eyewitness testimony, sometimes as the primary piece of evidence in a case. Based on this activity, what changes (if any) do you think should be made to how eyewitness evidence is used or presented in trials?
+- Outside of courtrooms, where else in life might overconfidence in your own memory or judgment cause problems, even when you feel completely certain?

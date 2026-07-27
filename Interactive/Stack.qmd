@@ -1,0 +1,47 @@
+---
+title: "Stack Game"
+format: html
+---
+::: tag-list
+[Hypothesis Testing]{.tag} [Between-Subjects Design]{.tag} [Independent Samples t-Test]{.tag} [Attention]{.tag}
+:::
+
+## About
+This app is a fast-paced block-stacking game with a hidden research design baked in. Before playing, the instructor will allocate students into one of trwo conditions: **Control**, the standard game with no interruptions, or **Distraction**, where a new notification-style pop-up (a text, a low battery warning, a calling gem) appears after every successful stack. Everyone plays the same game with the same mechanics — the only thing that differs between groups is whether they're being pulled away from the task with simulated phone notifications. This is a clean, self-contained between-subjects design: students self-select (or are randomly assigned by the instructor) into one of two independent groups, and their final scores become the outcome variable for a live hypothesis test comparing means.
+
+## App
+
+Below is an example of what the app looks like when embeded into a Quarto document.
+```{=html}
+<iframe
+  src="Apps/stack_game.html"
+  width="100%"
+  height="640"
+  style="border: none;"
+></iframe>
+```
+
+## Download
+
+You can download the app directly using the link below. This should open as a standalone app that can open on any device. You can also wrap this around a `=html` code chunk in your Quarto document to achieve a similar effect to what is seen above.
+
+<center>
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(downloadthis)
+download_file(
+  path = "Apps/stack_game.html",
+  button_label = "Stack Game",
+  button_type = 'success'
+)
+```
+</center>
+
+## General questions
+
+- Before playing, did you expect the distraction messages to affect your score much? Did the actual experience match that expectation?
+- If the instructor let students freely choose which group (Control or Distraction) to join, could that cause a problem when comparing the two groups afterward? What would you suggest instead?
+- Why is it important that both groups play the *exact same game*, with only the distractions differing? What would go wrong if the Distraction group also had a different game mechanic?
+- As a class, compare the average scores of the Control group and the Distraction group. Does there appear to be a difference? How confident are you that this difference (if any) reflects a real effect, rather than just random variation between two groups of different people?
+- Some students might get distracted by a notification and actually play *better* out of a spike in adrenaline or focus. How would that possibility affect how we interpret the results?
+- Outside of this game, where else does a "distraction condition vs. control condition" comparison show up in real research or everyday life (e.g. studying with music on vs. off, driving while texting)?
+- If this experiment were repeated with a much larger class, would you expect the difference between groups to become clearer, or would it stay just as uncertain? Why?

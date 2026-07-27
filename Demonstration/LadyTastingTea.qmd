@@ -1,0 +1,98 @@
+---
+title: "A Modern Lady Tasting Tea"
+format: html
+---
+
+::: {.tag-list}
+[Hypothesis Testing]{.tag}
+[Combinatorics]{.tag}
+[Experimental Design]{.tag}
+[p-values]{.tag}
+:::
+
+## About
+
+This is a modern twist on Ronald Fisher's famous "Lady Tasting Tea" experiment, the original thought experiment that gave us the foundations of the randomised experiment and the p-value. Instead of milk and tea (feel free to substitute the original if you prefer), this version uses ice and water, which is easier to source, faster to prepare, and just as visually convincing under a projector. Students get a hands-on introduction to combinatorics, the null hypothesis, and just how surprising, or unsurprising, a "perfect score" really is.
+
+## Demonstration
+
+## Materials
+
+- 6 identical cups (opaque enough that the order can't be seen from the side, but see-through from above under the projector)
+- Ice cubes (2 per cup that gets ice first)
+- A jug of water
+- A document camera or projector positioned over the table, so the whole class can watch the cups being prepared
+- Optional: a "mole" in the room (e.g. a tutor or TA) who can quietly relay the true order to you before you re-enter — see the note in Step 3
+
+## Step-by-Step Plan
+
+### 0 (Pre-tasks)
+
+- Set up 6 cups on a table positioned under the document camera/projector, so the class (but not you) can see everything from above
+- Decide in advance how you'll receive the answer once you step outside (see Step 3)
+
+### 1 (Setup)
+
+Invite 6 students up to the table. Explain the task:
+
+> "In front of you are 6 cups. I'm going to leave the room. While I'm gone, I want 3 of you to each take a cup, place 2 pieces of ice in it, and then pour water in about halfway. I want the other 3 of you to do the same thing, but in the opposite order, i.e., water first, then ice. Do this under the camera so the rest of the class can see exactly what you did. When you're done, mix up the order of the cups on the table."
+
+### 2 (Prediction)
+
+Before you leave the room, ask the rest of the class:
+
+> "Once I come back in, my job is to correctly identify which 3 cups had ice first and which 3 had water first, just by looking. If I were purely guessing, what's the chance I get all 6 correct? What's the chance I get at least one correct?"
+
+Let students attempt this calculation (or come back to it in Step 5) — it's a nice lead-in to combinatorics.
+
+### 3 (Leave the room)
+
+Step outside while the students prepare and mix the cups on camera.
+
+::: {.callout-tip collapse="false"}
+## How the "trick" works
+
+This demonstration relies on you actually finding out the order before you walk back in — the surprise is for the audience, not for you. There are two common ways to do this:
+
+- **A mole in the room:** A tutor, TA, or colleague who is in on the demonstration can watch the setup and quietly text you or signal you the order before you re-enter.
+- **A live broadcast:** If the class is being recorded or live-streamed (e.g. lecture capture, Zoom), you can watch the feed on your phone from just outside the room while the students set up the cups on camera.
+
+Either way, the "reveal" should still involve genuinely looking at and handling the cups when you return, so it reads as observation rather than being told the answer.
+:::
+
+### 4 (Reveal)
+
+Return to the room. Examine the cups (condensation, temperature, appearance can all serve as your "reasoning" for the audience, even though you already know the order) and announce your classification of each cup as "ice first" or "water first." Confirm your answers with the students who prepared them.
+
+### 5 (The Statistics)
+
+Now unpack what just happened:
+
+::: {.callout-note collapse="false"}
+## How many ways can 6 cups be split into two groups of 3?
+
+$$
+\binom{6}{3} = \frac{6!}{3!\,3!} = 20
+$$
+
+If you were purely guessing which 3 cups were "ice first," there are 20 equally likely ways to choose them — so the probability of guessing the *exact* correct split by chance is:
+
+$$
+P(\text{all correct}) = \frac{1}{20} = 0.05
+$$
+:::
+
+Ask the class:
+
+- Does a 1-in-20 chance of guessing all 6 correctly feel high or low?
+- This is *exactly* the logic behind Fisher's original experiment and the modern p-value: if someone can correctly sort the cups, and pure guessing would only succeed 5% of the time, do we believe they were guessing?
+- What if you'd only gotten 5 out of 6 correct — does partial credit change how convinced the class should be?
+
+## Bonus / Optional:
+
+- Can relate this activity to hypothesis testing and Type I error
+- A few extensions to try:
+    - **Formalise the hypotheses:** Define $H_0$: "the taster/observer has no ability to distinguish the cups" vs. $H_1$: "the taster/observer can distinguish them," and map the demonstration onto this framework.
+    - **Change the design:** What happens to the probability of guessing correctly if you used 8 cups (4 and 4) instead of 6? Recalculate $\binom{8}{4}$ and discuss how experimental design affects the strength of evidence.
+    - **Partial credit:** Discuss how you'd calculate the probability of getting *exactly* 2 out of 3 correct by chance, introducing the hypergeometric distribution.
+    - **Historical link:** Introduce the real Lady Tasting Tea experiment (Muriel Bristol, Ronald Fisher, 1920s Cambridge) and discuss how this simple demonstration led to the development of modern experimental design and significance testing.

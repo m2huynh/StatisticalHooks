@@ -1,0 +1,109 @@
+---
+title: "Four Aces"
+format: html
+---
+
+::: {.tag-list}
+[Probability]{.tag}
+[Sampling Without Replacement]{.tag}
+[Conditional Probability]{.tag}
+[Multiplication Rule]{.tag}
+:::
+
+## About
+
+This activity uses a simple card trick to build intuition for **probability without replacement** — one of the trickiest ideas for students to grasp because each draw changes the probabilities for the next one. Students predict the probability of drawing an ace at each step, watch the instructor "defy the odds" by pulling an ace every time, and then unpack *why* the trick works using the multiplication rule for dependent events.
+
+## Demonstration
+
+## Materials
+
+- A standard deck of 52 playing cards (with all 4 aces easily locatable — see Pre-tasks)
+- A whiteboard or slide to record probabilities as you go
+- A table or document camera so the class can see the deck (optional, but adds drama)
+
+## Step-by-Step Plan
+
+### 0 (Pre-tasks)
+
+- Before class, arrange the deck so all 4 aces are on **top** of the deck (this is your setup for the trick — see the callout in Step 2)
+- Practice a **false shuffle**: a shuffle that looks random to the audience but keeps the top few cards (your aces) in place. Here is one example of a false shuffle, where you involve two spectators to both say "stop" at any time fo their choosing:
+
+{{< video https://www.youtube.com/watch?v=Ec-KDd-RGOg>}}
+
+### 1 (Setup)
+
+Hold up the deck (shuffled with your false shuffle, aces secretly on top) and say:
+
+> "This is a standard, well-shuffled deck of 52 cards. I'm going to draw cards one at a time, and each time, I want you to tell me: what's the probability that the card I draw is an ace?"
+
+### 2 (First Draw)
+
+Ask the class:
+
+> "What's the probability that the first card I draw is an ace?"
+
+Write the answer on the board:
+
+$$
+P(\text{Ace}_1) = \frac{4}{52}
+$$
+
+::: {.callout-tip collapse="false"}
+## How the trick works
+
+Because the deck is secretly stacked with all 4 aces on top (and your shuffle only ever moved cards *below* them), the top card is guaranteed to be an ace no matter what the class thinks the odds are. Draw the top card with normal, unhurried motion — don't rush this draw, since the "reveal" only works if it looks like a genuine, random draw from a full deck.
+:::
+
+Reveal the card. It's an ace. Let the class react.
+
+### 3 (Second Draw — Without Replacement)
+
+Set the ace aside (**do not return it to the deck** — this is the "without replacement" part) and ask:
+
+> "Now that one ace is gone and the deck has one fewer card, what's the probability the next card I draw is *also* an ace?"
+
+Guide the class to the updated probability:
+
+$$
+P(\text{Ace}_2 \mid \text{Ace}_1) = \frac{3}{51}
+$$
+
+Draw the second card from the top (again, secretly still an ace) and reveal it.
+
+### 4 (Third and Fourth Draws)
+
+Repeat the process, updating the probability each time and writing the running multiplication on the board:
+
+$$
+P(\text{Ace}_3 \mid \text{Ace}_1, \text{Ace}_2) = \frac{2}{50}
+$$
+
+$$
+P(\text{Ace}_4 \mid \text{Ace}_1, \text{Ace}_2, \text{Ace}_3) = \frac{1}{49}
+$$
+
+By the fourth draw, students should notice the probability is shrinking fast — and yet you pull the ace again.
+
+### 5 (Reveal the Full Picture)
+
+Once all 4 aces are on the table, ask the class:
+
+> "What's the probability that all four of my draws were aces, if I were really just drawing randomly from a full deck each time?"
+
+Build up the joint probability using the multiplication rule for dependent events:
+
+$$
+P(\text{all 4 aces}) = \frac{4}{52} \times \frac{3}{51} \times \frac{2}{50} \times \frac{1}{49} \approx 0.0000037
+$$
+
+Let that number sink in — roughly a 1-in-270,725 chance. Then reveal the trick: the deck was stacked in advance, and this is exactly why the result felt "too good to be true." Tie it back to the earlier card activity: an outcome this improbable under random drawing is strong evidence that the process *wasn't* actually random — the same logic as a hypothesis test.
+
+## Bonus / Optional:
+
+- Can relate this activity to combinatorics and hypergeometric distributions
+- A few extensions to try:
+    - **Compare with replacement:** Ask what the probability would have been *with* replacement (returning each card and reshuffling before the next draw) — $\left(\frac{4}{52}\right)^4$ — and discuss why it's different (and much smaller) than the without-replacement version.
+    - **Generalise the formula:** Introduce the hypergeometric distribution as the general tool for "probability of k successes when sampling without replacement," and connect it back to this specific case.
+    - **Flip the trick:** Ask students to calculate the probability of drawing 4 aces in a row *if you hadn't stacked the deck* — this is the number you just calculated — and discuss what threshold of "surprising" would make them suspect a stacked deck in real life.
+    - **Different depths:** What if you only wanted to guarantee the first 2 draws are aces, not all 4? How does the stacking strategy — and the multiplication — change?

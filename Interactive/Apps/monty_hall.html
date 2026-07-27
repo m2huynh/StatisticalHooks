@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monty Hall</title>
+<style>
+  :root {
+    --curtain: #6b1622;
+    --curtain-dark: #4a0f18;
+    --gold: #d4af37;
+    --gold-light: #f0d878;
+    --cream: #f7f2e7;
+    --ink: #2a1a1a;
+    --goat-brown: #8a6240;
+    --panel-bg: #fffdf8;
+    --border: #e3d7bf;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: linear-gradient(180deg, var(--curtain) 0%, var(--curtain-dark) 100%);
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .app {
+    width: 100%;
+    max-width: 900px;
+  }
+
+  /* --- Intro screen --- */
+  .intro {
+    background: var(--panel-bg);
+    border-radius: 14px;
+    padding: 56px 48px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    border: 3px solid var(--gold);
+  }
+
+  .intro h1 {
+    font-size: 2.4rem;
+    letter-spacing: 0.04em;
+    margin: 0 0 6px 0;
+    color: var(--curtain);
+  }
+
+  .intro .subtitle {
+    font-size: 0.95rem;
+    color: #8a7a5c;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin-bottom: 32px;
+  }
+
+  .intro p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    max-width: 520px;
+    margin: 0 auto 36px auto;
+  }
+
+  button {
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 14px 36px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background: var(--gold);
+    color: var(--curtain-dark);
+    font-weight: bold;
+    letter-spacing: 0.04em;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+
+  button:hover:not(:disabled) {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+  }
+
+  button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  button.secondary {
+    background: transparent;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+  }
+  button.secondary:hover:not(:disabled) {
+    background: rgba(212,175,55,0.15);
+  }
+
+  /* --- Game screen layout --- */
+  .game {
+    display: none;
+    grid-template-columns: 280px 1fr;
+    gap: 20px;
+  }
+  .game.active { display: grid; }
+
+  @media (max-width: 720px) {
+    .game.active { grid-template-columns: 1fr; }
+  }
+
+  .panel {
+    background: var(--panel-bg);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+    border: 3px solid var(--gold);
+  }
+
+  .input-panel h2 {
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--curtain);
+    margin-top: 0;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 10px;
+  }
+
+  .stat-block {
+    margin-top: 20px;
+    font-size: 0.9rem;
+  }
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--border);
+  }
+  .stat-row span:last-child { font-weight: bold; color: var(--curtain); }
+
+  table.crosstab {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 0.85rem;
+  }
+  table.crosstab th, table.crosstab td {
+    border: 1px solid var(--border);
+    padding: 6px 8px;
+    text-align: center;
+  }
+  table.crosstab th {
+    background: var(--cream);
+    color: var(--curtain);
+  }
+
+  .choice-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 16px 0;
+  }
+
+  .choice-btn {
+    background: var(--cream);
+    border: 2px solid var(--border);
+    color: var(--ink);
+    text-align: left;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-weight: normal;
+  }
+  .choice-btn.selected {
+    border-color: var(--gold);
+    background: #fdf3d6;
+    font-weight: bold;
+  }
+
+  .submit-btn { width: 100%; margin-top: 8px; }
+
+  /* --- Output panel --- */
+  .output-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    min-height: 460px;
+  }
+
+  .stage-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: #8a7a5c;
+    margin-bottom: 18px;
+  }
+
+  .doors {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .door {
+    width: 130px;
+    height: 220px;
+    position: relative;
+    cursor: default;
+    perspective: 800px;
+  }
+
+  .door-frame {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #7a5230, #5c3d22);
+    border-radius: 8px 8px 4px 4px;
+    border: 4px solid #3d2a16;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 3px #a5794a;
+    transform-style: preserve-3d;
+    transform-origin: left center;
+    transition: transform 0.6s ease;
+    backface-visibility: hidden;
+  }
+
+  .door-number {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--curtain-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1rem;
+    z-index: 3;
+  }
+
+  .door-knob {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 4px rgba(0,0,0,0.5);
+  }
+
+  .door-reveal {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.2rem;
+    background: #1b1310;
+    opacity: 0;
+    transition: opacity 0.5s ease 0.3s;
+  }
+
+  .door.open .door-frame {
+    transform: rotateY(-70deg);
+  }
+  .door.open .door-reveal {
+    opacity: 1;
+  }
+
+  .door.clickable {
+    cursor: pointer;
+  }
+  .door.clickable .door-frame:hover {
+    box-shadow: inset 0 0 0 3px var(--gold-light), 0 0 18px rgba(212,175,55,0.6);
+  }
+  .door.picked .door-frame {
+    box-shadow: inset 0 0 0 3px var(--gold-light), 0 0 22px rgba(212,175,55,0.8);
+  }
+
+  .picked-tag {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--curtain-dark);
+    font-size: 0.65rem;
+    font-weight: bold;
+    letter-spacing: 0.06em;
+    padding: 2px 8px;
+    border-radius: 10px;
+    z-index: 3;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .door.picked .picked-tag { opacity: 1; }
+
+  .narration {
+    margin-top: 28px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    min-height: 30px;
+    max-width: 480px;
+  }
+
+  .narration .fade-line {
+    opacity: 0;
+    animation: fadeIn 0.6s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  .result-banner {
+    margin-top: 18px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px 24px;
+    border-radius: 8px;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+  }
+  .result-banner.win {
+    background: #e8f5e0;
+    color: #2f6b2f;
+    border: 2px solid #2f6b2f;
+  }
+  .result-banner.lose {
+    background: #f5e6e0;
+    color: #8a3b1f;
+    border: 2px solid #8a3b1f;
+  }
+
+  footer {
+    text-align: center;
+    color: rgba(247,242,231,0.5);
+    font-size: 0.75rem;
+    margin-top: 18px;
+    letter-spacing: 0.05em;
+  }
+
+  .maximize-btn {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 50;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 8px;
+    background: rgba(0,0,0,0.35);
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(2px);
+  }
+  .maximize-btn:hover {
+    background: rgba(0,0,0,0.5);
+    transform: none;
+  }
+  .maximize-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  body:fullscreen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, var(--curtain) 0%, var(--curtain-dark) 100%);
+  }
+</style>
+</head>
+<body>
+
+<button class="maximize-btn" id="maximizeBtn" title="Maximize" aria-label="Maximize">
+  <svg id="iconExpand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="15 3 21 3 21 9"></polyline>
+    <polyline points="9 21 3 21 3 15"></polyline>
+    <line x1="21" y1="3" x2="14" y2="10"></line>
+    <line x1="3" y1="21" x2="10" y2="14"></line>
+  </svg>
+  <svg id="iconCollapse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+    <polyline points="4 14 10 14 10 20"></polyline>
+    <polyline points="20 10 14 10 14 4"></polyline>
+    <line x1="14" y1="10" x2="21" y2="3"></line>
+    <line x1="3" y1="21" x2="10" y2="14"></line>
+  </svg>
+</button>
+
+<div class="app">
+
+  <!-- INTRO SCREEN -->
+  <div class="intro" id="intro">
+    <div class="subtitle">A Classic Probability Puzzle</div>
+    <h1>The Monty Hall Problem</h1>
+    <p>There are 3 doors. Behind one of these doors is a Car.
+    Behind the other 2 is a Goat.
+    Your goal is to pick the door that has a car.</p>
+    <button id="startBtn">Continue</button>
+  </div>
+
+  <!-- GAME SCREEN -->
+  <div class="game" id="game">
+    <div class="panel input-panel">
+      <h2>Your Move</h2>
+
+      <div id="stage-pick">
+        <p style="font-size:0.95rem; color:#6b5a3d;">Choose a door.</p>
+        <div class="choice-group" id="pickChoices">
+          <button class="choice-btn" data-door="1">Door 1</button>
+          <button class="choice-btn" data-door="2">Door 2</button>
+          <button class="choice-btn" data-door="3">Door 3</button>
+        </div>
+        <button class="submit-btn" id="submitPick" disabled>Submit</button>
+      </div>
+
+      <div id="stage-decide" style="display:none;">
+        <p style="font-size:0.95rem; color:#6b5a3d;">Stay with your door, or switch?</p>
+        <div class="choice-group" id="decideChoices">
+          <button class="choice-btn" data-choice="stay">Stay</button>
+          <button class="choice-btn" data-choice="switch">Switch</button>
+        </div>
+        <button class="submit-btn" id="submitDecide" disabled>Submit</button>
+      </div>
+
+      <div id="stage-result" style="display:none;">
+        <button class="submit-btn" id="playAgainBtn">Play Again</button>
+      </div>
+
+      <div class="stat-block">
+        <div class="stat-row"><span>Games played</span><span id="statPlayed">0</span></div>
+        <div class="stat-row"><span>Cars won</span><span id="statWon">0</span></div>
+
+        <table class="crosstab">
+          <thead>
+            <tr><th></th><th>Won Car</th><th>Won Goat</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>Stayed</th><td id="ctStayCar">0</td><td id="ctStayGoat">0</td></tr>
+            <tr><th>Switched</th><td id="ctSwitchCar">0</td><td id="ctSwitchGoat">0</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel output-panel">
+      <div class="stage-label">The Stage</div>
+      <div class="doors" id="doors"></div>
+      <div class="narration" id="narration"></div>
+    </div>
+  </div>
+
+  <footer>The host always knows where the car is, and never opens it.</footer>
+</div>
+
+<script>
+(function() {
+  const introEl = document.getElementById('intro');
+  const gameEl = document.getElementById('game');
+  const doorsEl = document.getElementById('doors');
+  const narrationEl = document.getElementById('narration');
+
+  const stagePick = document.getElementById('stage-pick');
+  const stageDecide = document.getElementById('stage-decide');
+  const stageResult = document.getElementById('stage-result');
+
+  const pickChoices = document.getElementById('pickChoices');
+  const submitPick = document.getElementById('submitPick');
+  const decideChoices = document.getElementById('decideChoices');
+  const submitDecide = document.getElementById('submitDecide');
+  const playAgainBtn = document.getElementById('playAgainBtn');
+
+  const statPlayed = document.getElementById('statPlayed');
+  const statWon = document.getElementById('statWon');
+  const ctStayCar = document.getElementById('ctStayCar');
+  const ctStayGoat = document.getElementById('ctStayGoat');
+  const ctSwitchCar = document.getElementById('ctSwitchCar');
+  const ctSwitchGoat = document.getElementById('ctSwitchGoat');
+
+  let carDoor = null;
+  let playerPick = null;
+  let hostOpened = null;
+  let pendingPickSelection = null;
+  let pendingDecideSelection = null;
+
+  let stats = { played: 0, won: 0, stayCar: 0, stayGoat: 0, switchCar: 0, switchGoat: 0 };
+
+  document.getElementById('startBtn').addEventListener('click', () => {
+    introEl.style.display = 'none';
+    gameEl.classList.add('active');
+    newRound();
+  });
+
+  function newRound() {
+    carDoor = Math.floor(Math.random() * 3) + 1;
+    playerPick = null;
+    hostOpened = null;
+    pendingPickSelection = null;
+    pendingDecideSelection = null;
+
+    stagePick.style.display = 'block';
+    stageDecide.style.display = 'none';
+    stageResult.style.display = 'none';
+
+    [...pickChoices.children].forEach(b => b.classList.remove('selected'));
+    [...decideChoices.children].forEach(b => b.classList.remove('selected'));
+    submitPick.disabled = true;
+    submitDecide.disabled = true;
+
+    narrationEl.innerHTML = '<div class="fade-line">Pick a door to begin.</div>';
+    renderDoors();
+  }
+
+  function renderDoors(opts = {}) {
+    doorsEl.innerHTML = '';
+    for (let i = 1; i <= 3; i++) {
+      const door = document.createElement('div');
+      door.className = 'door';
+      if (opts.clickable) door.classList.add('clickable');
+      if (playerPick === i) door.classList.add('picked');
+      if (hostOpened === i) door.classList.add('open');
+      if (opts.revealAll) door.classList.add('open');
+
+      const isCar = i === carDoor;
+      door.innerHTML = `
+        <div class="door-frame">
+          <div class="door-number">${i}</div>
+          <div class="door-knob"></div>
+          <div class="picked-tag">YOUR PICK</div>
+          <div class="door-reveal">${isCar ? '🚗' : '🐐'}</div>
+        </div>
+      `;
+
+      if (opts.clickable) {
+        door.addEventListener('click', () => selectPickDoor(i));
+      }
+      doorsEl.appendChild(door);
+    }
+  }
+
+  // --- Stage 1: pick a door ---
+  renderDoorsClickableInitially();
+  function renderDoorsClickableInitially() {
+    renderDoors({ clickable: true });
+  }
+
+  function selectPickDoor(i) {
+    pendingPickSelection = i;
+    [...pickChoices.children].forEach(b => {
+      b.classList.toggle('selected', parseInt(b.dataset.door) === i);
+    });
+    submitPick.disabled = false;
+    [...doorsEl.children].forEach((d, idx) => {
+      d.classList.toggle('picked', idx + 1 === i);
+    });
+  }
+
+  [...pickChoices.children].forEach(btn => {
+    btn.addEventListener('click', () => selectPickDoor(parseInt(btn.dataset.door)));
+  });
+
+  submitPick.addEventListener('click', () => {
+    if (!pendingPickSelection) return;
+    playerPick = pendingPickSelection;
+
+    // host opens a door: not the player's pick, not the car
+    const options = [1, 2, 3].filter(d => d !== playerPick && d !== carDoor);
+    const doorToOpen = options[Math.floor(Math.random() * options.length)];
+
+    renderDoors({ clickable: false });
+
+    stagePick.style.display = 'none';
+    narrationEl.innerHTML = '';
+
+    setTimeout(() => {
+      hostOpened = doorToOpen;
+      const doorEl = doorsEl.children[hostOpened - 1];
+      if (doorEl) doorEl.classList.add('open');
+
+      const line1 = document.createElement('div');
+      line1.className = 'fade-line';
+      line1.textContent = `The host has opened Door ${hostOpened} and reveals a goat.`;
+      narrationEl.appendChild(line1);
+
+      setTimeout(() => {
+        const line2 = document.createElement('div');
+        line2.className = 'fade-line';
+        line2.style.marginTop = '10px';
+        line2.style.fontWeight = 'bold';
+        line2.textContent = 'Do you want to stay or switch your answer?';
+        narrationEl.appendChild(line2);
+
+        stageDecide.style.display = 'block';
+      }, 900);
+    }, 300);
+  });
+
+  // --- Stage 2: stay or switch ---
+  [...decideChoices.children].forEach(btn => {
+    btn.addEventListener('click', () => {
+      pendingDecideSelection = btn.dataset.choice;
+      [...decideChoices.children].forEach(b => b.classList.toggle('selected', b === btn));
+      submitDecide.disabled = false;
+    });
+  });
+
+  submitDecide.addEventListener('click', () => {
+    if (!pendingDecideSelection) return;
+    const finalPick = pendingDecideSelection === 'switch'
+      ? [1, 2, 3].find(d => d !== playerPick && d !== hostOpened)
+      : playerPick;
+
+    playerPick = finalPick;
+
+    stageDecide.style.display = 'none';
+    renderDoors({ revealAll: true });
+
+    const won = finalPick === carDoor;
+
+    stats.played += 1;
+    if (won) stats.won += 1;
+    if (pendingDecideSelection === 'stay') {
+      won ? stats.stayCar++ : stats.stayGoat++;
+    } else {
+      won ? stats.switchCar++ : stats.switchGoat++;
+    }
+    updateStats();
+
+    narrationEl.innerHTML = `<div class="fade-line">You ${pendingDecideSelection === 'switch' ? 'switched to' : 'stayed with'} Door ${finalPick}.</div>`;
+    const banner = document.createElement('div');
+    banner.className = `result-banner ${won ? 'win' : 'lose'}`;
+    banner.textContent = won ? '🚗 You won the car!' : '🐐 You got a goat.';
+    narrationEl.appendChild(banner);
+
+    stageResult.style.display = 'block';
+  });
+
+  playAgainBtn.addEventListener('click', () => {
+    newRound();
+    renderDoors({ clickable: true });
+  });
+
+  function updateStats() {
+    statPlayed.textContent = stats.played;
+    statWon.textContent = stats.won;
+    ctStayCar.textContent = stats.stayCar;
+    ctStayGoat.textContent = stats.stayGoat;
+    ctSwitchCar.textContent = stats.switchCar;
+    ctSwitchGoat.textContent = stats.switchGoat;
+  }
+
+  // --- Fullscreen (maximize/minimize) toggle ---
+  const maximizeBtn = document.getElementById('maximizeBtn');
+  const iconExpand = document.getElementById('iconExpand');
+  const iconCollapse = document.getElementById('iconCollapse');
+
+  maximizeBtn.addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+      const target = document.documentElement;
+      const request = target.requestFullscreen || target.webkitRequestFullscreen || target.msRequestFullscreen;
+      if (request) {
+        request.call(target).catch(() => {
+          alert('Fullscreen isn\'t available here. If this is embedded in Quarto, make sure the iframe has the "allowfullscreen" attribute.');
+        });
+      }
+    } else {
+      const exit = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen;
+      if (exit) exit.call(document);
+    }
+  });
+
+  function syncFullscreenIcon() {
+    const isFs = !!document.fullscreenElement;
+    iconExpand.style.display = isFs ? 'none' : 'block';
+    iconCollapse.style.display = isFs ? 'block' : 'none';
+    maximizeBtn.title = isFs ? 'Minimize' : 'Maximize';
+    maximizeBtn.setAttribute('aria-label', maximizeBtn.title);
+  }
+  document.addEventListener('fullscreenchange', syncFullscreenIcon);
+  document.addEventListener('webkitfullscreenchange', syncFullscreenIcon);
+})();
+</script>
+
+</body>
+</html>

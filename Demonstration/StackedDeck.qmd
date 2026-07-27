@@ -1,0 +1,144 @@
+---
+title: "Stacked Deck"
+format: html
+---
+
+::: {.tag-list}
+[Hypothesis Testing]{.tag}
+[Null vs Alternative]{.tag}
+[Type I Error]{.tag}
+[Probability]{.tag}
+:::
+
+## About
+
+This activity uses a fully controlled card trick to walk students through five hypothesis tests in a row, live. Before class, the instructor writes down five pairs of hypotheses and secretly stacks the deck so that, one at a time, each "rare" alternative outcome is forced to occur. Because the audience believes the cards are shuffled randomly, each reveal looks like a genuinely surprising result — which is exactly the intuition hypothesis testing is built on: *if the null were true, this outcome would almost never happen, so something else must be going on.*
+
+## Demonstration
+
+
+## Materials
+
+- A standard deck of 52 playing cards, pre-arranged in advance (see Pre-tasks)
+- 5 printed or written prediction cards/slides, sealed or hidden until each reveal
+- A table or document camera so the class can see the cards clearly
+- A whiteboard or slide to record each hypothesis pair and the outcome
+
+## The Five Predictions
+
+Write these down and seal them before class. Rewritten slightly below for statistical clarity — feel free to adjust wording to match your own phrasing style.
+
+| # | $H_0$ (expected / common) | $H_1$ (rare / alternative) |
+|---|---|---|
+| 1 | The number of face-up cards will equal the number of face-down cards | The number of face-up cards will be less than the number of face-down cards |
+| 2 | Of the remaining cards, there will be a mix of number cards and picture cards | Of the remaining cards, there will be number cards only |
+| 3 | Of the remaining cards, there will be a mix of red and black cards | Of the remaining cards, there will be exactly 10 black cards |
+| 4 | Of those 10 black cards, there will be a mix of spades and clubs | Of those 10 black cards, there will be clubs only |
+| 5 | — | The one black card that isn't a club is the Ace of Spades |
+
+::: {.callout-tip collapse="false"}
+## How the trick works
+
+The entire deck is pre-arranged before class using a **false shuffle** (a shuffle that looks random but preserves a known order) combined with cards deliberately mixed face-up and face-down in a controlled pattern. Because the final arrangement is fully known in advance, each "surprising" outcome — fewer face-up cards, only number cards remaining, exactly 10 black cards, all clubs but one — is guaranteed rather than genuinely random. At the end of each round, the previous pile is discarded, narrowing the deck down toward the final, pre-planned punchline: the Ace of Spades. This requires significant practice with the false shuffle and the face-up/face-down mixing sequence before performing it live.
+:::
+
+## Step-by-Step Plan
+
+### 0 (Pre-tasks)
+
+- Write down all five hypothesis pairs in advance and seal or hide them (e.g. in envelopes, or on slides revealed one at a time) so the class can confirm you predicted the outcome *before* seeing the cards
+- Practice the false shuffle and the face-up/face-down control sequence until it looks convincingly random, see guide below:
+
+{{< video https://youtu.be/fU8YWoLO4zE width="100%" height="450px" >}}
+
+### 1 (Setup)
+
+Hold up the deck and say:
+
+> "Before I touch this deck, I've already written down five predictions about what will happen as I shuffle and deal these cards. Each prediction has a 'boring' expected outcome — the null hypothesis — and a much rarer outcome — the alternative hypothesis. Let's see which one actually happens each time."
+
+Shuffle the deck using your false shuffle in full view of the class.
+
+### 2 (Prediction 1 — Face-up vs Face-down)
+
+Reveal the first sealed prediction. Ask the class:
+
+> "If I mix these cards face-up and face-down randomly, would you expect roughly equal numbers of each, or a clear imbalance?"
+
+Deal through the deck, mixing cards face-up and face-down. Count the result. Reveal that face-down cards outnumber face-up cards — matching $H_1$, not $H_0$.
+
+Discard the face-up pile, keeping only the face-down cards for the next round.
+
+### 3 (Prediction 2 — Number Cards Only)
+
+Reveal the second sealed prediction. Ask the class:
+
+> "Of the cards we have left, would you expect a mix of number cards and picture cards, or something more unusual?"
+
+Turn over the remaining cards. Reveal that only number cards remain — again matching $H_1$.
+
+Discard any picture cards (there shouldn't be any, but this keeps the "elimination" pattern consistent), keeping the number cards for the next round.
+
+### 4 (Prediction 3 — Exactly 10 Black Cards)
+
+Reveal the third sealed prediction. Ask the class:
+
+> "Of these remaining number cards, would you expect a mix of red and black, or something more specific?"
+
+Sort the cards by colour. Reveal exactly 10 black cards — a strikingly specific outcome to have predicted in advance.
+
+Discard the red cards, keeping the 10 black cards for the next round.
+
+### 5 (Prediction 4 — Clubs Only... Almost)
+
+Reveal the fourth sealed prediction. Ask the class:
+
+> "Of these 10 black cards, would you expect a mix of spades and clubs, or only clubs?"
+
+Sort the black cards. This is the twist: the prediction says "clubs only," but reveal that there are 9 clubs and 1 spade — meaning $H_0$ (a mix of spades and clubs) is technically what occurred, not the predicted $H_1$.
+
+Pause here and let the class notice the mismatch. This is a deliberate teaching moment (see the callout below).
+
+::: {.callout-important collapse="false"}
+## Why Prediction 4 is designed to "fail"
+
+This is the one prediction in the sequence that doesn't match its stated alternative hypothesis — and that's intentional. It's a live demonstration that **not every hypothesis test rejects the null**, and that a predicted alternative can fail to materialise even in a fully controlled setup. Use this moment to ask: *if this were a real experiment and not a trick, how would we interpret a result like this?* This is a natural segue into discussing Type I and Type II errors, and the fact that failing to reject $H_0$ doesn't mean $H_0$ is true — only that this particular test didn't provide evidence against it.
+:::
+
+### 6 (Prediction 5 — The Final Card)
+
+Reveal the fifth and final sealed prediction — it contains only one statement: *"The black card that isn't a club is the Ace of Spades."*
+
+Turn over the single spade. Reveal that it is, in fact, the Ace of Spades — landing the final punchline and tying the whole sequence together as one long, fully pre-determined chain of outcomes.
+
+## How Unlikely Is This, Really?
+
+Assuming a genuinely random shuffle and deal, here's what each stage of the reveal would cost you in probability — and how those probabilities compound.
+
+::: {.callout-note collapse="false"}
+## Worked example (using one plausible run-through)
+
+| Step | Event (if truly random) | Probability | Running total |
+|---|---|---|---|
+| 1 | Exactly 30 of 52 cards land face-down (rather than an even 26/26 split) | $\approx 0.060$ | $\approx 0.060$ |
+| 2 | All 30 of those face-down cards happen to be number cards (no picture cards at all) | $\approx 3.1 \times 10^{-6}$ | $\approx 1.9 \times 10^{-7}$ |
+| 3 | Exactly 10 of those 30 number cards turn out to be black | $\approx 2.2 \times 10^{-4}$ | $\approx 4.1 \times 10^{-11}$ |
+| 4 | Of those 10 black cards, exactly 9 are clubs and 1 is a spade | $\approx 5.4 \times 10^{-4}$ | $\approx 2.2 \times 10^{-14}$ |
+| 5 | That one spade is specifically the Ace of Spades (1 of 10 possible spade ranks) | $0.1$ | $\approx 2.2 \times 10^{-15}$ |
+
+**Overall probability of this exact sequence happening by pure chance: roughly 1 in 450 trillion.**
+
+:::
+
+Ask the class: does that number feel believable for something that "just happened" to occur? This is the same reasoning behind a p-value — an outcome this extreme under the null hypothesis (a genuinely random shuffle and deal) is essentially never going to happen on its own, so *something else* must be going on. In this case: the deck wasn't random at all.
+
+Note for the instructor: these figures are illustrative, based on one example run. Recalculate steps 1–4 using your own actual observed counts each time you perform it — the shrinking pattern will hold regardless of the exact numbers, since each additional constraint multiplies in another small probability.
+
+## Bonus / Optional:
+
+- Can relate this activity to Type I/II errors and the logic of statistical significance
+- A few extensions to try:
+    - **Calculate the true probabilities:** For each step, work out the actual probability of the observed outcome occurring by pure chance (e.g. probability of exactly 10 black cards remaining after random dealing), and compare how small these numbers get when compounded across all five predictions.
+    - **Discuss p-hacking:** Ask what would happen if, instead of 5 predictions, you'd secretly made 50 and only shown the class the 5 that "worked." This is a great entry point into p-hacking and the multiple comparisons problem.
+    - **Type I vs Type II:** Use Prediction 4's "failure" to concretely define a Type II error (failing to detect a real effect) versus a Type I error (falsely detecting an effect that isn't there).
+    - **Discuss trust and evidence:** Ask the class how their confidence in your "predictive powers" would change if you'd gotten 4 out of 5 right versus 5 out of 5 — and connect this to how much evidence is "enough" to reject a null hypothesis in real research.

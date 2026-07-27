@@ -1,0 +1,60 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Statistical Hooks"
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - index.qmd
+      - collab.qmd
+      - research.qmd
+      - school.qmd
+      
+      - section: "Demonstration Hooks"
+        contents:
+          - Demonstration/Lollies.qmd
+          - Demonstration/Graphs.qmd
+          - Demonstration/Polls.qmd
+          - Demonstration/LadyTastingTea.qmd
+          - Demonstration/4Aces.qmd
+          - Demonstration/LoadedDice.qmd
+          - Demonstration/StackedDeck.qmd
+          - Demonstration/AlwaysHeads.qmd
+          - Demonstration/Psycho.qmd
+          - Demonstration/HeartRate.qmd
+          - Demonstration/Yawn.qmd
+          - Demonstration/Skittles.qmd
+          - Demonstration/Movies.qmd
+          - Demonstration/Cluster.qmd
+
+      
+      - section: "Interactive Hooks"
+        contents: 
+          - Interactive/Witness.qmd
+          - Interactive/MontyHall.qmd
+          - Interactive/RPS.qmd
+          - Interactive/10s.qmd
+          - Interactive/Surveyor.qmd
+          - Interactive/Stack.qmd
+          - Interactive/Colour.qmd
+          - Interactive/FIFA.qmd
+          - Interactive/Stolen.qmd
+          - Interactive/Coffee.qmd
+          - Interactive/SA.qmd
+          - Interactive/Movies.qmd
+
+
+      
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true
+
+editor: visual
+

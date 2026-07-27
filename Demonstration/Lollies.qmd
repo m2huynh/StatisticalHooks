@@ -1,0 +1,57 @@
+---
+title: "Jar of Lollies"
+format: html
+---
+
+::: tag-list
+[Descriptive Statistics]{.tag} [Sampling]{.tag} [Estimation]{.tag} [Wisdom of Crowds]{.tag}
+:::
+
+## About
+
+This classic “lolly jar” activity is an energetic way to open the semester and immediately involve students in real data collection. By making a simple, intuitive guess, students contribute to a dataset that we can analyse together in real time. The activity introduces the core ideas of descriptive statistics while showing how even everyday judgments form the basis of statistical reasoning.
+
+## Demonstration
+
+## Materials
+
+-   One transparent jar filled with small lollies (count them in advance!)
+-   A tool to for students to provide their guess in real time (e.g. Google forms, Poll Everywhere)
+
+## Step-by-Step Plan
+
+### 0 (Pre-tasks)
+
+-   Fill a transparent jar with small lollies. Record how many lollies are in the jar for yourself
+-   Create a question using an online platform (such as Google forms) that only has two questions: (1) Name and (2) Estimate
+
+### 1 (Setup)
+
+In class (face-to-face or online), hold up the jar and say:
+
+> “This jar represents our first dataset of the semester. Your task: estimate how many lollies are inside. Don’t overthink it — just go with your gut.”
+
+### 2 (Collect data)
+
+Provide students with the link to the online form and get them to fill in their Name and Estimate
+
+### 3 (Descriptive Stats)
+
+Download the data (Google forms should allow you to export a csv) and show calculations for basic descriptive stats, such as the mean, median, range, variance, sd, etc.
+
+### 4 (Optional: Plots)
+
+You could generate some plots as a visualisation and link them to certain concepts (e.g. histograms and skewness). You could embed fake responses yourself that are quite extreme to show / talk about outliers.
+
+### 5 (Reveal)
+
+Show the real count and provide a prize to the winning (or closest guessing) student (if it’s only one correct guess I usually give the whole jar). Multiple winners usually split the prize.
+
+## Bonus / Optional:
+
+-   Can relate this activity to sampling
+-   After you’ve revealed the true number, tell students you’ll run a few short experiments to see what happens when we “sample” the data differently. For example:
+    -   **Small vs. large samples:** Randomly select 5 guesses and compute their average. Then select 15 guesses and compute that average. Compare both to the true number — students see that larger samples produce more stable estimates.
+    -   **Removing outliers:** Remove the extreme guesses and recompute the mean and median. Discuss how outliers affect measures of central tendency.
+    -   **Sampling bias:** Ask who sat near the front (closer view of the jar) and whether their guesses were systematically different from those at the back. Introduce the idea of bias and why random sampling matters.
+    -   **Wisdom of Crowds:** If you're teaching ensemble machine learning, you could consider each individual estimate as a weak learner / model. But by ensembling, you should get an estimate that is quite close to the true value.

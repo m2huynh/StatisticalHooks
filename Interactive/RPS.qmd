@@ -1,0 +1,46 @@
+---
+title: "RockPaperScissors"
+format: html
+---
+::: tag-list
+[Sampling]{.tag} [Law of Large Numbers]{.tag} [Randomness]{.tag} [Small Samples]{.tag}
+:::
+
+## About
+
+Students play 10 rounds of Rock Paper Scissors against the computer, watching their running score plotted live as they go. With only 10 games, results swing wildly — a player can be up 4 points after 5 games and end up losing, purely from the small sample size. This is a great hook for discussing why small samples are noisy and unreliable estimators of a "true" underlying rate, and why the Law of Large Numbers only kicks in once you play many, many more rounds. As a twist, the computer opponent isn't purely random — it quietly adapts based on the outcome of the previous round — which opens up a second discussion thread on detecting non-randomness and pattern-seeking behaviour once students start noticing (or suspecting) a pattern in the computer's choices.
+
+## App
+
+Below is an example of what the app looks like when embeded into a Quarto document.
+```{=html}
+<iframe
+  src="Apps/rps_10_game_tracker_fixed_final_left.html"
+  width="100%"
+  height="640"
+  style="border: none;"
+></iframe>
+```
+
+## Download
+You can download the app directly using the link below. This should open as a standalone app that can open on any device. You can also wrap this around a `=html` code chunk in your Quarto document to achieve a similar effect to what is seen above.
+<center>
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(downloadthis)
+download_file(
+  path = "Apps/rps_10_game_tracker_fixed_final_left.html",
+  button_label = "Rock Paper Scissors",
+  button_type = 'success'
+)
+```
+</center>
+
+## General questions
+
+- After 10 games, did your final score feel like a fair reflection of your actual skill against the computer, or could it easily have gone the other way with a bit of luck?
+- If you played another 10 games right now, would you expect a similar result, a completely different one, or something in between? Why?
+- How many games do you think you'd need to play before your win rate started to "settle down" and reliably reflect the true probabilities involved?
+- Did you notice any pattern in the computer's choices as you played? If you suspected a pattern, how would you go about testing whether it was real or just your imagination?
+- If a friend told you they'd won 8 out of 10 games against the computer and concluded "I'm just better at reading the computer," what would you want to know before you believed them?
+- As a class, compare everyone's final scores. Do they all cluster around a similar result, or is there a wide spread? What does that spread tell you about how much weight to put on any *one* person's 10-game outcome?
+- Where else in everyday life do people draw big conclusions from a small number of outcomes (a few good trades, a short winning streak, a handful of "lucky" days) that might really just be normal randomness?

@@ -1,0 +1,140 @@
+---
+title: "Psychopath Test"
+format: html
+---
+
+::: {.tag-list}
+[Between-Subjects Design]{.tag}
+[Independent Samples t-Test]{.tag}
+[Group Comparison]{.tag}
+[Psychology]{.tag}
+:::
+
+## About
+
+This activity uses a famous (if unproven) riddle to split the class into two independent groups, those who solve it and those who don't, and compares their scores on a short psychopathy questionnaire. We will treat this as is a genuinely **between-subjects** design: each student belongs to exactly one group, and the two groups are compared against each other rather than against themselves. It's a natural setup for the independent samples t-test.
+
+## Demonstration
+
+## Materials
+
+- Access to a short online psychopathy questionnaire — e.g. [Psychology Today's Psychopathy Test](https://www.psychologytoday.com/au/tests/personality/psychopathy-test)
+- A tool for students to submit their score and riddle group in real time (e.g. Google Forms)
+- The riddle text, ready to display on screen (see below)
+- Paper for students to write their riddle answer independently
+- A spreadsheet or R session set up to run the independent samples t-test live
+
+## The Riddle
+
+Display this on screen so every student sees it at exactly the same time:
+
+> This is a story about a girl.
+>
+> While at the funeral of her own mother, she met a guy whom she did not know. She thought this guy was amazing, so much the dream guy that she was searching for that she fell in love with him immediately.
+>
+> However, she never asked for his name or number and afterward could not find anyone who knew who he was.
+>
+> A few days later the girl killed her own sister.
+>
+> **Question: Why did she kill her sister?**
+
+::: {.callout-tip collapse="false"}
+## Answer (for the instructor only — don't reveal until after data collection)
+
+She reasoned that if the guy appeared at her mother's funeral, he might appear at another family funeral too — so she killed her sister in the hope of seeing him again.
+
+**Note for the class:** there's a persistent (but never actually proven) claim that this riddle was used by an American psychologist to test for psychopathic thinking, and that several apprehended serial killers answered it correctly. Treat this as an interesting hook rather than a verified fact — it's worth being upfront with students that this origin story is folklore rather than documented research, which is itself a nice discussion point about how "psychology facts" spread.
+:::
+
+## Step-by-Step Plan
+
+### 0 (Pre-tasks)
+
+- Test the psychopathy questionnaire link yourself and confirm it produces a clear numeric score
+- Set up a submission form with three fields: (1) Name/ID, (2) psychopathy score, (3) whether they solved the riddle correctly (Yes/No)
+- Prepare the riddle slide, ready to display but not yet shown
+
+### 1 (Setup)
+
+Explain the two-part process to the class without revealing the riddle yet:
+
+> "In a moment, I'm going to show you a short riddle. I want everyone to try to solve it silently and write your answer down on paper — don't say it out loud, don't discuss it with your neighbour. This needs to stay independent, so please keep your answer to yourself for now."
+
+### 2 (Present the Riddle)
+
+Display the riddle on screen for the whole class simultaneously. Give students a fixed amount of time (e.g. 2–3 minutes) to write their answer down on paper.
+
+### 3 (Reveal and Group)
+
+Reveal the correct answer. Have students self-report (via the form) whether their written answer matched — this sorts the class into two groups:
+
+- **Group 1:** Solved the riddle correctly
+- **Group 2:** Did not solve the riddle correctly
+
+### 4 (Complete the Psychopathy Questionnaire)
+
+Direct students to complete the [psychopathy questionnaire](https://www.psychologytoday.com/au/tests/personality/psychopathy-test) and record their score through the form, alongside their riddle group from Step 3.
+
+### 5 (Set Up the Hypotheses)
+
+Before running the test, formalise what's being compared:
+
+$$
+H_0: \mu_{\text{solved}} = \mu_{\text{not solved}}
+$$
+
+$$
+H_1: \mu_{\text{solved}} \neq \mu_{\text{not solved}}
+$$
+
+where $\mu_{\text{solved}}$ and $\mu_{\text{not solved}}$ are the true mean psychopathy scores for each group.
+
+### 6 (Explore the Data)
+
+Before calculating anything, look at the two groups' distributions side by side (e.g. boxplots or a simple dot plot of scores by group). Ask the class:
+
+> "Just from looking at this, does it look like the two groups differ much? What would make you confident either way?"
+
+### 7 (Run the Independent Samples t-Test)
+
+Calculate the test statistic comparing the two independent groups.
+
+::: {.callout-note collapse="false"}
+## Formula: Independent Samples t-Test
+
+$$
+t = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}}}
+$$
+
+where:
+
+- $\bar{x}_1, \bar{x}_2$ = mean psychopathy score for each group
+- $s_1^2, s_2^2$ = variance of scores within each group
+- $n_1, n_2$ = number of students in each group
+
+Degrees of freedom (using the Welch–Satterthwaite approximation, which doesn't assume equal variances):
+
+$$
+df \approx \frac{\left(\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}\right)^2}{\dfrac{(s_1^2/n_1)^2}{n_1 - 1} + \dfrac{(s_2^2/n_2)^2}{n_2 - 1}}
+$$
+:::
+
+Compare the calculated $t$ to the critical value (or compute the exact p-value) and decide whether to reject $H_0$.
+
+### 8 (Discuss)
+
+Work through these questions as a class:
+
+- Why is this a *between-subjects* design rather than a within-subjects one? What would a within-subjects version of this study even look like (and would it make sense here)?
+- If a significant difference is found, does that mean solving the riddle *causes* higher psychopathy scores? What alternative explanations exist (e.g. general problem-solving ability, prior exposure to the riddle, self-selection in who answers honestly)?
+- What might explain groups being very unequal in size (e.g. only 3 students solve it, 40 don't)? How does that unevenness affect how much you'd trust the result?
+- Given the shaky, unverified origin story behind this riddle, how should that affect how much weight we put on the result even if it *is* statistically significant?
+
+## Bonus / Optional:
+
+- Can relate this activity to effect size and unequal sample sizes
+- A few extensions to try:
+    - **Effect size:** Calculate Cohen's $d$ for the group difference, to discuss *how large* the gap is, not just whether it's statistically detectable.
+    - **Equal variance assumption:** Compare the standard Student's t-test (equal variances assumed) to Welch's t-test (unequal variances allowed) and discuss when each is appropriate — this is a good moment to introduce Levene's test for equality of variances.
+    - **Non-parametric alternative:** If the psychopathy scores look skewed rather than normally distributed, introduce the Mann-Whitney U test as a non-parametric alternative to the independent samples t-test.
+    - **Replicate the folklore:** Search for the actual origin of this riddle claim as a class exercise in evaluating psychological "urban legends" — a nice tie-in to research literacy and misinformation about psychology.

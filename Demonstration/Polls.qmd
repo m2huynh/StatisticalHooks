@@ -1,0 +1,121 @@
+---
+title: "Class Polls"
+format: html
+---
+
+::: {.tag-list}
+[Confidence Intervals]{.tag}
+[Sampling]{.tag}
+[Proportions]{.tag}
+[Live Data]{.tag}
+:::
+
+## About
+
+This activity gets students to generate their own live dataset, again using a simple online form, but this time with two different types of variables: 
+
+- a numeric response (willingness to pay for coffee) and 
+- a binary response (a light-hearted yes/no question). 
+
+Once responses are in, the instructor builds 95% confidence intervals for both live in class, showing students how the CI formula changes depending on whether the underlying variable is continuous or categorical.
+
+
+
+## Demonstration
+
+## Materials
+
+- A tool for students to respond in real time (e.g. Google Forms, Poll Everywhere)
+- A spreadsheet or R session set up in advance to calculate CIs live
+
+## Step-by-Step Plan
+
+### 0 (Pre-tasks)
+
+- Create a two-question online form:
+    1. **Numeric:** "How much are you willing to pay for a cup of coffee? ($)"
+    2. **Binary:** "Are you wearing fresh underwear today? (Yes/No)"
+- Test the form yourself and confirm responses export cleanly to a spreadsheet/CSV
+- Have your stats software (Excel or R) ready with the CI formulas pre-built so you can just paste in live data
+
+### 1 (Setup)
+
+In class (face-to-face or online), introduce the activity:
+
+> "We're going to collect two very different kinds of data today, one numeric, one binary, and use both to build confidence intervals live. First question is straightforward. Second question... well, the true question is, do we really want to know the answer?"
+
+### 2 (Collect data)
+
+Share the form link and give students 2–3 minutes to respond to both questions anonymously.
+
+### 3 (Numeric CI — Coffee Spend)
+
+Download the responses and calculate the 95% CI for the mean amount students are willing to pay.
+
+### 3 (Numeric CI — Coffee Spend)
+
+Download the responses and calculate the 95% CI for the mean amount students are willing to pay.
+
+::: {.callout-note collapse="false"}
+## Formula: 95% CI for a Mean
+
+$$
+\bar{x} \pm t_{\alpha/2, \, n-1} \cdot \frac{s}{\sqrt{n}}
+$$
+
+where:
+
+- $\bar{x}$ = sample mean
+- $s$ = sample standard deviation
+- $n$ = sample size
+- $t_{\alpha/2, \, n-1}$ = critical value from the t-distribution with $n-1$ degrees of freedom
+
+:::
+
+### 4 (Binary CI — Fresh Underwear)
+
+Now calculate the 95% CI for the **proportion** of students who answered "Yes."
+
+::: {.callout-note collapse="false"}
+## Formula: 95% CI for a Proportion
+
+$$
+\hat{p} \pm z_{\alpha/2} \cdot \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}
+$$
+
+where:
+
+- $\hat{p}$ = sample proportion answering "Yes"
+- $n$ = sample size
+- $z_{\alpha/2} = 1.96$ for 95% confidence
+
+:::
+
+### 5 (Discuss)
+
+Compare the two intervals as a class:
+
+- Why does the coffee CI use a **t-distribution** while the underwear CI uses a **normal approximation**?
+- What happens to each interval's width as `n` increases?
+- What would happen to the binary CI if `p̂` were very close to 0 or 1 (e.g. almost everyone says "Yes")? This is a good moment to mention that the normal approximation breaks down in that case, and alternatives like the Wilson or Clopper-Pearson interval exist.
+
+## Bonus / Optional:
+
+- Can relate this activity to sample size and margin of error more broadly
+- A few extensions to try:
+    - **Shrinking the CI:** Ask "what sample size would we need to halve this margin of error?" and calculate it live.
+    - **Compare subgroups:** If you collected any grouping variable (e.g. year level), compute separate CIs for each group and compare.
+    - **Interval interpretation:** Poll students on what they think "95% confidence" means, then correct common misconceptions (it's *not* "95% probability the true value is in this interval").
+    - **Method comparison:** For the binary variable, compute the Wilson interval alongside the normal-approximation interval and discuss when they diverge.
+
+
+
+
+
+
+
+
+
+
+
+
